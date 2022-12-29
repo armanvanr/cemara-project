@@ -5,6 +5,10 @@
     /* align-items: flex-start; */
     padding: 0px;
     gap: 56px;
+    background-image: url(../Assets/Images/bg-shapes.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar {
