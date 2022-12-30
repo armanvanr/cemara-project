@@ -2,6 +2,8 @@ import React from "react";
 import './HomePage.css';
 import logo from '../Assets/logo.jpg';
 import logos from '../Assets/logos.jpg';
+import laporImg from '../Assets/Images/lapor.png';
+import sloganImg from '../Assets/Images/slogan.png'
 
 const HomePage = () => {
     return (
@@ -32,7 +34,7 @@ const HomePage = () => {
                     <div className="LeftSide">
                         <div className="Menu" style={{ alignItems: 'flex-end', order: '0' }}>
                             <div className="MenuGroup">
-                                <img src={logo} className="MenuPic" alt="" />
+                                <img src={laporImg} className="MenuPic" alt="" />
                                 <div className="MenuIsi" style={{ background: '#E92F2F' }}>
                                     <span className="judul">Lapor!</span>
                                     <span className="ket">lorem ipsum</span>
@@ -41,7 +43,7 @@ const HomePage = () => {
                         </div>
                         <div className="Menu" style={{ alignItems: 'center', order: '1' }}>
                             <div className="MenuGroup">
-                                <img src={logo} className="MenuPic" alt="" />
+                                <img src={laporImg} className="MenuPic" alt="" />
                                 <div className="MenuIsi" style={{ background: '#2E9C33' }}>
                                     <span className="judul">Donasi</span>
                                     <span className="ket">lorem ipsum</span>
@@ -50,7 +52,7 @@ const HomePage = () => {
                         </div>
                         <div className="Menu" style={{ alignItems: 'flex-start', order: '2' }}>
                             <div className="MenuGroup">
-                                <img src={logo} className="MenuPic" alt="" />
+                                <img src={laporImg} className="MenuPic" alt="" />
                                 <div className="MenuIsi" style={{ background: '#DCB736' }}>
                                     <span className="judul">Adopsi</span>
                                     <span className="ket">lorem ipsum</span>
@@ -60,7 +62,7 @@ const HomePage = () => {
                     </div>
                     <div className="RightSide">
                         <div className="up">
-                            <img src={logos} alt="" />
+                            <img src={sloganImg} alt="" />
                             <div className="upTitle">We Care We Share</div>
                             <div className="upIsi">
                                 Ciptakan hari esok yang lebih baik untuk satwa liar yang rentan dan peliharaan terlantar di sekitarmu. Jadilah pahlawan bagi bumi kita yang indah.
