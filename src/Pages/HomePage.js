@@ -1,7 +1,5 @@
 import React from "react";
 import './HomePage.css';
-import logo from '../Assets/logo.jpg';
-import logos from '../Assets/logos.jpg';
 import laporImg from '../Assets/Images/lapor.png';
 import sloganImg from '../Assets/Images/slogan.png'
 
