@@ -1,7 +1,5 @@
 import React from "react";
 import './HomePage.css';
-import logo from '../Assets/logo.jpg';
-import logos from '../Assets/logos.jpg';
 import laporImg from '../Assets/Images/lapor.png';
 import sloganImg from '../Assets/Images/slogan.png'
 
@@ -69,7 +67,19 @@ const HomePage = () => {
                             </div>
                         </div>
                         <div className="bottom">
-
+                            <div className="bottomCard">
+                                <img src={laporImg} className="bottomPic" alt="" />
+                                <div className="bottomContent">
+                                    <div className="contentCard1">
+                                        <span className="contentTitle">Pakan Harimau Ragunan</span>
+                                    </div>
+                                    <div className="contentCard2">
+                                        <div className="contentButton">
+                                            <span className="contentButtonText">Donasi Sekarang</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
