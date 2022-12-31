@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './ReportPage.css';
-import brand from '../Assets/Images/brand.jpg'
 import venomousAnimals from '../Assets/Images/venomous.png'
 import wildAnimals from '../Assets/Images/wild.png'
 import poisonousAnimals from '../Assets/Images/poisonous.png'
+import Navibar from "../Components/Navibar";
 
 const ReportPage = () => {
     //select type of invasion animal
@@ -37,28 +37,33 @@ const ReportPage = () => {
     }
 
     //To render images of dangerous animals
-    const [animalType, setAnimalType] = useState('venomous');
+    const [animalType, setAnimalType] = useState(animalDesc.venomous);
     const animalTypeSelect = (e) => {
         const selectedType = e.target.value;
-        setAnimalType(selectedType);
+        switch (selectedType) {
+            case ("venomous"):
+                setAnimalType(animalDesc.venomous);
+                break;
+            case ("wild"):
+                setAnimalType(animalDesc.wild);
+                break;
+            case ("poisonous"):
+                setAnimalType(animalDesc.poisonous);
+                break;
+            default:
+                setAnimalType(animalDesc.venomous);
+                break;
+        }
     }
+    const [dangerReport, setDangerReport] = useState()
+    const reportSubmitHandler = () => {
+
+    }
+
     return (
         <div className="report-page">
-            <div className="navbar">
-                <img src={brand} className="navbar-brand" alt="" />
-                <div className="navbar-buttons">
-                    <div className="navbar-items">
-                        <a href="/donationList">Daftar Donasi</a>
-                        <a href="/reportList">Laporan</a>
-                        <a href="/aboutUs">Tentang Kami</a>
-                        <a href="/action">Aksi</a>
-                        <a href="/articles">Artikel</a>
-                    </div>
-                    <button className="login-button">
-                        <a href="/login">Login</a>
-                    </button>
-                </div>
-            </div>
+            <Navibar />
+
             <div className="header-text">
                 <p className="header-text-1">Butuh pertolongan untuk evakuasi?</p>
                 <p className="header-text-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>
@@ -113,12 +118,11 @@ const ReportPage = () => {
                                 <option value="allComms" >Semua komunitas</option>
                                 <option value="certainComms">Komunitas yang diketahui</option>
                             </select>
-                            <button className="report-button">
+                            <button className="report-button" onSubmit={reportSubmitHandler}>
                                 <p>Laporkan!</p>
                             </button>
                         </div>
                     ) : (<></>)}
-
                 </div>
 
                 <div className="da-select-section">
@@ -139,13 +143,19 @@ const ReportPage = () => {
                             </label>
                         </div>
                         <div className="animal-examples">
-                            <img src={venomousAnimals} alt="images" className="animal-images" />
+                            <img src={animalType.img} alt="images" className="animal-images" />
                             <div className="animal-names">
-                                <p>Ular berbisa</p>
+                                {animalType.names.map((name, index) =>
+                                    <>
+                                        <p key={index}>{name}</p>
+                                        <p>&bull;</p>
+                                    </>
+                                )}
+                                {/* <p>Ular berbisa</p>
                                 <p>&bull;</p>
                                 <p>Kalajengking</p>
                                 <p>&bull;</p>
-                                <p>Kadal berbisa</p>
+                                <p>Kadal berbisa</p> */}
                             </div>
                         </div>
                     </div>
