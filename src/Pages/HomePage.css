@@ -80,7 +80,8 @@
     align-items: flex-start;
     padding: 0px;
     gap: 40px;
-
+    width: 564px;
+    height: 23px;
     /* Inside auto layout */
 
     flex: none;
@@ -472,13 +473,151 @@ E5E4E5
 */
 border: 1px solid #E5E4E5;
 box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.12);
-border-radius: 24px;
+border-radius: 33px;
 
 /* Inside auto layout */
 
 flex: none;
 order: 0;
 align-self: stretch;
+flex-grow: 0;
+}
+
+.bottomPic {
+width: 160px;
+height: 160px;
+
+border-radius: 24px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.bottomContent {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+padding: 16px 0px;
+gap: 6px;
+
+width: 308px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 1;
+}
+
+.contentCard1 {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+height: 64px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.contentTitle {
+/* Poppins/Tittle 3/Bold */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 28px;
+/* identical to box height, or 140% */
+
+
+/* Neutral / 01 (Primary text) */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.contentProgress {
+
+}
+
+
+.contentCard2 {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+padding: 0px;
+gap: 16px;
+
+height: 42px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.contentButton {
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 24px;
+gap: 16px;
+
+/* Primary/Main
+
+2E9C33
+*/
+background: #2E9C33;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+border-radius: 14px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.contentButtonText {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 23px;
+/* identical to box height, or 135% */
+
+
+/* Neutral / White */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
 flex-grow: 0;
 }
 /* BACKGROUND */
