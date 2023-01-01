@@ -17,11 +17,11 @@ const HomePage = () => {
                     <img src="{logo}" className="Applogo" alt=""/>
                     <div className="AppNavButton">
                         <div className="AppNavItem">
-                            <span className="AppNavFont" style={{ width: '118px', height: '23px' }}>Daftar Donasi</span>
-                            <span className="AppNavFont" style={{ width: '72px', height: '23px' }}>Laporan</span>
-                            <span className="AppNavFont" style={{ width: '121px', height: '23px' }}>Tentang Kami</span>
-                            <span className="AppNavFont" style={{ width: '37px', height: '23px' }}>Aksi</span>
-                            <span className="AppNavFont" style={{ width: '56px', height: '23px' }}>Artikel</span>
+                            <span className="AppNavFont" style={{ width: '118px' }}>Daftar Donasi</span>
+                            <span className="AppNavFont" style={{ width: '72px' }}>Laporan</span>
+                            <span className="AppNavFont" style={{ width: '121px' }}>Tentang Kami</span>
+                            <span className="AppNavFont" style={{ width: '37px' }}>Aksi</span>
+                            <span className="AppNavFont" style={{ width: '56px' }}>Artikel</span>
                         </div>
                         <div className="LoginButton">
                             <span className="LoginText">Login</span>
@@ -67,7 +67,19 @@ const HomePage = () => {
                             </div>
                         </div>
                         <div className="bottom">
-
+                            <div className="bottomCard">
+                                <img src={laporImg} className="bottomPic" alt="" />
+                                <div className="bottomContent">
+                                    <div className="contentCard1">
+                                        <span className="contentTitle">Pakan Harimau Ragunan</span>
+                                    </div>
+                                    <div className="contentCard2">
+                                        <div className="contentButton">
+                                            <span className="contentButtonText">Donasi Sekarang</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
