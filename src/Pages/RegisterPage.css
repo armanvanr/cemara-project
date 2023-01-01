@@ -1,0 +1,480 @@
+.App {
+position: relative;
+width: 1280px;
+height: 832px;
+
+/* Neutral / White
+
+FFFFFF
+*/
+background: #FFFFFF;
+}
+
+.AppContainer {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px 50px 0px 100px;
+gap: 200px;
+
+position: absolute;
+height: 832px;
+left: 0px;
+right: 0px;
+top: calc(50% - 832px/2);
+}
+
+/* LeftSide */
+.leftSide {
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 143px;
+
+width: 440px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.loginContainer {
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 143px;
+
+width: 440px;
+height: 832px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.loginCard{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 72px 0px;
+gap: 32px;
+
+width: 440px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 1;
+}
+
+.logo {
+width: 226px;
+height: 64px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.cardBody {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+height: 592px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 1;
+}
+
+.card-form {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+padding: 32px;
+gap: 82px;
+
+height: 538px;
+
+/* Neutral / White
+
+FFFFFF
+*/
+background: #FFFFFF;
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+border-radius: 24px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 1;
+}
+
+.form {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 32px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.formUp {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 32px;
+
+width: 376px;
+height: 238px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.title {
+width: 376px;
+height: 36px;
+
+/* Poppins/Tittle 1/Bold */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 28px;
+line-height: 36px;
+/* identical to box height, or 129% */
+
+text-align: center;
+
+/* Neutral / 01 (Primary text) */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.input {
+box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 16px;
+gap: 16px;
+
+width: 376px;
+height: 48px;
+
+/* Neutral / White
+
+FFFFFF
+*/
+background: #FFFFFF;
+/* Neutral / 08
+
+B4B4B4
+*/
+border: 1px solid #B4B4B4;
+/* Shadow 1 */
+
+box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+border-radius: 12px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.inputText {
+width: 221px;
+height: 23px;
+
+/* Poppins/Body/Regular */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 17px;
+line-height: 23px;
+/* identical to box height, or 135% */
+
+
+/* Neutral / 05 (Secondary text) */
+
+color: #747474;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.iconBg {
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.forgotPasswordButton {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 24px;
+gap: 16px;
+
+height: 42px;
+
+border-radius: 14px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.forgotPasswordText {
+width: 79px;
+height: 17px;
+
+/* Poppins/Footnote/Medium */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 17px;
+/* identical to box height, or 131% */
+
+
+/* Primary/Main */
+
+color: #2E9C33;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.formBottom {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.button1 {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+
+border-radius: 14px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.buttonText1 {
+/* Poppins/Body/Medium */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 23px;
+/* identical to box height, or 135% */
+
+
+/* Primary/Main */
+
+color: #2E9C33;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.button2 {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 32px;
+
+/* Primary/Main
+
+2E9C33
+*/
+background: #2E9C33;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+border-radius: 16px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.buttonText2 {
+/* Poppins/Body/Medium */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 23px;
+/* identical to box height, or 135% */
+
+
+/* Neutral / White */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.footer-form{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+gap: 160px;
+
+width: 440px;
+height: 42px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.footerButton {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 8px;
+height: 42px;
+
+border-radius: 14px;
+
+/* Inside auto layout */
+
+flex: none;
+flex-grow: 0;
+}
+
+/* RightSide */
+.rightSide {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 50px 0px 16px;
+gap: 16px;
+
+width: 509.86px;
+height: 506px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.loginImage {
+width: 509.86px;
+height: 440px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
