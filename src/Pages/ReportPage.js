@@ -1,17 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './ReportPage.css';
 import venomousAnimals from '../Assets/Images/venomous.png'
 import wildAnimals from '../Assets/Images/wild.png'
 import poisonousAnimals from '../Assets/Images/poisonous.png'
 import Navibar from "../Components/Navibar";
+import useGeoLocation from "../Hooks/useGeoLocation";
 
 const ReportPage = () => {
+    const [dangerReport, setDangerReport] = useState({
+        reportType: "invasionReport",
+        phoneNumber: "",
+        imageUrl: "",
+        animalCategory: "venomous",
+        location: { latitude: "", longitude: "" },
+        community: "allCommunities"
+    })
+
     //select type of invasion animal
     const [reportType, setReportType] = useState("invasionReport");
     const reportTypeHandler = (e) => {
         const selectedType = e.target.value;
         setReportType(selectedType);
-        console.log('selected type: ', reportType);
+        setDangerReport({
+            ...dangerReport,
+            reportType: reportType
+        })
+    }
+    const numberInputHandler = (e) => {
+        const inputNumber = e.target.value;
+        setDangerReport({
+            ...dangerReport,
+            phoneNumber: inputNumber
+        })
+    }
+
+    const location = useGeoLocation();
+    // const [loc, setLoc] = useState({ latitude: "", longitude: "" });
+
+    const communitySelectHandler = (e) => {
+        const selectedCommunity = e.target.value;
+        setDangerReport({
+            ...dangerReport,
+            community: selectedCommunity
+        })
     }
 
     //select animal group to rescue
@@ -21,6 +52,7 @@ const ReportPage = () => {
         setAnimalGroup(selectedGroup);
     }
 
+    //examples of dangerous animals
     const animalDesc = {
         venomous: {
             img: venomousAnimals,
@@ -54,10 +86,22 @@ const ReportPage = () => {
                 setAnimalType(animalDesc.venomous);
                 break;
         }
+        setDangerReport({
+            ...dangerReport,
+            animalCategory: animalType
+        })
     }
-    const [dangerReport, setDangerReport] = useState()
+    console.log('report :', dangerReport)
     const reportSubmitHandler = () => {
-
+        //axios.post("apiAddress", dangerReport);
+        if (location.loaded) {
+            setDangerReport({
+                ...dangerReport,
+                location: location.coordinates
+            })
+        } else {
+            console.log('1')
+        }
     }
 
     return (
@@ -77,7 +121,7 @@ const ReportPage = () => {
                         </select>
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
-                                <input type="text" placeholder="Masukkan nomor telepon" className="number-input"></input>
+                                <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
                                 <div className="required-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="req-warn-icon" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -93,6 +137,12 @@ const ReportPage = () => {
                                 <option value="livestocks">Hewan ternak</option>
                             </select>
                         )}
+
+                        {/* {
+                            location.loaded ?
+                                (setLoc(location.coordinates)) : ("Location data not available yet.")
+                        } */}
+
                         {(reportType === "invasionReport") ? (
                             <></>) : (
                             <input type="text" placeholder="Jenis hewan" className="animal-name-input"></input>
@@ -114,11 +164,11 @@ const ReportPage = () => {
                     </div>
                     {(reportType === "invasionReport") ? (
                         <div className="community-select-group">
-                            <select className="community-select" id="floatingSelect" aria-label="Floating label select example" >
-                                <option value="allComms" >Semua komunitas</option>
-                                <option value="certainComms">Komunitas yang diketahui</option>
+                            <select className="community-select" id="floatingSelect" aria-label="Floating label select example" onChange={communitySelectHandler}>
+                                <option value="allCommunities" >Semua komunitas</option>
+                                <option value="certainCommunities">Komunitas yang diketahui</option>
                             </select>
-                            <button className="report-button" onSubmit={reportSubmitHandler}>
+                            <button className="report-button" onClick={reportSubmitHandler}>
                                 <p>Laporkan!</p>
                             </button>
                         </div>
