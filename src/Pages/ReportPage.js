@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './ReportPage.css';
 import venomousAnimals from '../Assets/Images/venomous.png'
 import wildAnimals from '../Assets/Images/wild.png'
 import poisonousAnimals from '../Assets/Images/poisonous.png'
 import Navibar from "../Components/Navibar";
 import useGeoLocation from "../Hooks/useGeoLocation";
+import { storage } from '../firebase'
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const ReportPage = () => {
+    const location = useGeoLocation();
+
     const [dangerReport, setDangerReport] = useState({
         reportType: "invasionReport",
         phoneNumber: "",
-        imageUrl: "",
+        imageUrl: null,
         animalCategory: "venomous",
         location: { latitude: "", longitude: "" },
         community: "allCommunities"
@@ -26,6 +30,7 @@ const ReportPage = () => {
             reportType: reportType
         })
     }
+
     const numberInputHandler = (e) => {
         const inputNumber = e.target.value;
         setDangerReport({
@@ -34,9 +39,33 @@ const ReportPage = () => {
         })
     }
 
-    const location = useGeoLocation();
-    // const [loc, setLoc] = useState({ latitude: "", longitude: "" });
+    // Get an image file for dangerous animal report
+    const [imageUpload, setImageUpload] = useState(null);
+    const imageUploadHandler = () => {
+        if (imageUpload == null) return;
+        // rename to `images/${user.id}_${Date.now()}`        
+        const imageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
+        uploadBytes(imageRef, imageUpload)
+            .then(() => {
+                console.log('uploaded')
+                getDownloadURL(imageRef)
+                    .then((url) => {
+                        setDangerReport({
+                            ...dangerReport,
+                            imageUrl: url
+                        })
+                        // alert('foto berhasil diunggah')
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 
+    //select community
     const communitySelectHandler = (e) => {
         const selectedCommunity = e.target.value;
         setDangerReport({
@@ -91,17 +120,24 @@ const ReportPage = () => {
             animalCategory: animalType
         })
     }
-    console.log('report :', dangerReport)
+
+    //submit dangerous animal Report
     const reportSubmitHandler = () => {
         //axios.post("apiAddress", dangerReport);
+
+        imageUploadHandler();
+
+        //get and assign location into dangerReport
         if (location.loaded) {
             setDangerReport({
                 ...dangerReport,
                 location: location.coordinates
             })
         } else {
-            console.log('1')
+            console.log('location unavailable')
         }
+
+        console.log('report :', dangerReport)
     }
 
     return (
@@ -112,13 +148,16 @@ const ReportPage = () => {
                 <p className="header-text-1">Butuh pertolongan untuk evakuasi?</p>
                 <p className="header-text-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>
             </div>
+
             <div className="report-main">
+
                 <div className="report-type-section">
                     <div className="form-card">
                         <select className="report-type" id="floatingSelect" value={reportType} onChange={reportTypeHandler}>
                             <option value="invasionReport">Invasi hewan berbahaya</option>
                             <option value="rescueReport">Hewan butuh pertolongan</option>
                         </select>
+
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
                                 <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
@@ -138,22 +177,19 @@ const ReportPage = () => {
                             </select>
                         )}
 
-                        {/* {
-                            location.loaded ?
-                                (setLoc(location.coordinates)) : ("Location data not available yet.")
-                        } */}
-
                         {(reportType === "invasionReport") ? (
                             <></>) : (
                             <input type="text" placeholder="Jenis hewan" className="animal-name-input"></input>
                         )}
 
-                        <button className="image-upload-button" >
+                        <button className="image-upload-button" onClick={() => { document.querySelector(".input-field").click() }} >
+                            <input type="file" onChange={(e) => { setImageUpload(e.target.files[0]) }} className="input-field" hidden />
                             <svg xmlns="http://www.w3.org/2000/svg" className="img-up-icon" viewBox="0 0 20 20" fill="currentColor" >
                                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
                             </svg>
                             <p>Unggah foto</p>
                         </button>
+
                         {(reportType === "invasionReport") ? (
                             <></>) : (
                             <div className="add-info-group">
@@ -162,6 +198,7 @@ const ReportPage = () => {
                             </div>
                         )}
                     </div>
+
                     {(reportType === "invasionReport") ? (
                         <div className="community-select-group">
                             <select className="community-select" id="floatingSelect" aria-label="Floating label select example" onChange={communitySelectHandler}>
@@ -197,15 +234,11 @@ const ReportPage = () => {
                             <div className="animal-names">
                                 {animalType.names.map((name, index) =>
                                     <>
-                                        <p key={index}>{name}</p>
                                         <p>&bull;</p>
+                                        <p key={index}>{name}</p>
+                                        
                                     </>
                                 )}
-                                {/* <p>Ular berbisa</p>
-                                <p>&bull;</p>
-                                <p>Kalajengking</p>
-                                <p>&bull;</p>
-                                <p>Kadal berbisa</p> */}
                             </div>
                         </div>
                     </div>
