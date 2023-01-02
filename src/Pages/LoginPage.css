@@ -10,7 +10,9 @@ FFFFFF
 background: #FFFFFF;
 }
 
-.AppContainer {
+
+/* 01-12-22(Salsa) */
+.AppLogin {
 display: flex;
 flex-direction: row;
 justify-content: space-between;
