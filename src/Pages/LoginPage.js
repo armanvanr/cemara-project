@@ -6,7 +6,7 @@ import login from '../Assets/Images/picwish.png'
 const LoginPage = () =>{
     return(
         <div className="App">
-            <div className="AppContainer">
+            <div className="AppLogin">
                 <div className="leftSide">
                     <div className="loginContainer">
                         <div className="loginCard">
