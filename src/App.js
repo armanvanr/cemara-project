@@ -3,6 +3,7 @@ import './App.css';
 import AdoptPage from './Pages/AdoptPage';
 import DashboardReport from './Pages/Dashboard/ReportPage';
 import DashboardCampaign from './Pages/Dashboard/Campaign';
+import DashboardAdopt from './Pages/Dashboard/Adopt';
 import DonatePage from './Pages/DonatePage';
 import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard/report" element={<DashboardReport />} />
         <Route path="/dashboard/campaign" element={<DashboardCampaign />} />
+        <Route path="/dashboard/adopt" element={<DashboardAdopt />} />
       </Routes>
     </div>
   );
