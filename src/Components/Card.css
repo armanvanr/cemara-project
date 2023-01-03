@@ -1,0 +1,42 @@
+.card-dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 8px 0px 0px;
+    gap: 20px;
+
+    width: 805px;
+    height: 120px;
+
+    /* Neutral / White
+
+    FFFFFF
+    */
+    background: #FFFFFF;
+    /* Primary/Border
+
+    97CD99
+    */
+    border: 2px solid #97CD99;
+    border-radius: 19px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card-dashboard-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 16px 0px 0px 16px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
