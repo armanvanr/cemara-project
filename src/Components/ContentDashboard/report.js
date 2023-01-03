@@ -1,5 +1,6 @@
 import React from "react";
 import './style.css';
+import DashboardReport from "../Report";
 
 const ContentDashboard = () => {
     return (
@@ -16,14 +17,7 @@ const ContentDashboard = () => {
             <div className="text-title">
                 Laporan
             </div>
-            <div className="list-container">
-                <div className="list-process-container">
-                    <div className="text-title-list">
-                        Diproses
-                    </div>
-
-                </div>
-            </div>
+            <DashboardReport />
         </div>
     )
 }

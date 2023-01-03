@@ -1,13 +1,13 @@
 import React from "react";
 import './style.css'
-import ContentDashboard from "../../Components/ContentDashboard";
+import Report from "../../Components/ContentDashboard/report";
 import SideBarDashboard from "../../Components/SideBarDashboard";
 
 const Dashboard = () => {
     return (
         <div className="container">
             <SideBarDashboard />
-            <ContentDashboard />
+            <Report />
         </div>
     )
 }

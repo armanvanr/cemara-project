@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import AdoptPage from './Pages/AdoptPage';
-import Dashboard from './Pages/Dashboard';
+import DashboardReport from './Pages/Dashboard/ReportPage';
 import DonatePage from './Pages/DonatePage';
 import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
@@ -18,7 +18,7 @@ function App() {
         <Route path="/adopt" element={<AdoptPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/report" element={<DashboardReport />} />
       </Routes>
     </div>
   );
