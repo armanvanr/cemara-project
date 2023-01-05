@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import brand from '../Assets/Images/brand.jpg'
+import brand from '../../Assets/Images/brand.jpg'
 import './Navibar.css';
 
 const Navibar = () => {
@@ -12,11 +12,11 @@ const Navibar = () => {
 
             <div className="navbar-buttons">
                 <div className="navbar-items">
-                    <a to="/donationList">Daftar Donasi</a>
-                    <a to="/reportList">Laporan</a>
-                    <a to="/aboutUs">Tentang Kami</a>
-                    <a to="/action">Aksi</a>
-                    <a to="/articles">Artikel</a>
+                    <span to="/donationList">Daftar Donasi</span>
+                    <span to="/reportList">Laporan</span>
+                    <span to="/aboutUs">Tentang Kami</span>
+                    <span to="/action">Aksi</span>
+                    <span to="/articles">Artikel</span>
                 </div>
                 <button className="login-button">
                     <Link to="/login">Login</Link>

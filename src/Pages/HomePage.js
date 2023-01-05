@@ -2,70 +2,63 @@ import React from "react";
 import './HomePage.css';
 import laporImg from '../Assets/Images/lapor.png';
 import sloganImg from '../Assets/Images/slogan.png'
-import Navibar from "../Components/Navibar";
+import Navibar from "../Components/NavigationBar/Navibar";
 import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
     return (
-        <div className="AppHome">
-            <div className="AppContainer">
-                <Navibar />
-                <div className="AppHome">
-                    <div className="LeftSide">
-                        <div className="Menu" style={{ alignItems: 'flex-end', order: '0' }}>
-                            <div className="MenuGroup">
-                                <img src={laporImg} className="MenuPic" alt="" />
-                                <NavLink to="/report" style={{textDecoration: "none"}}>
-                                    <div className="MenuIsi" style={{ background: '#E92F2F' }}>
-                                        <span className="judul">Lapor!</span>
-                                        <span className="ket">lorem ipsum</span>
-                                    </div>
-                                </NavLink>
+        <div className="HomePage">
+            <Navibar />
+            <div className="HomeMain">
+                <div className="HomeLeftSide">
+                    <div className="LaporSection">
+                        <NavLink className="RibbonGroup" to="/report" style={{ textDecoration: "none" }}>
+                            <img src={laporImg} alt="" />
+                            <div className="Ribbon" style={{ backgroundColor: "#E92F2F" }}>
+                                <span className="RibbonName">Lapor!</span>
+                                <span className="RibbonDesc">Lorem ipsum</span>
                             </div>
-                        </div>
-                        <div className="Menu" style={{ alignItems: 'center', order: '1' }}>
-                            <div className="MenuGroup">
-                                <img src={laporImg} className="MenuPic" alt="" />
-                                <NavLink to="/donate" style={{textDecoration: "none"}}>
-                                    <div className="MenuIsi" style={{ background: '#2E9C33' }}>
-                                        <span className="judul">Donasi</span>
-                                        <span className="ket">lorem ipsum</span>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div>
-                        <div className="Menu" style={{ alignItems: 'flex-start', order: '2' }}>
-                            <div className="MenuGroup">
-                                <img src={laporImg} className="MenuPic" alt="" />
-                                <NavLink to="/adopt" style={{textDecoration: "none"}}>
-                                    <div className="MenuIsi" style={{ background: '#DCB736' }}>
-                                        <span className="judul">Adopsi</span>
-                                        <span className="ket">lorem ipsum</span>
-                                    </div>
-                                </NavLink>
-                            </div>
-                        </div>
+                        </NavLink>
                     </div>
-                    <div className="RightSide">
-                        <div className="up">
-                            <img src={sloganImg} alt="" />
-                            <div className="upTitle">We Care We Share</div>
-                            <div className="upIsi">
-                                Ciptakan hari esok yang lebih baik untuk satwa liar yang rentan dan peliharaan terlantar di sekitarmu. Jadilah pahlawan bagi bumi kita yang indah.
+                    <div className="DonasiSection">
+                        <NavLink className="RibbonGroup" to="/donate" style={{ textDecoration: "none" }}>
+                            <img src={laporImg} alt="" />
+                            <div className="Ribbon" style={{ backgroundColor: "#2E9C33" }}>
+                                <span className="RibbonName">Donasi</span>
+                                <span className="RibbonDesc">Lorem ipsum</span>
                             </div>
-                        </div>
-                        <div className="bottom">
-                            <div className="bottomCard">
-                                <img src={laporImg} className="bottomPic" alt="" />
-                                <div className="bottomContent">
-                                    <div className="contentCard1">
-                                        <span className="contentTitle">Pakan Harimau Ragunan</span>
+                        </NavLink>
+                    </div>
+                    <div className="AdopsiSection">
+                        <NavLink className="RibbonGroup" to="/adopt" style={{ textDecoration: "none" }}>
+                            <img src={laporImg} alt="" />
+                            <div className="Ribbon" style={{ backgroundColor: "#DCB736" }}>
+                                <span className="RibbonName">Adopsi</span>
+                                <span className="RibbonDesc">Lorem ipsum</span>
+                            </div>
+                        </NavLink>
+                    </div>
+                </div>
+                <div className="HomeRightSide">
+                    <div className="SloganGroup">
+                        <img src={sloganImg} alt="" className="SloganImage" />
+                        <span className="SloganText">We Care We Share!</span>
+                        <span className="SloganDesc">Ciptakan hari esok yang lebih baik untuk satwa liar yang rentan dan peliharaan terlantar di sekitarmu. <strong>Jadilah pahlawan bagi bumi kita yang indah.</strong></span>
+                    </div>
+                    <div className="CampaignSlide">
+                        <div className="CampaignCard">
+                            <img src={laporImg} className="CampaignImage" alt="" />
+                            <div className="CampaignDesc">
+                                <div className="CampaignCardTitle">
+                                    <span >Pakan Harimau Ragunan</span>
+                                    <div className="CampaignProgressGroup">
+
                                     </div>
-                                    <div className="contentCard2">
-                                        <div className="contentButton">
-                                            <span className="contentButtonText">Donasi Sekarang</span>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div className="CampaignButtonLayout">
+                                    <button className="CampaignButton">
+                                        <span >Donasi Sekarang</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
