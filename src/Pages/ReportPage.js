@@ -3,7 +3,7 @@ import './ReportPage.css';
 import venomousAnimals from '../Assets/Images/venomous.png'
 import wildAnimals from '../Assets/Images/wild.png'
 import poisonousAnimals from '../Assets/Images/poisonous.png'
-import Navibar from "../Components/Navibar";
+import Navibar from "../Components/NavigationBar/Navibar";
 import useGeoLocation from "../Hooks/useGeoLocation";
 import { storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -58,8 +58,15 @@ const ReportPage = () => {
         })
     }
 
+    const appendImage = (url) => {
+        setDangerReport({
+            ...dangerReport,
+            imageUrl: url
+        })
+    }
     // Get an image file for dangerous animal report
     const [imageUpload, setImageUpload] = useState(null);
+
     const imageUploadHandler = () => {
         if (imageUpload == null) return;
         // rename to `images/${user.id}_${Date.now()}`        
@@ -69,15 +76,7 @@ const ReportPage = () => {
                 console.log('uploaded')
                 getDownloadURL(imageRef)
                     .then((url) => {
-                        setDangerReport({
-                            ...dangerReport,
-                            imageUrl: url
-                        })
-                        setArReport({
-                            ...arReport,
-                            imageUrl: url
-                        })
-                        // alert('foto berhasil diunggah')
+                        appendImage(url);
                     })
                     .catch((err) => {
                         console.log(err)
@@ -87,6 +86,16 @@ const ReportPage = () => {
                 console.log(error)
             })
     }
+
+    // const imageUploadHandler = async () => {
+    //     if (imageUpload == null) return;
+    //     // rename to `images/${user.id}_${Date.now()}`        
+    //     const imageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
+    //     await uploadBytes(imageRef, imageUpload);
+
+    //     const imageUrl = await getDownloadURL(imageRef);
+    //     appendImage(imageUrl);
+    // }
 
     //select community
     const communitySelectHandler = (e) => {
@@ -128,21 +137,20 @@ const ReportPage = () => {
     //submit dangerous animal Report
     const invasionReportSubmitHandler = () => {
         imageUploadHandler();
-
         //get and assign location into dangerReport
         if (location.loaded) {
             setDangerReport({
                 ...dangerReport,
                 location: location.coordinates
             })
+            console.log('in if',location.coordinates)
         } else {
             console.log('location unavailable')
         }
-
-        console.log('report :', dangerReport)
-        //axios.post("apiAddress", dangerReport);
+        axios.post("http://localhost:3030/report", dangerReport);
+        console.log('report :', dangerReport);
+        console.log('in handler',location.coordinates)
     }
-
 
     //ANIMAL RESCUE REPORT
     const [arReport, setArReport] = useState({
@@ -196,10 +204,13 @@ const ReportPage = () => {
     }
 
     const getKota = () => {
-        axios.get(`${dataIndoUrl}/kabupaten/${idProv}.json`)
-            .then((res) => {
-                setDataKota(res.data)
-            })
+        if (idProv) {
+            axios.get(`${dataIndoUrl}/kabupaten/${idProv}.json`)
+                .then((res) => {
+                    setDataKota(res.data)
+                })
+        }
+
     }
 
     const citySelectHandler = (e) => {
@@ -207,10 +218,13 @@ const ReportPage = () => {
         console.log('city id', id)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getProvinsi();
+    }, [])
+
+    useEffect(() => {
         getKota();
-    },[])
+    }, [idProv])
 
     const rescueReportSubmitHandler = () => {
         imageUploadHandler();
@@ -313,10 +327,10 @@ const ReportPage = () => {
                                 <img src={animalType.img} alt="images" className="animal-images" />
                                 <div className="animal-names">
                                     {animalType.names.map((name, index) =>
-                                        <>
-                                            <p>&bull;</p>
-                                            <p key={index}>{name}</p>
-                                        </>
+                                        <div className="names-map" key={index}>
+                                            {index>0? <span>&bull;</span>:null}
+                                            <p>{name}</p>
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -341,10 +355,8 @@ const ReportPage = () => {
                                     </button>
                                 </div>
                                 <div className="province-city-group">
-                                    {console.log(dataProvinsi)}
-                                    {console.log(dataKota)}
                                     <select className="reporter-province" onChange={provinceSelectHandler}>
-                                        <option disabled value="" >Pilih provinsi</option>
+                                        <option value="" >Pilih provinsi</option>
                                         {dataProvinsi.map((prov, index) => {
                                             return <option key={index} value={prov.id}>{prov.nama}</option>
                                         })}
