@@ -3,14 +3,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0px;
     gap: 10px;
     position: absolute;
-    width: 100;
+    width: inherit;
     height: auto;
     left: 0px;
     right: 0px;
-    top: calc(50% - 832px/2);
+    /* top: calc(50% - 832px/2); */
     /* background-image: url(../Assets/Images/bg-shapes.svg); */
 }
 
@@ -141,7 +140,10 @@
     line-height: 28px;
     color: #1E1E1E;
     outline: none;
+
+
 }
+
 
 .number-input-group {
     display: flex;
@@ -359,8 +361,8 @@
     gap: 12px;
     width: 376px;
     height: 48px;
-    border: 1px solid #B4B4B4;
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.12));
+    border: 1px solid transparent;
+    /* filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.12)); */
     border-radius: 12px;
     font-family: 'Poppins';
     font-style: normal;
@@ -565,4 +567,329 @@ input[type="radio"] {
     flex: none;
     order: 1;
     flex-grow: 0;
+}
+
+.ar-report-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 32px;
+
+    width: 676px;
+    height: 438px;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.report-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 24px;
+    gap: 24px;
+
+    width: auto;
+    height: auto;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.form-title {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    width: 628px;
+    height: 30px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.form-title>span {
+    width: 86px;
+    height: 30px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+
+    color: #1E1E1E;
+}
+
+
+.report-card-wrapper>input {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    width: 628px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+
+    flex: none;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.report-card-wrapper>input::placeholder {
+    width: auto;
+    height: 23px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #747474;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.address-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 12px;
+
+    width: 628px;
+    height: 48px;
+
+    flex: none;
+    order: 4;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.reporter-address {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    width: 568px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+
+}
+
+.reporter-address::placeholder {
+    width: auto;
+    height: 23px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #747474;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.map-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+
+    width: 48px;
+    height: 48px;
+    background-color: white;
+    border: none;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    cursor: pointer;
+}
+
+.map-button>svg {
+    color: #DCB736;
+}
+
+.province-city-group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+
+    width: 628px;
+    height: 48px;
+
+    flex: none;
+    order: 5;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.reporter-province {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+
+    width: 302px;
+    height: 48px;
+
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.reporter-province::placeholder {
+    width: auto;
+    height: 23px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #747474;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.reporter-city {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+
+    width: 302px;
+    height: 48px;
+
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    outline: none;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.reporter-city::placeholder {
+    width: auto;
+    height: 23px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #747474;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.ar-buttons-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+
+    width: 536px;
+    height: 64px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.rescue-report-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 32px;
+    gap: 16px;
+    width: 269px;
+    height: 64px;
+    background: #2E9C33;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.rescue-report-button>p {
+    width: 113px;
+    height: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    color: #FFFFFF;
 }
