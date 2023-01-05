@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import './LoginPage.css';
 import brand from '../Assets/Images/brand.jpg'
 import login from '../Assets/Images/picwish.png'
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () =>{
+
+    const navigate = useNavigate()
+
+    const [form, setForm] = useState();
+    const handleFormChange = event => {
+        setForm({ ...form, [event.target.name]: event.target.value });
+    };
+
+    const handleForgotPassword = () => {
+        alert("forgot password")
+    }
+    const handleRegister = () => {
+        navigate('/register')
+    }
+    const handleLogin = () => {
+        alert("Login")
+    }
+
+    
     return(
-        <div className="App">
+        <div className="App1">
             <div className="AppLogin">
                 <div className="leftSide">
                     <div className="loginContainer">
@@ -15,25 +35,26 @@ const LoginPage = () =>{
                                 <div className="card-form">
                                     <div className="form">
                                         <div className="formUp">
-                                            <span className="title">Login to ZoaCare</span>
-                                            <div className="input">
-                                                <span className="inputText">Email or phone number</span>
-                                            </div>
+                                            <span className="title">Masuk ke ZoaCare</span>
+                                                <input className="input" name="userId" placeholder="Email atau nomor telepon" onChange={handleFormChange}/>
+                                            {/* <div className="input">
+                                            </div> */}
                                             <div className="contentFP">
-                                                <div className="input">
+                                            <input className="input" name="userPassword" type="password" placeholder="Sandi" onChange={handleFormChange}/>
+                                                {/* <div className="input">
                                                     <span className="inputText">Password</span>
-                                                </div>
-                                                <div className="forgotPasswordButton">
+                                                </div> */}
+                                                <div className="forgotPasswordButton" onClick={handleForgotPassword}>
                                                     <span className="forgotPasswordText">Lupa sandi?</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                         <div className="formBottom">
-                                            <div className="button1">
+                                            <div className="button1" onClick={handleRegister}>
                                                 <span className="buttonText1">Don't have account?</span>
                                             </div>
-                                            <div className="button2">
+                                            <div className="button2" onClick={handleLogin}>
                                                 <span className="buttonText2">Log In</span>
                                             </div>
                                         </div>
