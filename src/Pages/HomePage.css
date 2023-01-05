@@ -1,10 +1,10 @@
-.App {
+/* .AppHome {
     position: relative;
     width: 1280px;
     height: 832px;
 
     background: #FFFFFF;
-}
+} */
 
 .AppContainer {
     display: flex;
@@ -16,6 +16,7 @@
 
     position: absolute;
     height: 832px;
+    width: inherit;
     left: 0px;
     top: 0px;
 }
@@ -554,9 +555,9 @@ align-self: stretch;
 flex-grow: 0;
 }
 
-.contentProgress {
+/* .contentProgress {
 
-}
+} */
 
 
 .contentCard2 {

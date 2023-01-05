@@ -2,59 +2,47 @@ import React from "react";
 import './HomePage.css';
 import laporImg from '../Assets/Images/lapor.png';
 import sloganImg from '../Assets/Images/slogan.png'
+import Navibar from "../Components/Navibar";
+import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
     return (
-        <div className="App">
-            {/* <div className="shape1"></div>
-            <div className="shape2"></div>
-            <div className="shape3"></div>
-            <div className="shape4"></div>
-            <div className="shape5"></div> */}
-
+        <div className="AppHome">
             <div className="AppContainer">
-                <div className="AppNav">
-                    <img src="{logo}" className="Applogo" alt=""/>
-                    <div className="AppNavButton">
-                        <div className="AppNavItem">
-                            <span className="AppNavFont" style={{ width: '118px' }}>Daftar Donasi</span>
-                            <span className="AppNavFont" style={{ width: '72px' }}>Laporan</span>
-                            <span className="AppNavFont" style={{ width: '121px' }}>Tentang Kami</span>
-                            <span className="AppNavFont" style={{ width: '37px' }}>Aksi</span>
-                            <span className="AppNavFont" style={{ width: '56px' }}>Artikel</span>
-                        </div>
-                        <div className="LoginButton">
-                            <span className="LoginText">Login</span>
-                        </div>
-                    </div>
-                </div>
+                <Navibar />
                 <div className="AppHome">
                     <div className="LeftSide">
                         <div className="Menu" style={{ alignItems: 'flex-end', order: '0' }}>
                             <div className="MenuGroup">
                                 <img src={laporImg} className="MenuPic" alt="" />
-                                <div className="MenuIsi" style={{ background: '#E92F2F' }}>
-                                    <span className="judul">Lapor!</span>
-                                    <span className="ket">lorem ipsum</span>
-                                </div>
+                                <NavLink to="/report" style={{textDecoration: "none"}}>
+                                    <div className="MenuIsi" style={{ background: '#E92F2F' }}>
+                                        <span className="judul">Lapor!</span>
+                                        <span className="ket">lorem ipsum</span>
+                                    </div>
+                                </NavLink>
                             </div>
                         </div>
                         <div className="Menu" style={{ alignItems: 'center', order: '1' }}>
                             <div className="MenuGroup">
                                 <img src={laporImg} className="MenuPic" alt="" />
-                                <div className="MenuIsi" style={{ background: '#2E9C33' }}>
-                                    <span className="judul">Donasi</span>
-                                    <span className="ket">lorem ipsum</span>
-                                </div>
+                                <NavLink to="/donate" style={{textDecoration: "none"}}>
+                                    <div className="MenuIsi" style={{ background: '#2E9C33' }}>
+                                        <span className="judul">Donasi</span>
+                                        <span className="ket">lorem ipsum</span>
+                                    </div>
+                                </NavLink>
                             </div>
                         </div>
                         <div className="Menu" style={{ alignItems: 'flex-start', order: '2' }}>
                             <div className="MenuGroup">
                                 <img src={laporImg} className="MenuPic" alt="" />
-                                <div className="MenuIsi" style={{ background: '#DCB736' }}>
-                                    <span className="judul">Adopsi</span>
-                                    <span className="ket">lorem ipsum</span>
-                                </div>
+                                <NavLink to="/adopt" style={{textDecoration: "none"}}>
+                                    <div className="MenuIsi" style={{ background: '#DCB736' }}>
+                                        <span className="judul">Adopsi</span>
+                                        <span className="ket">lorem ipsum</span>
+                                    </div>
+                                </NavLink>
                             </div>
                         </div>
                     </div>
