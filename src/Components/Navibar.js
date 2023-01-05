@@ -12,12 +12,11 @@ const Navibar = () => {
 
             <div className="navbar-buttons">
                 <div className="navbar-items">
-
-                    <Link to="/donationList">Daftar Donasi</Link>
-                    <Link to="/reportList">Laporan</Link>
-                    <Link to="/aboutUs">Tentang Kami</Link>
-                    <Link to="/action">Aksi</Link>
-                    <Link to="/articles">Artikel</Link>
+                    <a to="/donationList">Daftar Donasi</a>
+                    <a to="/reportList">Laporan</a>
+                    <a to="/aboutUs">Tentang Kami</a>
+                    <a to="/action">Aksi</a>
+                    <a to="/articles">Artikel</a>
                 </div>
                 <button className="login-button">
                     <Link to="/login">Login</Link>
