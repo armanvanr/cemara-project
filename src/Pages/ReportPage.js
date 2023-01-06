@@ -186,6 +186,7 @@ const ReportPage = () => {
         })
         console.log(arReport.animalName)
     }
+    
     const [dataProvinsi, setDataProvinsi] = useState([]);
     const [dataKota, setDataKota] = useState([]);
     const [idProv, setIdProv] = useState("");
@@ -237,15 +238,15 @@ const ReportPage = () => {
         <div className="report-page">
             <Navibar />
             {/* <Navbar/> */}
-            <div className="header-text">
-                <p className="header-text-1">Butuh pertolongan untuk evakuasi?</p>
-                <p className="header-text-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>
+            <div className="report-header">
+                <p className="report-header-1">Butuh pertolongan untuk evakuasi?</p>
+                <p className="report-header-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>
             </div>
 
             <div className="report-main">
 
                 <div className="report-type-section">
-                    <div className="form-card">
+                    <div className="report-form-card">
                         <select className="report-type" value={reportType} onChange={reportTypeHandler}>
                             <option value="invasionReport">Invasi hewan berbahaya</option>
                             <option value="rescueReport">Hewan butuh pertolongan</option>
