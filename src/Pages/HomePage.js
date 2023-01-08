@@ -1,9 +1,13 @@
 import React from "react";
 import './HomePage.css';
 import laporImg from '../Assets/Images/lapor.png';
-import sloganImg from '../Assets/Images/slogan.png'
+import reportImg from '../Assets/Images/Report.png';
+import donateImg from '../Assets/Images/Donate.png';
+import adoptImg from '../Assets/Images/Adopt.png';
+import sloganImg from '../Assets/Images/slogan.png';
 import Navibar from "../Components/NavigationBar/Navibar";
 import { NavLink } from "react-router-dom";
+import PageFooter from "../Components/PageFooter/PageFooter";
 
 const HomePage = () => {
     return (
@@ -13,7 +17,7 @@ const HomePage = () => {
                 <div className="HomeLeftSide">
                     <div className="LaporSection">
                         <NavLink className="RibbonGroup" to="/report" style={{ textDecoration: "none" }}>
-                            <img src={laporImg} alt="" />
+                            <img src={reportImg} alt="" />
                             <div className="Ribbon" style={{ backgroundColor: "#E92F2F" }}>
                                 <span className="RibbonName">Lapor!</span>
                                 <span className="RibbonDesc">Lorem ipsum</span>
@@ -22,7 +26,7 @@ const HomePage = () => {
                     </div>
                     <div className="DonasiSection">
                         <NavLink className="RibbonGroup" to="/donate" style={{ textDecoration: "none" }}>
-                            <img src={laporImg} alt="" />
+                            <img src={donateImg} alt="" />
                             <div className="Ribbon" style={{ backgroundColor: "#2E9C33" }}>
                                 <span className="RibbonName">Donasi</span>
                                 <span className="RibbonDesc">Lorem ipsum</span>
@@ -31,7 +35,7 @@ const HomePage = () => {
                     </div>
                     <div className="AdopsiSection">
                         <NavLink className="RibbonGroup" to="/adopt" style={{ textDecoration: "none" }}>
-                            <img src={laporImg} alt="" />
+                            <img src={adoptImg} alt="" />
                             <div className="Ribbon" style={{ backgroundColor: "#DCB736" }}>
                                 <span className="RibbonName">Adopsi</span>
                                 <span className="RibbonDesc">Lorem ipsum</span>
@@ -65,6 +69,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <PageFooter />
         </div>
     )
 }

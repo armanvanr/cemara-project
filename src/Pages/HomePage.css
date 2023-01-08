@@ -5,6 +5,8 @@
     align-items: flex-start;
     padding: 0px;
     gap: 64px;
+    background-image: url('../Assets/Images/HomePage_BG.png');
+    background-size: cover;
 }
 
 .HomeMain {
