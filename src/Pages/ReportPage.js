@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './ReportPage.css';
 import venomousAnimals from '../Assets/Images/venomous.png'
 import wildAnimals from '../Assets/Images/wild.png'
@@ -8,9 +8,32 @@ import useGeoLocation from "../Hooks/useGeoLocation";
 import { storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import axios from 'axios';
+import PageFooter from "../Components/PageFooter/PageFooter";
+import ArrowUpIcon from "../Components/Icons/ArrowUpSolid";
+import ArrowDownIcon from "../Components/Icons/ArrowDownSolid";
+import ExclamationIcon from "../Components/Icons/ExclamationSolid";
+import UploadIcon from "../Components/Icons/UploadSolid";
+import MapIcon from "../Components/Icons/MapSolid";
 
 const ReportPage = () => {
     const location = useGeoLocation();
+    const myRef = useRef();
+    const outsideClick = e => {
+        if (!myRef.current.contains(e.target)) {
+            // setIsActive(false);
+            // setIsActive2(false);
+            // setIsActive3(false);
+            // setIsActive4(false);
+            // setIsActive5(false);
+            // setIsActive6(false);
+            // console.log('outside')
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", outsideClick);
+        return () => document.removeEventListener("mousedown", outsideClick);
+    });
 
     //INVASION REPORT
     //initial state of INVASION REPORT
@@ -41,14 +64,18 @@ const ReportPage = () => {
 
     //select type of invasion animal
     const [reportType, setReportType] = useState("invasionReport");
+    const [isActive, setIsActive] = useState(false);
+    const [selected, setIsSelected] = useState("Invasi hewan berbahaya");
     const reportTypeHandler = (e) => {
         const selectedType = e.target.value;
         setReportType(selectedType);
         setDangerReport({
             ...dangerReport,
             reportType: reportType
-        })
-    }
+        });
+        setIsSelected(e.target.textContent);
+        setIsActive(!isActive);
+    };
 
     const numberInputHandler = (e) => {
         const inputNumber = e.target.value;
@@ -58,12 +85,7 @@ const ReportPage = () => {
         })
     }
 
-    const appendImage = (url) => {
-        setDangerReport({
-            ...dangerReport,
-            imageUrl: url
-        })
-    }
+
     // Get an image file for dangerous animal report
     const [imageUpload, setImageUpload] = useState(null);
 
@@ -87,6 +109,13 @@ const ReportPage = () => {
             })
     }
 
+    const appendImage = (url) => {
+        setDangerReport({
+            ...dangerReport,
+            imageUrl: url
+        })
+    }
+
     // const imageUploadHandler = async () => {
     //     if (imageUpload == null) return;
     //     // rename to `images/${user.id}_${Date.now()}`        
@@ -97,18 +126,38 @@ const ReportPage = () => {
     //     appendImage(imageUrl);
     // }
 
-    //select community
+    //select community invasion report
+    const [isActive3, setIsActive3] = useState(false);
+    const [isActive4, setIsActive4] = useState(false);
+    const [selected3, setIsSelected3] = useState("Semua komunitas");
     const communitySelectHandler = (e) => {
         const selectedCommunity = e.target.value;
-        setDangerReport({
-            ...dangerReport,
-            community: selectedCommunity
-        })
-        setArReport({
-            ...arReport,
-            community: selectedCommunity
-        })
-    }
+        if (selectedCommunity === "allComms") {
+            setIsSelected3(e.target.textContent);
+            setIsActive3(!isActive3);
+            setIsActive4(false);
+            setDangerReport({
+                ...dangerReport,
+                community: selectedCommunity
+            });
+        } else {
+            setIsActive4(!isActive4);
+            setIsSelected3(e.target.textContent);
+            setDangerReport({
+                ...dangerReport,
+                community: selectedCommunity
+            });
+        }
+    };
+    const communityList = ["Garda Satwa Indonesia", "Pejaten Shelter", "ASPERA", "Garda Satwa Indonesia", "Pejaten Shelter", "ASPERA", "Garda Satwa Indonesia", "Pejaten Shelter", "ASPERA"];
+    const [checkedItems, setCheckedItems] = useState({});
+
+    const handleChange = (e) => {
+        setCheckedItems({
+            ...checkedItems,
+            [e.target.name]: e.target.checked
+        });
+    };
 
     //To render images of dangerous animals
     const [animalType, setAnimalType] = useState(animalDesc.venomous);
@@ -130,9 +179,9 @@ const ReportPage = () => {
         }
         setDangerReport({
             ...dangerReport,
-            animalCategory: animalType
+            animalCategory: selectedType
         })
-    }
+    };
 
     //submit dangerous animal Report
     const invasionReportSubmitHandler = () => {
@@ -143,14 +192,14 @@ const ReportPage = () => {
                 ...dangerReport,
                 location: location.coordinates
             })
-            console.log('in if',location.coordinates)
+            console.log('in if', location.coordinates)
         } else {
             console.log('location unavailable')
         }
         axios.post("http://localhost:3030/report", dangerReport);
         console.log('report :', dangerReport);
-        console.log('in handler',location.coordinates)
-    }
+        console.log('in handler', location.coordinates)
+    };
 
     //ANIMAL RESCUE REPORT
     const [arReport, setArReport] = useState({
@@ -166,27 +215,29 @@ const ReportPage = () => {
         province: "",
         city: "",
         community: "allCommunities"
-    })
+    });
 
     //select animal group to rescue
-    const [animalGroup, setAnimalGroup] = useState("");
-    const animalGroupHandler = e => {
+    const [isActive2, setIsActive2] = useState(false);
+    const [selected2, setIsSelected2] = useState("Pilih kelompok hewan");
+    const animalGroupHandler = (e) => {
         const selectedGroup = e.target.value;
-        setAnimalGroup(selectedGroup);
         setArReport({
             ...arReport,
             animalGroup: selectedGroup
-        })
+        });
+        setIsSelected2(e.target.textContent);
+        setIsActive2(!isActive2);
     }
 
-    const handleFieldChange = e => {
+    const handleFieldChange = (e) => {
         const { name, value } = e.target;
         setArReport({
             ...arReport, [name]: value
         })
         console.log(arReport.animalName)
     }
-    
+
     const [dataProvinsi, setDataProvinsi] = useState([]);
     const [dataKota, setDataKota] = useState([]);
     const [idProv, setIdProv] = useState("");
@@ -199,10 +250,15 @@ const ReportPage = () => {
             })
     }
 
+    const [isActive7, setIsActive7] = useState(false);
+    const [selected7, setIsSelected7] = useState("Pilih provinsi");
     const provinceSelectHandler = (e) => {
         const id = e.target.value;
         setIdProv(id);
-    }
+        setIsSelected7(e.target.textContent);
+        setIsActive7(!isActive7);
+        setIsSelected8("Pilih kota");
+    };
 
     const getKota = () => {
         if (idProv) {
@@ -214,10 +270,18 @@ const ReportPage = () => {
 
     }
 
+    // const citySelectHandler = (e) => {
+    //     const id = e.target.value;
+    //     console.log('city id', id)
+    // }
+
+    const [isActive8, setIsActive8] = useState(false);
+    const [selected8, setIsSelected8] = useState("Pilih kota");
     const citySelectHandler = (e) => {
         const id = e.target.value;
-        console.log('city id', id)
-    }
+        setIsSelected8(e.target.textContent);
+        setIsActive8(!isActive8);
+    };
 
     useEffect(() => {
         getProvinsi();
@@ -225,7 +289,39 @@ const ReportPage = () => {
 
     useEffect(() => {
         getKota();
-    }, [idProv])
+    },)
+
+    //select community invasion report
+    const [isActive5, setIsActive5] = useState(false);
+    const [isActive6, setIsActive6] = useState(false);
+    const [selected5, setIsSelected5] = useState("Semua komunitas");
+    const communitySelectHandler2 = (e) => {
+        const selectedCommunity = e.target.value;
+        if (selectedCommunity === "allComms") {
+            setIsSelected5(e.target.textContent);
+            setIsActive5(!isActive5);
+            setIsActive6(false);
+            setArReport({
+                ...arReport,
+                community: selectedCommunity
+            });
+        } else {
+            setIsActive6(!isActive6);
+            setIsSelected5(e.target.textContent);
+            setArReport({
+                ...dangerReport,
+                community: selectedCommunity
+            });
+        }
+    };
+    const [checkedItems2, setCheckedItems2] = useState({});
+
+    const handleChange2 = (e) => {
+        setCheckedItems2({
+            ...checkedItems2,
+            [e.target.name]: e.target.checked
+        });
+    };
 
     const rescueReportSubmitHandler = () => {
         imageUploadHandler();
@@ -237,7 +333,6 @@ const ReportPage = () => {
     return (
         <div className="report-page">
             <Navibar />
-            {/* <Navbar/> */}
             <div className="report-header">
                 <p className="report-header-1">Butuh pertolongan untuk evakuasi?</p>
                 <p className="report-header-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>
@@ -247,63 +342,100 @@ const ReportPage = () => {
 
                 <div className="report-type-section">
                     <div className="report-form-card">
-                        <select className="report-type" value={reportType} onChange={reportTypeHandler}>
-                            <option value="invasionReport">Invasi hewan berbahaya</option>
-                            <option value="rescueReport">Hewan butuh pertolongan</option>
-                        </select>
+
+                        <div className="dropdown">
+                            <div onClick={() => { setIsActive(!isActive); }} className="dropdown-btn" style={{ width: "392px" }}>
+                                <span className="selected-item">{selected}</span>
+                                {isActive ? (
+                                    <ArrowUpIcon className="dropdown-arrow" />
+                                ) : (
+                                    <ArrowDownIcon className="dropdown-arrow" />
+                                )}
+                            </div>
+                            <div ref={myRef} className="dropdown-content" style={{ display: isActive ? "block" : "none", width: "392px" }}>
+                                <option onClick={reportTypeHandler} value="invasionReport" className="item">Invasi hewan berbahaya</option>
+                                <option onClick={reportTypeHandler} value="rescueReport" className="item">Hewan butuh pertolongan</option>
+                            </div>
+                        </div>
 
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
                                 <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
                                 <div className="required-warning">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="req-warn-icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                                    </svg>
+                                    <ExclamationIcon className="req-warn-icon" />
                                     <p>Wajib diisi</p>
                                 </div>
                             </div>
                         ) : (
-                            <select className="animal-group" value={animalGroup} onChange={animalGroupHandler}>
-                                <option disabled value="">Pilih kelompok hewan</option>
-                                <option value="pets">Hewan piaraan</option>
-                                <option value="wilds">Hewan liar</option>
-                                <option value="livestocks">Hewan ternak</option>
-                            </select>
+                            <div className="dropdown">
+                                <div ref={myRef} onClick={() => { setIsActive2(!isActive2); }} className="dropdown-btn" style={{ width: "392px" }}>
+                                    <span className="selected-item">{selected2}</span>
+                                    {isActive2 ? (
+                                        <ArrowUpIcon className="dropdown-arrow" />
+                                    ) : (
+                                        <ArrowDownIcon className="dropdown-arrow" />
+                                    )}
+                                </div>
+                                <div className="dropdown-content" style={{ display: isActive2 ? "block" : "none", width: "392px" }}>
+                                    <option ref={myRef} onClick={animalGroupHandler} value="pets" className="item">Hewan piaraan</option>
+                                    <option ref={myRef} onClick={animalGroupHandler} value="wilds" className="item">Hewan liar</option>
+                                    <option ref={myRef} onClick={animalGroupHandler} value="livestocks" className="item">Hewan ternak</option>
+                                </div>
+                            </div>
                         )}
 
-                        {(reportType === "invasionReport") ? (
-                            <></>) : (
-                            <input type="text" name="animalName" value={arReport.animalName} onChange={handleFieldChange} placeholder="Jenis hewan" className="animal-name-input"></input>
-                        )}
+                        {(reportType === "invasionReport") ?
+                            (null) : (
+                                <input type="text" name="animalName" value={arReport.animalName} onChange={handleFieldChange} placeholder="Jenis hewan" className="animal-name-input"></input>
+                            )}
 
                         <button className="image-upload-button" onClick={() => { document.querySelector(".input-field").click() }} >
                             <input type="file" onChange={(e) => { setImageUpload(e.target.files[0]) }} className="input-field" hidden />
-                            <svg xmlns="http://www.w3.org/2000/svg" className="img-up-icon" viewBox="0 0 20 20" fill="currentColor" >
-                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                            </svg>
+                            <UploadIcon className="img-up-icon" />
                             <p>Unggah foto</p>
                         </button>
 
-                        {(reportType === "invasionReport") ? (
-                            <></>) : (
-                            <div className="add-info-group">
-                                <p>Informasi tambahan</p>
-                                <input type="text" name="addInfo" value={arReport.addInfo} onChange={handleFieldChange} placeholder="Tulis di sini" className="add-info-input"></input>
-                            </div>
-                        )}
+                        {(reportType === "invasionReport") ?
+                            (null) : (
+                                <div className="add-info-group">
+                                    <span>Informasi tambahan</span>
+                                    <input type="text" name="addInfo" value={arReport.addInfo} onChange={handleFieldChange} placeholder="Tulis di sini" className="add-info-input"></input>
+                                </div>
+                            )}
                     </div>
 
-                    {(reportType === "invasionReport") ? (
-                        <div className="community-select-group">
-                            <select className="community-select" onChange={communitySelectHandler}>
-                                <option value="allCommunities" >Semua komunitas</option>
-                                <option value="certainCommunities">Komunitas yang diketahui</option>
-                            </select>
-                            <button className="report-button" onClick={invasionReportSubmitHandler}>
-                                <p>Laporkan!</p>
-                            </button>
-                        </div>
-                    ) : (<></>)}
+                    {(reportType === "invasionReport") ?
+                        (
+                            <div className="community-select-group">
+                                <div className="dropdown">
+                                    <div onClick={() => { setIsActive3(!isActive3); }} className="community-select" style={{ width: "392px" }}>
+                                        <span className="selected-item">{selected3}</span>
+                                        {isActive3 ? (
+                                            <ArrowUpIcon className="dropdown-arrow" />
+                                        ) : (
+                                            <ArrowDownIcon className="dropdown-arrow" />
+                                        )}
+                                    </div>
+                                    <div className="dropdown-content" style={{ display: isActive3 ? "block" : "none", bottom: "60px", width: "392px" }}>
+                                        <option onClick={communitySelectHandler} value="allComms" className="item">Semua komunitas</option>
+                                        <option onClick={communitySelectHandler} value="knownComms" className="item">Komunitas yang diketahui</option>
+                                        <div className="checkbox-content" style={{ display: isActive4 ? "block" : "none" }}>
+                                            <div className="checkbox-container">
+                                                {communityList.map((item, index) => (
+                                                    <label className="checkbox-item" key={index}>
+                                                        <input type="checkbox" name={item} checked={checkedItems[index]} onChange={handleChange} />
+                                                        <span className="checkbox-text">{item}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className="report-button" onClick={invasionReportSubmitHandler}>
+                                    <p>Laporkan!</p>
+                                </button>
+                            </div>
+                        ) : (null)}
                 </div>
 
                 {(reportType === "invasionReport") ? (
@@ -324,12 +456,13 @@ const ReportPage = () => {
                                     <span>Hewan beracun</span>
                                 </label>
                             </div>
+
                             <div className="animal-examples">
                                 <img src={animalType.img} alt="images" className="animal-images" />
                                 <div className="animal-names">
                                     {animalType.names.map((name, index) =>
                                         <div className="names-map" key={index}>
-                                            {index>0? <span>&bull;</span>:null}
+                                            {index > 0 ? <span>&bull;</span> : null}
                                             <p>{name}</p>
                                         </div>
                                     )}
@@ -339,42 +472,80 @@ const ReportPage = () => {
                     </div>
                 ) : (
                     <>
-                        <div className="ar-report-section">
+                        <div className="report-right-section">
                             <div className="report-card-wrapper">
                                 <div className="form-title">
                                     <span>Pelapor</span>
                                 </div>
-                                <input type="text" name="reporterName" value={arReport.reporterName} onChange={handleFieldChange} className="reporter-name" placeholder="Nama lengkap" />
-                                <input type="email" name="reporterEmail" value={arReport.reporterEmail} onChange={handleFieldChange} className="reporter-email" placeholder="Email" />
-                                <input type="text" name="reporterPhone" value={arReport.reporterPhone} onChange={handleFieldChange} className="reporter-number" placeholder="Nomor telepon" />
+                                <input type="text" name="reporterName" value={arReport.reporterName} onChange={handleFieldChange} className="reporter-input" placeholder="Nama lengkap" />
+                                <input type="email" name="reporterEmail" value={arReport.reporterEmail} onChange={handleFieldChange} className="reporter-input" placeholder="Email" />
+                                <input type="text" name="reporterPhone" value={arReport.reporterPhone} onChange={handleFieldChange} className="reporter-input" placeholder="Nomor telepon" />
                                 <div className="address-group">
                                     <input type="text" name="reporterAddress" value={arReport.reporterAddress} onChange={handleFieldChange} className="reporter-address" placeholder="Alamat" />
                                     <button className="map-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fillRule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clipRule="evenodd" />
-                                        </svg>
+                                        <MapIcon />
                                     </button>
                                 </div>
                                 <div className="province-city-group">
-                                    <select className="reporter-province" onChange={provinceSelectHandler}>
-                                        <option value="" >Pilih provinsi</option>
-                                        {dataProvinsi.map((prov, index) => {
-                                            return <option key={index} value={prov.id}>{prov.nama}</option>
-                                        })}
-                                    </select>
-                                    <select className="reporter-city" onChange={citySelectHandler}>
-                                        <option disabled value="" >Pilih kota/kabupaten</option>
-                                        {dataKota.map((kota, index) => {
-                                            return <option key={index} value={kota.id}>{kota.nama}</option>
-                                        })}
-                                    </select>
+
+                                    <div className="dropdown">
+                                        <div onClick={() => { setIsActive7(!isActive7); }} className="dropdown-btn" style={{ width: "302px" }}>
+                                            <span className="selected-item">{selected7}</span>
+                                            {isActive7 ? (
+                                                <ArrowUpIcon className="dropdown-arrow" />
+                                            ) : (
+                                                <ArrowDownIcon className="dropdown-arrow" />
+                                            )}
+                                        </div>
+                                        <div className="dropdown-content" style={{ display: isActive7 ? "block" : "none", width: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }}>
+                                            {dataProvinsi.map((prov, index) => {
+                                                return <option onClick={provinceSelectHandler} key={index} value={prov.id} className="item">{prov.nama}</option>
+                                            })}
+                                        </div>
+                                    </div>
+
+                                    <div className="dropdown">
+                                        <div onClick={() => { setIsActive8(!isActive8); }} className="dropdown-btn" style={{ width: "302px" }}>
+                                            <span className="selected-item">{selected8}</span>
+                                            {isActive8 ? (
+                                                <ArrowUpIcon className="dropdown-arrow" />
+                                            ) : (
+                                                <ArrowDownIcon className="dropdown-arrow" />
+                                            )}
+                                        </div>
+                                        <div className="dropdown-content" style={{ display: isActive8 ? "block" : "none", width: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }}>
+                                            {dataKota.map((kota, index) => {
+                                                return <option onClick={citySelectHandler} key={index} value={kota.id} className="item">{kota.nama}</option>
+                                            })}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="ar-buttons-group">
-                                <select className="community-select" onChange={communitySelectHandler}>
-                                    <option value="allCommunities" >Semua komunitas</option>
-                                    <option value="certainCommunities">Komunitas yang diketahui</option>
-                                </select>
+                                <div className="dropdown">
+                                    <div onClick={() => { setIsActive5(!isActive5); }} className="community-select"  style={{ width: "300px" }}>
+                                        <span className="selected-item">{selected5}</span>
+                                        {isActive5 ? (
+                                            <ArrowUpIcon className="dropdown-arrow" />
+                                        ) : (
+                                            <ArrowDownIcon className="dropdown-arrow" />
+                                        )}
+                                    </div>
+                                    <div className="dropdown-content" style={{ display: isActive5 ? "block" : "none", bottom: "60px" }}>
+                                        <option onClick={communitySelectHandler2} value="allComms" className="item">Semua komunitas</option>
+                                        <option onClick={communitySelectHandler2} value="knownComms" className="item">Komunitas yang diketahui</option>
+                                        <div className="checkbox-content" style={{ display: isActive6 ? "block" : "none" }}>
+                                            <div className="checkbox-container">
+                                                {communityList.map((item, index) => (
+                                                    <label className="checkbox-item" key={index}>
+                                                        <input type="checkbox" name={item} checked={checkedItems[index]} onChange={handleChange2} />
+                                                        <span className="checkbox-text">{item}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <button className="rescue-report-button" onClick={rescueReportSubmitHandler}>
                                     <p>Laporkan!</p>
                                 </button>
@@ -384,6 +555,7 @@ const ReportPage = () => {
                 )}
 
             </div>
+            <PageFooter />
         </div>
     )
 }
