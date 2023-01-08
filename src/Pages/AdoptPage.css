@@ -1,0 +1,396 @@
+.AdoptPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 64px;
+}
+
+.AdoptMain {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 40px;
+
+    width: 1280px;
+    height: 853px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* HEADER */
+.AdoptHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 1172px;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.AdoptHeader-topnav {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 32px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.topnav-filter {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    width: 918px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.filter-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    width: 520px;
+    height: 48px;
+
+    /* Neutral / White
+
+    FFFFFF
+    */
+    background: #FFFFFF;
+    /* Neutral / 08
+
+    B4B4B4
+    */
+    border: 1px solid #B4B4B4;
+    /* Shadow 1 */
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.filter-icon {
+    width: 20px;
+    height: 20px;
+    padding-left: 15px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    left: 10%;
+    right: 10%;
+    top: 10%;
+    bottom: 10%;
+
+    /* Neutral / 08
+
+    B4B4B4
+    */
+    color: #B4B4B4;
+}
+
+.filter-text {
+    width: 456px;
+    height: 23px;
+
+    /* Poppins/Body/Regular */
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    /* identical to box height, or 135% */
+
+
+    /* Neutral / 05 (Secondary text) */
+
+    color: #747474;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.filter-country {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    width: 215px;
+    height: 48px;
+
+    /* Neutral / White
+
+    FFFFFF
+    */
+    background: #FFFFFF;
+    /* Neutral / 08
+
+    B4B4B4
+    */
+    border: 1px solid #B4B4B4;
+    /* Shadow 1 */
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.filter-sort {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    width: 151px;
+    height: 48px;
+
+    /* Neutral / White
+
+    FFFFFF
+    */
+    background: #FFFFFF;
+    /* Neutral / 08
+
+    B4B4B4
+    */
+    border: 1px solid #B4B4B4;
+    /* Shadow 1 */
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.topnav-line {
+    width: 2px;
+    height: 48px;
+
+    background: #D9D9D9;
+    border-radius: 2px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.topnav-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 188px;
+    height: 48px;
+
+    /* Primary/Main
+
+    2E9C33
+    */
+    background: #2E9C33;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.topnav-button-icon {
+    width: 24px;
+    height: 24px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #FFFFFF;
+}
+
+.topnav-button-text {
+    width: 108px;
+    height: 23px;
+
+    /* Poppins/Body/Medium */
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    /* identical to box height, or 135% */
+
+
+    /* Neutral / White */
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.AdoptHeader-category {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 495px;
+    height: 23px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.category-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 12px;
+    gap: 16px;
+    height: 23px;
+
+    /* Neutral / 08
+
+    B4B4B4
+    */
+    border: 1px solid #B4B4B4;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12));
+    border-radius: 8px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.category-button-text {
+    /* Poppins/Caption 1/Regular */
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height, or 125% */
+
+
+    /* Neutral / 05 (Secondary text) */
+
+    color: #747474;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* BODY */
+.AdoptBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 28px;
+
+    width: 1172px;
+    height: 564px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+
+
+/* FOOTER */
+.AdoptFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    width: 639px;
+    height: 42px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
