@@ -9,11 +9,11 @@
     height: auto;
     left: 0px;
     right: 0px;
-    /* top: calc(50% - 832px/2); */
-    /* background-image: url(../Assets/Images/bg-shapes.svg); */
+    background-image: url("../Assets/Images/DonateReport_BG.png");
+    background-size: cover;
 }
 
-.header-text {
+.report-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +28,7 @@
     flex-grow: 0;
 }
 
-.header-text-1 {
+.report-header-1 {
     width: 619px;
     height: 40px;
     font-family: 'Poppins';
@@ -44,7 +44,7 @@
     margin-bottom: 0px;
 }
 
-.header-text-2 {
+.report-header-2 {
     width: auto;
     height: 23px;
     font-family: 'Poppins';
@@ -66,7 +66,7 @@
     padding: 0px 108px 0px 54px;
     gap: 89px;
     width: inherit;
-    height: 498px;
+    height: fit-content;
     flex: none;
     order: 2;
     align-self: stretch;
@@ -80,21 +80,20 @@
     padding: 0px;
     gap: 32px;
     width: 440px;
-    height: 498px;
+    height: auto;
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;
 }
 
-.form-card {
+.report-form-card {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     padding: 24px;
     gap: 24px;
     width: auto;
-    /* why width error? 100 or  */
     height: auto;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -106,12 +105,12 @@
 
 }
 
-.report-type {
+/* .report-type {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: auto;
+    padding-left: 16px;
     gap: 12px;
     width: 392px;
     height: 48px;
@@ -140,10 +139,159 @@
     line-height: 28px;
     color: #1E1E1E;
     outline: none;
-
-
 }
 
+.report-type>option {
+    background-color: rgba(46, 156, 51, 0.2);
+} */
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown>div{
+    user-select: none;
+}
+
+.dropdown-btn {
+    cursor: pointer;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 12px;
+
+    /* width: 392px; */
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+}
+
+.selected-item {
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+
+    color: #1E1E1E;
+}
+
+.dropdown-arrow {
+    width: 20px;
+    height: 20px;
+    color: #B4B4B4;
+}
+
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px 0px;
+    gap: 8px;
+
+    position: absolute;
+    /* width: 392px; */
+    /* max-height: 300px; */
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    z-index: 99999;
+}
+
+.dropdown-content .item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 12px 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
+
+.dropdown-content .item:hover {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    background: rgba(46, 156, 51, 0.2);
+    cursor: pointer;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0px;
+    gap: 8px;
+    width: inherit;
+    height: 336px;
+    border-top: 3px solid #E0E0E0;
+    overflow-y: scroll;
+}
+
+.checkbox-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 20px;
+    gap: 12px;
+}
+
+.checkbox-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+}
+
+input[type="checkbox"] {
+    accent-color: #2E9C33;
+}
+
+input[type=checkbox]:checked+span {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #2E9C33;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #E9E9E9;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #97CD99;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #2E9C33;
+}
 
 .number-input-group {
     display: flex;
@@ -170,8 +318,8 @@
 }
 
 .number-input ::placeholder {
-    width: 344px;
-    height: 23px;
+    width: auto;
+    height: auto;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -212,39 +360,6 @@
     color: #E92F2F;
 }
 
-.animal-group {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: auto;
-    gap: 12px;
-    width: 392px;
-    height: 48px;
-    background: #FFFFFF;
-    border: 1px solid #B4B4B4;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    align-self: stretch;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    outline: none;
-}
-
-.animal-group>option {
-    width: 328px;
-    height: 28px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 28px;
-    color: #1E1E1E;
-    outline: none;
-}
-
 .animal-name-input {
     box-sizing: border-box;
     display: flex;
@@ -256,6 +371,10 @@
     height: 48px;
     border: 1px solid #B4B4B4;
     border-radius: 12px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
     outline: none;
 }
 
@@ -301,12 +420,13 @@
     border-top: solid 2px #D9D9D9;
     gap: 8px;
     width: 392px;
-    height: 102px;
+    height: fit-content;
 }
 
-.add-info-group>p {
-    width: 191px;
+.add-info-group>span {
+    width: auto;
     height: 26px;
+    padding: 10px 0px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
@@ -322,11 +442,15 @@
     align-items: flex-start;
     padding: 12px 16px;
     gap: 16px;
-    width: 392px;
-    height: 58px;
+    width: inherit;
+    height: 48px;
     border: 1px solid #B4B4B4;
     border-radius: 12px;
     outline: none;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
 }
 
 .add-info-input ::placeholder {
@@ -362,13 +486,13 @@
     width: 376px;
     height: 48px;
     border: 1px solid transparent;
-    /* filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.12)); */
     border-radius: 12px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
     outline: none;
+    cursor: pointer;
 }
 
 .community-select>option {
@@ -417,11 +541,10 @@
     padding: 0px;
     gap: 40px;
     width: 560px;
-    height: 496.92px;
+    height: 510px;
     flex: none;
     order: 1;
     flex-grow: 0;
-    /* background-color: #97CD99; */
 }
 
 .da-selector-group {
@@ -431,13 +554,11 @@
     padding: 0px;
     gap: 12px;
     width: 560px;
-    height: auto;
-    /* height 108px or auto? */
+    height: inherit;
     flex: none;
     order: 0;
     flex-grow: 0;
     border-radius: 20px;
-    /* background-color: #2E9C33; */
 }
 
 .da-selector-group>p {
@@ -452,7 +573,7 @@
     flex: none;
     order: 0;
     flex-grow: 0;
-
+    margin: 0px;
 }
 
 .buttons-wrapper {
@@ -568,7 +689,7 @@ input[type="radio"] {
     flex-grow: 0;
 }
 
-.names-map{
+.names-map {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -576,7 +697,7 @@ input[type="radio"] {
     gap: 16px;
 }
 
-.ar-report-section {
+.report-right-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -585,7 +706,7 @@ input[type="radio"] {
     gap: 32px;
 
     width: 676px;
-    height: 438px;
+    height: fit-content;
     flex: none;
     order: 1;
     flex-grow: 1;
@@ -641,7 +762,7 @@ input[type="radio"] {
 }
 
 
-.report-card-wrapper>input {
+.reporter-input {
     box-sizing: border-box;
 
     display: flex;
@@ -650,7 +771,6 @@ input[type="radio"] {
     padding: 16px;
     gap: 16px;
 
-    width: 628px;
     height: 48px;
     background: #FFFFFF;
     border: 1px solid #B4B4B4;
@@ -662,9 +782,17 @@ input[type="radio"] {
     flex: none;
     align-self: stretch;
     flex-grow: 0;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #747474;
+
 }
 
-.report-card-wrapper>input::placeholder {
+.reporter-input::placeholder {
     width: auto;
     height: 23px;
 
@@ -719,10 +847,16 @@ input[type="radio"] {
     flex: none;
     order: 0;
     flex-grow: 1;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
 
+    color: #747474;
 }
 
-.reporter-address::placeholder {
+/* .reporter-address::placeholder {
     width: auto;
     height: 23px;
 
@@ -737,7 +871,7 @@ input[type="radio"] {
     flex: none;
     order: 0;
     flex-grow: 0;
-}
+} */
 
 .map-button {
     display: flex;
@@ -776,7 +910,7 @@ input[type="radio"] {
     align-self: stretch;
     flex-grow: 0;
 }
-
+/* 
 .reporter-province {
     box-sizing: border-box;
 
@@ -816,7 +950,7 @@ input[type="radio"] {
     flex: none;
     order: 0;
     flex-grow: 0;
-}
+} */
 
 .reporter-city {
     box-sizing: border-box;

@@ -1,0 +1,429 @@
+.DonatePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 12px;
+    background-image: url("../Assets/Images/DonateReport_BG.png");
+    background-size: cover;
+}
+
+.DonateHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 36px 54px;
+    gap: 4px;
+
+    height: 139px;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.DonateHeader1 {
+    width: 526px;
+    height: 40px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 40px;
+    color: #1E1E1E;
+}
+
+.DonateHeader2 {
+    width: 1144px;
+    height: 23px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #1E1E1E;
+}
+
+.DonateMain {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    align-items: center;
+    padding: 0px 108px 0px 54px;
+    gap: 89px;
+    height: fit-content;
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.DonateFormCard {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-end; */
+    padding: 24px;
+    gap: 24px;
+    width: 440px;
+    /* height: inherit; */
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+}
+
+.DonationType {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1E1E1E;
+    padding: 10px;
+    outline: none;
+}
+
+.DonationType>option {
+    width: 328px;
+    height: 28px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1E1E1E;
+    padding: 10px;
+}
+
+.DonorInput {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+    width: auto;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+}
+
+.DonorInput::placeholder {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
+}
+
+.DonorProvCity {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0px;
+    gap: 24px;
+    width: auto;
+    height: 48px;
+}
+
+.DonorProvince {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 0px 12px;
+    width: 210px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
+    outline: none;
+}
+
+.DonorCity {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 0px 12px;
+    width: 210px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
+    outline: none;
+}
+
+.NominalSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+    gap: 16px;
+    width: 589px;
+    height: auto;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+}
+
+.CustomNominal {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+    width: 525px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+}
+
+.CustomNominal::placeholder {
+    height: 28px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #747474;
+}
+
+.FavNominals {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    width: 589px;
+    height: 56px;
+    overflow-wrap: normal;
+}
+
+.NominalButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 12px;
+    gap: 16px;
+    width: 76px;
+    height: 23px;
+    border: 1px solid #EDDB9B;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12));
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #DCB736;
+}
+
+.NominalButton:hover {
+    background-color: #DCB736;
+    color: #FFFFFF;
+}
+
+.FoodSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 589px;
+    height: auto;
+    padding: 32px;
+    gap: 24px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+}
+
+.FoodInput {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    width: inherit;
+    height: 48px;
+
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+}
+
+.FoodInput::placeholder {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
+}
+
+.KitSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 32px;
+    gap: 24px;
+
+    width: 589px;
+    height: fit-content;
+
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+}
+
+.KitInput {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+    width: inherit;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    outline: none;
+}
+
+.KitInput::placeholder {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
+}
+
+.image-upload-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 32px;
+    gap: 8px;
+    width: 203px;
+    height: 48px;
+    border: 2px solid #97CD99;
+    background-color: white;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12));
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.img-up-icon {
+    width: 24px;
+    height: 24px;
+    color: #2E9C33;
+}
+
+.image-upload-button>p {
+    width: 130px;
+    height: 23px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    color: #2E9C33;
+}
+
+.DonateButtonSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 140px 0px 615px;
+    gap: 16px;
+    height: 96px;
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.DonateButtonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 48px;
+    /* gap: 16px; */
+    width: 525px;
+    height: 96px;
+}
+
+.DonateButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 32px;
+    gap: 16px;
+    width: 429px;
+    height: 64px;
+    background: #2E9C33;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+}

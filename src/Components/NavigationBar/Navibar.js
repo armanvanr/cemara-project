@@ -7,7 +7,7 @@ const Navibar = () => {
     return (
         <div className="navbar">
             <NavLink to="/">
-                <img src={brand} className="navbar-brand" alt="" />
+                <img src={brand} className="navbar-brand" alt="" style={{textDecoration: "none"}}/>
             </NavLink>
 
             <div className="navbar-buttons">
