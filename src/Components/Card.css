@@ -1,13 +1,13 @@
 .card-dashboard {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: column; */
   justify-content: space-between;
   align-items: center;
-  padding: 0px 8px 0px 0px;
-  gap: 20px;
+  /* padding: 0px 8px 0px 0px;
+  gap: 20px; */
 
   width: 805px;
-  height: 120px;
+  /* height: 120px; */
 
   /* Neutral / White
 
@@ -27,6 +27,20 @@
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+}
+
+.card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 8px 0px 0px;
+  gap: 20px;
+}
+
+.card-dashboard:hover {
+  margin-left: 10px;
 }
 
 .card-dashboard-left {
@@ -260,6 +274,16 @@ DBB736
     background: #dcb736;
 }
 
+.accept:hover {
+  background: #174E19;
+  cursor: pointer;
+}
+
+.finish:hover {
+  background: #6E5C1B;
+  cursor: pointer;
+}
+
 .card-dashboard-action-button-text {
   font-family: "Poppins";
   font-style: normal;
@@ -274,6 +298,10 @@ DBB736
 }
 
 .card-dashboard-detail-information-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
