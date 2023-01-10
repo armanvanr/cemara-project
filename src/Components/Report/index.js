@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.css'
 import '../../Components/Card.css'
 import pic from '../../Assets/Images/pic-dashboard.png';
+import dashboardReportAPI from "../../services/dashboardReport";
+import { async } from "q";
 
 const Report = () => {
     const [listReport, setListReport] = useState(
@@ -12,7 +14,7 @@ const Report = () => {
                 reportType: "DA",
                 animalCategory: "Hewan Berbisa",
                 address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-                phoneNumber: "081234567812",
+                reporterPhone: "081234567812",
                 imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
                 createdAt: "2023-01-03"
             },
@@ -32,7 +34,7 @@ const Report = () => {
                 reportType: "DA",
                 animalCategory: "Hewan Berbisa",
                 address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-                phoneNumber: "081234567812",
+                reporterPhone: "081234567812",
                 imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
                 createdAt: "2023-01-03"
             },
@@ -68,6 +70,17 @@ const Report = () => {
             },
         ]
     )
+
+    const getReport = async () => {
+        const report = await dashboardReportAPI.getReport()
+        setListReport(report.data.data)
+    }
+
+    useEffect(() => {
+        getReport()
+    }, [])
+
+    console.log(listReport)
 
     return (
         <div className="list-container">
@@ -119,7 +132,7 @@ const Report = () => {
                                                                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                                                 </svg>
                                                             </div>
-                                                            <div className="card-dashboard-detail-location-phone-text">{report.phoneNumber}</div>
+                                                            <div className="card-dashboard-detail-location-phone-text">{report.reporterPhone}</div>
                                                         </div>
                                                         :
                                                         <div className="card-dashboard-detail-location-container">
@@ -296,7 +309,7 @@ const Report = () => {
                                                                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                                             </svg>
                                                         </div>
-                                                        <div className="card-dashboard-detail-location-phone-text">{report.phoneNumber}</div>
+                                                        <div className="card-dashboard-detail-location-phone-text">{report.reporterPhone}</div>
                                                     </div>
                                                     :
                                                     <div className="card-dashboard-detail-location-container">
