@@ -31,7 +31,7 @@
 .report-header-1 {
     width: 619px;
     height: 40px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 34px;
@@ -47,7 +47,7 @@
 .report-header-2 {
     width: auto;
     height: 23px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -79,7 +79,8 @@
     align-items: flex-start;
     padding: 0px;
     gap: 32px;
-    width: 440px;
+    width: fit-content;
+    max-width: 440px;
     height: auto;
     flex: none;
     order: 0;
@@ -105,175 +106,9 @@
 
 }
 
-/* .report-type {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 16px;
-    gap: 12px;
-    width: 392px;
-    height: 48px;
-    background: #FFFFFF;
-    border: 1px solid #B4B4B4;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    outline: none;
-}
-
-.report-type>option {
-    width: 328px;
-    height: 28px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 28px;
-    color: #1E1E1E;
-    outline: none;
-}
-
-.report-type>option {
-    background-color: rgba(46, 156, 51, 0.2);
-} */
-
-.dropdown{
-    position: relative;
-}
-
-.dropdown>div{
-    user-select: none;
-}
-
-.dropdown-btn {
-    cursor: pointer;
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px;
-    gap: 12px;
-
-    /* width: 392px; */
-    height: 48px;
-    background: #FFFFFF;
-    border: 1px solid #B4B4B4;
-
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-}
-
-.selected-item {
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-
-    color: #1E1E1E;
-}
-
-.dropdown-arrow {
-    width: 20px;
-    height: 20px;
-    color: #B4B4B4;
-}
-
-.dropdown-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 16px 0px;
-    gap: 8px;
-
-    position: absolute;
-    /* width: 392px; */
-    /* max-height: 300px; */
-
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-    z-index: 99999;
-}
-
-.dropdown-content .item {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 12px 20px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    width: auto;
-    height: auto;
-    z-index: 1;
-}
-
-.dropdown-content .item:hover {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-    background: rgba(46, 156, 51, 0.2);
-    cursor: pointer;
-}
-
-.checkbox-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px 0px;
-    gap: 8px;
-    width: inherit;
-    height: 336px;
-    border-top: 3px solid #E0E0E0;
-    overflow-y: scroll;
-}
-
-.checkbox-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 20px;
-    gap: 12px;
-}
-
-.checkbox-text {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 19px;
-}
-
-input[type="checkbox"] {
-    accent-color: #2E9C33;
-}
-
-input[type=checkbox]:checked+span {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 19px;
-    color: #2E9C33;
-}
-
 ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
 
 /* Track */
@@ -320,7 +155,7 @@ input[type=checkbox]:checked+span {
 .number-input ::placeholder {
     width: auto;
     height: auto;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -346,7 +181,7 @@ input[type=checkbox]:checked+span {
 .required-warning>p {
     width: 57px;
     height: 14px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
@@ -387,7 +222,7 @@ input[type=checkbox]:checked+span {
     gap: 8px;
     width: 203px;
     height: 48px;
-    border: 2px solid #97CD99;
+    border: 2px solid;
     background-color: white;
     filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12));
     border-radius: 16px;
@@ -403,7 +238,7 @@ input[type=checkbox]:checked+span {
 .image-upload-button>p {
     width: 130px;
     height: 23px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
@@ -427,7 +262,7 @@ input[type=checkbox]:checked+span {
     width: auto;
     height: 26px;
     padding: 10px 0px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -456,7 +291,7 @@ input[type=checkbox]:checked+span {
 .add-info-input ::placeholder {
     width: 80px;
     height: 19px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -470,7 +305,7 @@ input[type=checkbox]:checked+span {
     align-items: flex-start;
     padding: 32px;
     gap: 24px;
-    width: auto;
+    width: inherit;
     height: auto;
     flex: none;
     order: 1;
@@ -483,11 +318,11 @@ input[type=checkbox]:checked+span {
     align-items: center;
     padding: 10px;
     gap: 12px;
-    width: 376px;
+    width: 350px;
     height: 48px;
     border: 1px solid transparent;
     border-radius: 12px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
@@ -498,7 +333,7 @@ input[type=checkbox]:checked+span {
 .community-select>option {
     width: 328px;
     height: 28px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
@@ -524,7 +359,7 @@ input[type=checkbox]:checked+span {
 .report-button>p {
     width: 113px;
     height: 30px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -564,7 +399,7 @@ input[type=checkbox]:checked+span {
 .da-selector-group>p {
     width: 491px;
     height: 36px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
@@ -629,7 +464,7 @@ input[type="radio"] {
     text-align: center;
     width: 140px;
     height: 23px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
@@ -645,7 +480,7 @@ input[type="radio"] {
     text-align: center;
     width: 1140x;
     height: 23px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
@@ -752,7 +587,7 @@ input[type="radio"] {
     width: 86px;
     height: 30px;
 
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -796,7 +631,7 @@ input[type="radio"] {
     width: auto;
     height: 23px;
 
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -847,7 +682,7 @@ input[type="radio"] {
     flex: none;
     order: 0;
     flex-grow: 1;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -855,23 +690,6 @@ input[type="radio"] {
 
     color: #747474;
 }
-
-/* .reporter-address::placeholder {
-    width: auto;
-    height: 23px;
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 23px;
-
-    color: #747474;
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-} */
 
 .map-button {
     display: flex;
@@ -910,88 +728,6 @@ input[type="radio"] {
     align-self: stretch;
     flex-grow: 0;
 }
-/* 
-.reporter-province {
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px;
-    gap: 12px;
-
-    width: 302px;
-    height: 48px;
-
-    background: #FFFFFF;
-    border: 1px solid #B4B4B4;
-
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    outline: none;
-
-    flex: none;
-    order: 0;
-    flex-grow: 1;
-}
-
-.reporter-province::placeholder {
-    width: auto;
-    height: 23px;
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 23px;
-
-    color: #747474;
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-} */
-
-.reporter-city {
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px;
-    gap: 12px;
-
-    width: 302px;
-    height: 48px;
-
-    background: #FFFFFF;
-    border: 1px solid #B4B4B4;
-    outline: none;
-
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-
-    flex: none;
-    order: 1;
-    flex-grow: 1;
-}
-
-.reporter-city::placeholder {
-    width: auto;
-    height: 23px;
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 23px;
-
-    color: #747474;
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
 
 .ar-buttons-group {
     display: flex;
@@ -1027,7 +763,7 @@ input[type="radio"] {
 .rescue-report-button>p {
     width: 113px;
     height: 30px;
-    font-family: 'Poppins';
+     
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
