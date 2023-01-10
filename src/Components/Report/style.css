@@ -5,8 +5,8 @@
   padding: 0px;
   gap: 48px;
 
-  width: 805px;
-  height: 1162px;
+  /* width: 805px;
+  height: 1162px; */
 
 
   /* Inside auto layout */
@@ -24,8 +24,8 @@
   padding: 0px;
   gap: 20px;
 
-  width: 805px;
-  height: 316px;
+  /* width: 805px;
+  height: 316px; */
 
   /* Neutral / White
 
@@ -85,8 +85,8 @@
   padding: 0px;
   gap: 20px;
 
-  width: 805px;
-  height: 260px;
+  /* width: 805px;
+  height: 260px; */
 
   filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.12));
 

@@ -92,7 +92,7 @@ const SideBarDashboard = () => {
                     {
                         menus.map((menu, index) => {
                             if (index === 4) {
-                                return <div className="line"></div>
+                                return <div key={index} className="line"></div>
                             }
                             return (
                                 <div key={menu.menu} className={menu.status ? "menu-item target" : "menu-item"} onClick={() => handleClick(menu.menu)}>
