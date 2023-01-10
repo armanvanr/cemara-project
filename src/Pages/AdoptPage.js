@@ -1,5 +1,6 @@
 import React from "react";
 import './AdoptPage.css';
+import adoptImg from '../Assets/Images/adopt.png';
 import Navibar from "../Components/NavigationBar/Navibar";
 
 const AdoptPage = () =>{
@@ -55,8 +56,273 @@ const AdoptPage = () =>{
                         <div className="category-button"><div className="category-button-text">Lainnya</div></div>
                     </div>
                 </div>
-                <div className="AdoptBody"></div>
-                <div className="AdoptFooter"></div>
+                <div className="AdoptBody">
+                    <div className="AdoptBody-row">
+                        <div className="AdoptBody-col12">
+                            <div className="AdoptBody-col" style={{ order:'0' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'1' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col">
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="AdoptBody-row">
+                        <div className="AdoptBody-col12">
+                            <div className="AdoptBody-col" style={{ order:'0' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'1' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'2' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="AdoptBody-row">
+                        <div className="AdoptBody-col12">
+                            <div className="AdoptBody-col" style={{ order:'0' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'1' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'2' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="AdoptBody-row">
+                        <div className="AdoptBody-col12">
+                            <div className="AdoptBody-col" style={{ order:'0' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'1' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="AdoptBody-col" style={{ order:'2' }}>
+                                <div className="Adopt-card-container">
+                                    <div className="Adopt-card-container">
+                                        <img src={adoptImg} className="Adopt-card-img" alt="" />
+                                        <div className="Adopt-card-content">
+                                            <div className="Adopt-card-content-row">
+                                                <div className="Adopt-card-title">Lato-lato (Husky)</div>
+                                                <div className="Adopt-card-isi">Anjing | 5.5 tahun | Betina</div>
+                                                <div className="Adopt-card-line"></div>
+                                                <div className="Adopt-card-desc">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="AdoptFooter">
+                    <div className="Adopt-footer-button">
+                        <div className="Adopt-footer-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Previous
+                    </div>
+                    <div className="Adopt-footer-page-active">
+                        <span className="Adopt-footer-page-text-active">1</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">2</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">3</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">4</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">5</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">6</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">7</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">...</span>
+                    </div>
+                    <div className="Adopt-footer-page">
+                        <span className="Adopt-footer-page-text">23</span>
+                    </div>
+                    <div className="Adopt-footer-button">
+                        Next
+                        <div className="Adopt-footer-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
