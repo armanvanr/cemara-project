@@ -1,9 +1,9 @@
 import React from "react";
 import './HomePage.css';
 import laporImg from '../Assets/Images/lapor.png';
-import reportImg from '../Assets/Images/Report.png';
-import donateImg from '../Assets/Images/Donate.png';
-import adoptImg from '../Assets/Images/adopt.png';
+import reportImg from '../Assets/Images/ReportImage.png';
+import donateImg from '../Assets/Images/DonateImage.png';
+import adoptImg from '../Assets/Images/AdoptImage.png';
 import sloganImg from '../Assets/Images/slogan.png';
 import Navibar from "../Components/NavigationBar/Navibar";
 import { NavLink } from "react-router-dom";
