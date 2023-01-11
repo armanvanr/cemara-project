@@ -1,7 +1,7 @@
 .content-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   padding: 40px 54px;
   gap: 40px;
 
@@ -55,8 +55,8 @@
 }
 
 .text-title {
-  width: 805px;
-  height: 48px;
+  /* width: 805px;
+  height: 48px; */
 
   font-family: "Poppins";
   font-style: normal;

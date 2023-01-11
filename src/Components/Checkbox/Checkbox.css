@@ -1,0 +1,40 @@
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0px;
+    gap: 8px;
+    width: inherit;
+    height: 336px;
+    border-top: 3px solid #E0E0E0;
+    overflow-y: scroll;
+}
+
+.checkbox-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 20px;
+    gap: 12px;
+}
+
+.checkbox-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+}
+
+input[type="checkbox"] {
+    accent-color: #2E9C33;
+}
+
+input[type=checkbox]:checked+span {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #2E9C33;
+}
