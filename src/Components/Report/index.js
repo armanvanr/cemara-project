@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './style.css'
 import '../../Components/Card.css'
 import pic from '../../Assets/Images/pic-dashboard.png';
-import dashboardReportAPI from "../../services/dashboardReport";
+import dashboardReportAPI from "../../Services/dashboardReport";
 
 const Report = () => {
     const [listReport, setListReport] = useState(

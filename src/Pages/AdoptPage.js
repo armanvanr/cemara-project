@@ -1,6 +1,6 @@
 import React from "react";
 import './AdoptPage.css';
-import adoptImg from '../Assets/Images/adopt.png';
+import adoptImg from '../Assets/Images/AdoptImage.png';
 import Navibar from "../Components/NavigationBar/Navibar";
 
 const AdoptPage = () =>{
