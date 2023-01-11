@@ -23,8 +23,8 @@
   padding: 0px;
   gap: 8px;
 
-  width: 259px;
-  height: 58px;
+  /* width: 259px; */
+  /* height: 58px; */
 }
 
 .user-image-profile {
@@ -63,13 +63,13 @@
   align-items: flex-start;
   padding: 0px;
 
-  width: 161px;
-  height: 41px;
+  /* width: 161px; */
+  /* height: 41px; */
 }
 
 .user-details-name {
-  width: 81px;
-  height: 26px;
+  /* width: 81px;
+  height: 26px; */
 
   font-family: "Poppins";
   font-style: normal;
@@ -81,7 +81,7 @@
 }
 
 .user-details-community {
-  width: 98px;
+  /* width: 98px; */
   height: 15px;
 
   font-family: "Poppins";

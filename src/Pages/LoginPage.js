@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import './LoginPage.css';
 import brand from '../Assets/Images/brand.jpg'
-import login from '../Assets/Images/picwish.png'
+import loginIMG from '../Assets/Images/picwish.png'
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login} from '../redux/actions/auth';
 
 const LoginPage = () =>{
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const { isLoggedIn } = useSelector(state => state.auth);
 
     const [form, setForm] = useState();
     const handleFormChange = event => {
@@ -20,7 +25,11 @@ const LoginPage = () =>{
         navigate('/register')
     }
     const handleLogin = () => {
-        alert("Login")
+        dispatch(login(form.email, form.password))
+    }
+
+    if (isLoggedIn) {
+        navigate('/dashboard/report');
     }
 
     
@@ -36,11 +45,11 @@ const LoginPage = () =>{
                                     <div className="form">
                                         <div className="formUp">
                                             <span className="title">Masuk ke ZoaCare</span>
-                                                <input className="input" name="userId" placeholder="Email atau nomor telepon" onChange={handleFormChange}/>
+                                                <input className="input" name="email" placeholder="Email atau nomor telepon" onChange={handleFormChange}/>
                                             {/* <div className="input">
                                             </div> */}
                                             <div className="contentFP">
-                                            <input className="input" name="userPassword" type="password" placeholder="Sandi" onChange={handleFormChange}/>
+                                            <input className="input" name="password" type="password" placeholder="Sandi" onChange={handleFormChange}/>
                                                 {/* <div className="input">
                                                     <span className="inputText">Password</span>
                                                 </div> */}
@@ -68,7 +77,7 @@ const LoginPage = () =>{
                     </div>
                 </div>
                 <div className="rightSide">
-                    <img src={login} className="loginImage" alt="" />
+                    <img src={loginIMG} className="loginImage" alt="" />
                 </div>
             </div>
         </div>
