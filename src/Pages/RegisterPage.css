@@ -1,14 +1,11 @@
-.App {
+/* .App {
 position: relative;
 width: 1280px;
 height: 832px;
 
-/* Neutral / White
 
-FFFFFF
-*/
 background: #FFFFFF;
-}
+} */
 
 .AppContainer {
 display: flex;
@@ -18,11 +15,11 @@ align-items: center;
 padding: 0px 50px 0px 100px;
 gap: 200px;
 
-position: absolute;
+/* position: absolute;
 height: 832px;
 left: 0px;
 right: 0px;
-top: calc(50% - 832px/2);
+top: calc(50% - 832px/2); */
 }
 
 /* LeftSide */

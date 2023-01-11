@@ -1,0 +1,61 @@
+.PageFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    gap: 16px;
+    height: 88px;
+    flex: none;
+    order: 4;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.TermsConditions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 16px;
+    height: 48px;
+    border-radius: 16px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    background-color: transparent;
+    color: #2E9C33;
+    border: none;
+    cursor: pointer;
+}
+
+.HelpButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 8px;
+
+    height: 48px;
+
+    border-radius: 16px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    background-color: transparent;
+    color: #2E9C33;
+    border: none;
+    cursor: pointer;
+}
+
+.HelpButton>svg {
+    width: 24px;
+    height: 24px;
+}

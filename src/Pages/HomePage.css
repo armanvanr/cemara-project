@@ -1,184 +1,26 @@
-.App {
-    position: relative;
-    width: 1280px;
-    height: 832px;
-
-    background: #FFFFFF;
-}
-
-.AppContainer {
+.HomePage {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     padding: 0px;
     gap: 64px;
-
-    position: absolute;
-    height: 832px;
-    left: 0px;
-    top: 0px;
+    background-image: url('../Assets/Images/HomePage_BG.png');
+    background-size: cover;
 }
 
-.AppNav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 40px;
-    gap: 322px;
-    /* position: fixed; */
-    width: 1280px;
-    height: 60px;
-
-    /* Neutral / White
-
-    FFFFFF
-    */
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-}
-
-.AppLogo {
-    width: 187px;
-    height: 53px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.AppNavButton {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 64px;
-
-    width: 722px;
-    height: 42px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}
-
-.AppNavItem {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 40px;
-    width: 564px;
-    height: 23px;
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.AppNavFont {
-    /* Poppins/Body/Bold */
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 23px;
-    /* identical to box height, or 135% */
-
-    text-align: center;
-
-    /* Neutral / 01 (Primary text) */
-
-    color: #1E1E1E;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.LoginButton {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 24px;
-    gap: 16px;
-
-    /* Primary/Main
-
-    2E9C33
-    */
-    background: #2E9C33;
-    border-radius: 14px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}
-
-.LoginText {  
-    width: 46px;
-    height: 23px;
-
-    /* Poppins/Body/Medium */
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 23px;
-    /* identical to box height, or 135% */
-
-
-    /* Neutral / White */
-
-    color: #FFFFFF;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-/* HOME */
-
-.AppHome {
+.HomeMain {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0px 54px;
     gap: 108px;
 
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
+    width: inherit;
+    height: 581px;
 }
 
-.LeftSide {
+.HomeLeftSide {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -191,34 +33,66 @@
 
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.12));
 
-    /* Inside auto layout */
-
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 1;
 }
 
-/* Menu LAPOR, DONASI, ADOPSI */
-.Menu {
+.LaporSection {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-end;
     padding: 0px;
     gap: 16px;
 
     width: 532px;
     height: 140px;
 
-
-    /* Inside auto layout */
-
     flex: none;
+    order: 0;
     align-self: stretch;
     flex-grow: 0;
 }
 
-.MenuGroup {
+
+.DonasiSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+
+    width: 532px;
+    height: 140px;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.AdopsiSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    width: 532px;
+    height: 140px;
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+
+.RibbonGroup {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -229,27 +103,9 @@
     height: 140px;
 
     border-radius: 24px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 }
 
-.MenuPic {
-    width: 140px;
-    height: 140px;
-    border-radius: 28px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.MenuIsi {
+.Ribbon {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -259,74 +115,44 @@
     width: 210px;
     height: 88px;
 
-    /* Danger/Main
-
-    E82E2E
-    */
     border-radius: 0px 20px 20px 0px;
-
-    /* Inside auto layout */
 
     flex: none;
     order: 1;
     flex-grow: 1;
 }
 
-.judul {
+.RibbonName {
     width: 155px;
     height: 56px;
-
-    /* Poppins/Header 1/Bold */
 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 48px;
     line-height: 56px;
-    /* identical to box height, or 117% */
-
-
-    /* Neutral / White */
 
     color: #FFFFFF;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 }
 
-.ket {
-    width: 110px;
+.RibbonDesc {
+    width: 104px;
     height: 20px;
-
-    /* Poppins/Callout/Regular */
 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height, or 125% */
 
     text-align: center;
-
-    /* Neutral / White */
 
     color: #FFFFFF;
 
     opacity: 0.8;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
 }
 
-.RightSide {
+.HomeRightSide {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -337,361 +163,157 @@
     width: 532px;
     height: 581px;
 
-
-    /* Inside auto layout */
-
     flex: none;
     order: 1;
     align-self: stretch;
     flex-grow: 1;
 }
 
-.up {
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 0px 45px;
-
-width: 532px;
-height: 306px;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-}
-
-.upPic {
-width: 186px;
-height: 198px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-
-.upTitle {
-width: 442px;
-height: 48px;
-
-/* Poppins/Header 2/Bold */
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 600;
-font-size: 40px;
-line-height: 48px;
-/* identical to box height, or 120% */
-
-text-align: center;
-
-/* Neutral / 01 (Primary text) */
-
-color: #1E1E1E;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
-}
-
-.upIsi {
-width: 442px;
-height: 60px;
-
-/* Poppins/Callout/Regular */
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 20px;
-/* or 125% */
-
-text-align: center;
-
-/* Neutral / 02 */
-
-color: #343434;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 2;
-align-self: stretch;
-flex-grow: 0;
-}
-
-.bottom {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 16px;
-gap: 16px;
-
-width: 532px;
-height: 219px;
-
-border-radius: 32px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
-}
-
-.bottomCard {
+.SloganGroup {
     display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px 20px 0px 0px;
-gap: 12px;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 45px;
 
-width: 500px;
-height: 160px;
-
-/* Neutral / White
-
-FFFFFF
-*/
-background: #FFFFFF;
-/* Neutral / 11
-
-E5E4E5
-*/
-border: 1px solid #E5E4E5;
-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.12);
-border-radius: 33px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+    width: 532px;
+    height: 306px;
 }
 
-.bottomPic {
-width: 160px;
-height: 160px;
-
-border-radius: 24px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+.SloganImage {
+    width: 186px;
+    height: 198px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
-.bottomContent {
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
-padding: 16px 0px;
-gap: 6px;
+.SloganText {
+    width: 442px;
+    height: 48px;
 
-width: 308px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 1;
-}
-
-.contentCard1 {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 4px;
-height: 64px;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-
-.contentTitle {
-/* Poppins/Tittle 3/Bold */
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 28px;
-/* identical to box height, or 140% */
-
-
-/* Neutral / 01 (Primary text) */
-
-color: #1E1E1E;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-}
-
-.contentProgress {
-
-}
-
-
-.contentCard2 {
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-padding: 0px;
-gap: 16px;
-
-height: 42px;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
-}
-
-.contentButton {
-    display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 8px 24px;
-gap: 16px;
-
-/* Primary/Main
-
-2E9C33
-*/
-background: #2E9C33;
-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
-border-radius: 14px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-}
-
-.contentButtonText {
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 17px;
-line-height: 23px;
-/* identical to box height, or 135% */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
 
-
-/* Neutral / White */
-
-color: #FFFFFF;
-
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
+    text-align: center;
+    color: #1E1E1E;
 }
-/* BACKGROUND */
 
-.shape1 {
-    position: absolute;
-    width: 640px;
-    height: 755px;
-    left: 1280px;
-    top: 832px;
+.SloganDesc {
+    width: 442px;
+    height: 60px;
 
-    /* Neutral / White
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
 
-    FFFFFF
-    */
+    text-align: center;
+    color: #343434;
+}
+
+.CampaignSlide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    width: 532px;
+    height: 219px;
+
+    border-radius: 32px;
+}
+
+
+.CampaignCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 20px 0px 0px;
+    gap: 12px;
+
+    width: 500px;
+    height: 160px;
+
     background: #FFFFFF;
-    border-radius: 0px 0px 240px 0px;
-    transform: rotate(-180deg);
+    border: 1px solid #E5E4E5;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 24px;
 }
 
-.shape2 {
-    position: absolute;
-    width: 640px;
-    height: 755px;
-    left: -432px;
-    top: -483px;
+.CampaignImage {
+    width: 160px;
+    height: 160px;
 
-    /* Neutral / White
-
-    FFFFFF
-    */
-    background: #FFFFFF;
-    border-radius: 0px 0px 240px 0px;
+    border-radius: 24px;
 }
 
-.shape3 {
-    position: absolute;
-    width: 640px;
-    height: 755px;
-    left: 0px;
-    top: 77px;
+.CampaignCardTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
 
-    /* Secondary/Surface
-
-    F8F0D6
-    */
-    background: #FBF8ED;
-    border-radius: 0px 0px 240px 0px;
+    width: 308px;
+    height: 64px;
 }
 
-.shape4 {
-    position: absolute;
-    width: 1280px;
-    height: 373.96px;
-    left: 0px;
-    top: 77px;
+.CampaignCardTitle>span {
+    width: 308px;
+    height: 28px;
 
-    /* Secondary/Surface
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
 
-    F8F0D6
-    */
-    background: #FBF8ED;
+    color: #1E1E1E;
 }
 
-.shape5 {
-    position: absolute;
-    width: 1280px;
-    height: 377px;
-    left: 0px;
-    top: 455px;
+.CampaignButtonLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 16px;
 
-    /* Neutral / White
+    width: 308px;
+    height: 42px;
+}
 
-    FFFFFF
-    */
-    background: #FFFFFF;
+.CampaignButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    width: 193px;
+    height: 42px;
+
+    background: #2E9C33;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.CampaignButton>span {
+    width: auto;
+    height: 23px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+
+    color: #FFFFFF;
 }

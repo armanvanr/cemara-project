@@ -41,7 +41,7 @@
     gap: 40px;
 }
 
-.navbar-items>a {
+.navbar-items>span {
     width: auto;
     height: 23px;
     font-family: 'Poppins';
@@ -59,7 +59,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 8px 24px;
     gap: 16px;
     width: 94px;
     height: 42px;
