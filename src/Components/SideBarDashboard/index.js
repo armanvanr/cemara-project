@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import './style.css';
 
 const SideBarDashboard = () => {
@@ -54,6 +55,8 @@ const SideBarDashboard = () => {
     ]
     )
 
+    const { user: currentUser } = useSelector(state => state.auth);
+
     const handleClick = (nama) => {
         const newMenu = menus.map((menu) => {
             if (menu.menu === nama) {
@@ -75,10 +78,10 @@ const SideBarDashboard = () => {
                 </div>
                 <div className="user-details-container">
                     <div className="user-details-name">
-                        JhonDoe
+                        {currentUser.email}
                     </div>
                     <div className="user-details-community">
-                        Bogor Pet Mania
+                        {currentUser.namaLembaga}
                     </div>
                 </div>
                 <div className="user-down-icon">

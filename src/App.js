@@ -1,4 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import AdoptPage from './Pages/AdoptPage';
 import DashboardReport from './Pages/Dashboard/ReportPage';
@@ -12,6 +14,18 @@ import RegisterPage from './Pages/RegisterPage';
 import ReportPage from './Pages/ReportPage';
 
 function App() {
+  const navigate = useNavigate()
+
+  const { user: currentUser } = useSelector(state => state.auth);
+  const location = useLocation()
+
+
+  useEffect(() => {
+    if (['/dashboard/report', '/dashboard/adopt'].includes(location.pathname) && !currentUser) {
+      navigate('/')
+    }
+  }, [location]);
+
   return (
     <div className="App">
       <Routes>
@@ -21,10 +35,14 @@ function App() {
         <Route path="/adopt" element={<AdoptPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard/report" element={<DashboardReport />} />
-        <Route path="/dashboard/campaign" element={<DashboardCampaign />} />
-        <Route path="/dashboard/adopt" element={<DashboardAdopt />} />
-        <Route path="/dashboard/donate" element={<DashboardDonate />} />
+        {
+          currentUser ?
+          <>
+            <Route path="/dashboard/report" element={<DashboardReport />} />
+            <Route path="/dashboard/adopt" element={<DashboardReport />} />
+          </>
+          : null
+        }
       </Routes>
     </div>
   );

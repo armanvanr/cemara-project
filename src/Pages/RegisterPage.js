@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import './RegisterPage.css';
 import brand from '../Assets/Images/brand.jpg'
-import register from '../Assets/Images/pic-signup.png'
+import registerIMG from '../Assets/Images/pic-signup.png'
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from '../redux/actions/auth';
 
-const RegisterPage = () =>{
+const RegisterPage = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [form, setForm] = useState();
     const handleFormChange = event => {
@@ -14,14 +17,26 @@ const RegisterPage = () =>{
     };
 
     const handleRegister = () => {
-        alert("Register")
-        console.log(form)
+        if (form.password === form.confirmPassword) {
+            // alert("Register")
+            // console.log(form)
+            dispatch(register(form.email, form.username, form.namaLembaga, form.password))
+                .then(() => {
+                    navigate('/login');
+                })
+                .catch(() => {
+                    // setSuccess(false);
+                });
+        }
+        else {
+            alert("Password tidak cocok")
+        }
     }
     const handleLogin = () => {
         navigate('/login')
     }
 
-    return(
+    return (
         <div className="App1">
             <div className="AppContainer">
                 <div className="leftSide">
@@ -33,10 +48,11 @@ const RegisterPage = () =>{
                                     <div className="form">
                                         <div className="formUp">
                                             <span className="title">Buat akun baru</span>
-                                            <input className="input" name="userId" placeholder="Email atau nomor telepon" onChange={handleFormChange}/>
-                                            <input className="input" name="communityName" placeholder="Nama Lembaga" onChange={handleFormChange}/>
-                                            <input className="input" name="password" type="password" placeholder="Masukan sandi" onChange={handleFormChange}/>
-                                            <input className="input" name="confirmPassword" type="password" placeholder="Ulangi sandi" onChange={handleFormChange}/>
+                                            <input className="input" name="email" placeholder="Email atau nomor telepon" onChange={handleFormChange} />
+                                            <input className="input" name="username" placeholder="Nama Admin" onChange={handleFormChange} />
+                                            <input className="input" name="namaLembaga" placeholder="Nama Lembaga" onChange={handleFormChange} />
+                                            <input className="input" name="password" type="password" placeholder="Masukan sandi" onChange={handleFormChange} />
+                                            <input className="input" name="confirmPassword" type="password" placeholder="Ulangi sandi" onChange={handleFormChange} />
                                             {/* <div className="input">
                                                 <span className="inputText">Email or phone number</span>
                                             </div> */}
@@ -51,14 +67,14 @@ const RegisterPage = () =>{
                                             </div> */}
                                         </div>
                                     </div>
-                                        <div className="formBottom">
-                                            <div className="button1" onClick={handleLogin}>
-                                                <span className="buttonText1">Log In</span>
-                                            </div>
-                                            <div className="button2" onClick={handleRegister}>
-                                                <span className="buttonText2">Create</span>
-                                            </div>
+                                    <div className="formBottom">
+                                        <div className="button1" onClick={handleLogin}>
+                                            <span className="buttonText1">Log In</span>
                                         </div>
+                                        <div className="button2" onClick={handleRegister}>
+                                            <span className="buttonText2">Create</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="footer-form">
@@ -69,7 +85,7 @@ const RegisterPage = () =>{
                     </div>
                 </div>
                 <div className="rightSide">
-                    <img src={register} className="loginImage" alt="" />
+                    <img src={registerIMG} className="loginImage" alt="" />
                 </div>
             </div>
         </div>
