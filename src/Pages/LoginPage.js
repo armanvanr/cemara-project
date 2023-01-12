@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './LoginPage.css';
 import brand from '../Assets/Images/brand.jpg'
 import loginIMG from '../Assets/Images/picwish.png'
@@ -12,6 +12,7 @@ const LoginPage = () =>{
     const dispatch = useDispatch()
 
     const { isLoggedIn } = useSelector(state => state.auth);
+    const { user: currentUser } = useSelector(state => state.auth);
 
     const [form, setForm] = useState();
     const handleFormChange = event => {
@@ -28,9 +29,15 @@ const LoginPage = () =>{
         dispatch(login(form.email, form.password))
     }
 
-    if (isLoggedIn) {
-        navigate('/dashboard/report');
-    }
+    // if (currentUser) {
+    //     navigate('/dashboard/report');
+    // }
+
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/dashboard/report');
+        }
+    }, [])
 
     
     return(

@@ -16,6 +16,7 @@ import Dropdown from "../Components/Dropdown/Dropdown";
 import DropBox from "../Components/Dropdown/DropBox";
 import { useDispatch, useSelector } from "react-redux";
 import { daAnimalCategory, daLocation, daPhoneNumberInput } from "../redux/actions/daReport";
+import dashboardReportAPI from "../Service/dashboardReport";
 
 const ReportPage = () => {
     const location = useGeoLocation();
@@ -226,7 +227,7 @@ const ReportPage = () => {
         reportType: "rescueReport",
         animalGroup: "",
         animalName: "",
-        imageUrl: null,
+        imageUrl: wildAnimals,
         addInfo: "",
         reporterName: "",
         reporterEmail: "",
@@ -234,8 +235,9 @@ const ReportPage = () => {
         reporterAddress: "",
         province: "",
         city: "",
-        community: "allCommunities"
+        community: ["allCommunities"]
     });
+
 
     //select animal group to rescue
     const dropdownData2 = {
@@ -272,7 +274,7 @@ const ReportPage = () => {
         setArReport({
             ...arReport, [name]: value
         })
-        console.log(arReport.animalName)
+        // console.log(arReport.animalName)
     };
 
     const [dataProvinsi, setDataProvinsi] = useState([]);
@@ -314,6 +316,26 @@ const ReportPage = () => {
         data: dataKota
     };
 
+    const handleLocationChange = (e) => {
+        const { name, value } = e.target;
+        setArReport({
+            ...arReport, [name]: value
+        })
+    }
+
+    useEffect(() => {
+        // if (selectedIdKota) {
+        //     setArReport({
+        //         ...arReport, [city]: value
+        //     })
+        // }
+        // if (selectedIdProv) {
+        //     setArReport({
+        //         ...arReport, [province]: value
+        //     })
+        // }
+    } , [selectedIdKota, selectedIdProv])
+
     useEffect(() => {
         getProvinsi();
     }, []);
@@ -346,9 +368,16 @@ const ReportPage = () => {
         });
     };
 
+    const postReport = async (data) => {
+        console.log(data);
+        const report = await dashboardReportAPI.postReport(data)
+        console.log(report);
+    }
+
     const rescueReportSubmitHandler = () => {
         // imageUploadHandler();
-        console.log(arReport);
+        // console.log(arReport);
+        postReport(arReport)
 
         //axios.post("apiAddress", rescueReport);
     };
