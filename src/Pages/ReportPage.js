@@ -14,10 +14,14 @@ import UploadIcon from "../Components/Icons/UploadSolid";
 import MapIcon from "../Components/Icons/MapSolid";
 import Dropdown from "../Components/Dropdown/Dropdown";
 import DropBox from "../Components/Dropdown/DropBox";
+import { useDispatch, useSelector } from "react-redux";
+import { daAnimalCategory, daLocation, daPhoneNumberInput } from "../redux/actions/daReport";
 import dashboardReportAPI from "../Service/dashboardReport";
 
 const ReportPage = () => {
     const location = useGeoLocation();
+    const dispatch = useDispatch();
+    const daReport = useSelector(state => state.daReport);
 
     //INVASION REPORT
     //initial state of INVASION REPORT
@@ -27,7 +31,7 @@ const ReportPage = () => {
         imageUrl: null,
         animalCategory: "venomous",
         location: { address: "", city: "", province: "" },
-        community: "allCommunities"
+        community: { type: "allCommunities", list: [] }
     })
 
     //examples of dangerous animals
@@ -64,14 +68,6 @@ const ReportPage = () => {
             }
         ]
     };
-    const reportTypeHandler = (e) => {
-        const selectedType = e.target.value;
-        setReportType(selectedType);
-        setDangerReport({
-            ...dangerReport,
-            reportType: reportType
-        });
-    };
 
     const numberInputHandler = (e) => {
         const inputNumber = e.target.value;
@@ -79,6 +75,7 @@ const ReportPage = () => {
             ...dangerReport,
             phoneNumber: inputNumber
         });
+        dispatch(daPhoneNumberInput(inputNumber));
     };
 
     // Get an image file for dangerous animal report
@@ -104,8 +101,10 @@ const ReportPage = () => {
     // };
 
     useEffect(() => {
+        if (imageUpload == null) return;
+        const storageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
         const getImage = async () => {
-            const url = await getDownloadURL(ref(storage, `images/${imageUpload.name}_${Date.now()}`));
+            const url = await getDownloadURL(storageRef);
             setDangerReport({
                 ...dangerReport,
                 imageUrl: url
@@ -123,22 +122,14 @@ const ReportPage = () => {
     }
 
     //select community invasion report
-    const communitySelectHandler = (e) => {
-        const selectedCommunity = e.target.value;
-        if (selectedCommunity === "allComms") {
-            setDangerReport({
-                ...dangerReport,
-                community: selectedCommunity
-            });
-        } else {
-            setDangerReport({
-                ...dangerReport,
-                community: selectedCommunity
-            });
-        }
-    };
+    // const communitySelectHandler = () => {
+    //     setDangerReport({
+    //         ...dangerReport,
+    //         community: selectedComm
+    //     });
+    // };
 
-    const [selectedComm, setSelectedComm] = useState(null);
+    const [selectedComm, setSelectedComm] = useState({ type: "allCommunities", list: [] });
     const dropdownData5 = {
         placeholder: {
             val: false,
@@ -156,18 +147,6 @@ const ReportPage = () => {
         ],
     };
 
-    const itemList = {
-        data:
-            ["Garda Satwa Indonesia", "Pejaten Shelter", "ASPERA", "Garda Satwa Indonesia", "Pejaten Shelter", "ASPERA", "Garda Satwa Indonesia", "Pejaten Shelter", "ASPERA"]
-    };
-    const [checkedItems, setCheckedItems] = useState({});
-
-    const handleChange = (e) => {
-        setCheckedItems({
-            ...checkedItems,
-            [e.target.name]: e.target.checked
-        });
-    };
 
     //To render images of dangerous animals
     const [animalType, setAnimalType] = useState(animalDesc.venomous);
@@ -184,10 +163,11 @@ const ReportPage = () => {
                 setAnimalType(animalDesc.poisonous);
                 break;
         };
-        setDangerReport({
-            ...dangerReport,
-            animalCategory: selectedType
-        });
+        // setDangerReport({
+        //     ...dangerReport,
+        //     animalCategory: selectedType
+        // });
+        dispatch(daAnimalCategory(selectedType));
     };
 
     //get and assign address into dangerReport
@@ -210,30 +190,37 @@ const ReportPage = () => {
     const getAddress = () => {
         axios.get(`${reverseUrl}lat=${locData.latitude}&lon=${locData.longitude}&format=json&accept-language=id-ID`)
             .then((result) => {
-                console.log(result);
-                setDangerReport({
-                    ...dangerReport,
-                    location: {
-                        address: result.data.display_name,
-                        province: result.data.address.state,
-                        city: result.data.address.city ? (result.data.address.city) : (result.data.address.town)
-                    }
-                });
+                // setDangerReport({
+                //     ...dangerReport,
+                //     location: {
+                //         address: result.data.display_name,
+                //         province: result.data.address.state,
+                //         city: result.data.address.city ? (result.data.address.city) : (result.data.address.town)
+                //     }
+                // });
+                dispatch(daLocation({
+                    address: result.data.display_name,
+                    province: result.data.address.state,
+                    city: result.data.address.city ? (result.data.address.city) : (result.data.address.town)
+                }));
             });
     };
 
     useEffect(() => {
-        if (locData) {
+        if (locData.latitude) {
             getAddress();
         }
-    }, [locData]);
+    }, [locData.latitude]);
 
     //submit dangerous animal Report
     const invasionReportSubmitHandler = async () => {
-        imageUploadHandler()
-        await axios.post("http://localhost:3030/report", dangerReport);
+        imageUploadHandler();
+        await axios.post("http://localhost:3030/report", daReport);
+        // await axios.post("http://localhost:3030/report", dangerReport);
 
     };
+    console.log(daReport);
+    // console.log(dangerReport)
 
     //ANIMAL RESCUE REPORT
     const [arReport, setArReport] = useState({
