@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { arCommunityList } from "../../redux/actions/arReport";
 import { daCommunityList } from "../../redux/actions/daReport";
 import './Checkbox.css';
 
@@ -26,8 +27,10 @@ const Checkbox = ({ state }) => {
         });
         if (community === "allComms") {
             dispatch(daCommunityList({}));
+            dispatch(arCommunityList({}));
         } else {
             dispatch(daCommunityList(checkedItems));
+            dispatch(arCommunityList({checkedItems}));
         };
     };
 
