@@ -6,33 +6,34 @@ import '../Checkbox/Checkbox.css';
 import Checkbox from "../Checkbox/Checkbox";
 import { useDispatch } from "react-redux";
 import { daCommunitySelect } from "../../redux/actions/daReport";
+import { arCommunity } from "../../redux/actions/arReport";
 
 const DropBox = ({ dropdownContent, contentStyle, className, buttonStyle }) => {
     const dispatch = useDispatch();
-    const [isActive, setIsActive] = useState(false);
-    const [isActive2, setIsActive2] = useState(false);
+    const [isDropdownActive, setIsDropdownActive] = useState(false);
+    const [isCheckboxActive, setIsCheckboxActive] = useState(false);
     const { placeholder, data } = dropdownContent;
     const [selected, setIsSelected] = useState((placeholder.val === true) ? (placeholder.text) : (data[0].nama));
-    
     const contentHandler = (e) => {
-        const selectedValue = e.target.value;
-        setIsSelected(e.target.textContent);
-        dispatch(daCommunitySelect(selectedValue));
+        const {value, textContent} = e.target;
+        setIsSelected(textContent);
 
-        if (selectedValue === data[0].id) {
-            setIsActive(!isActive);
-            setIsActive2(false);
+        dispatch(daCommunitySelect(value));
+        dispatch(arCommunity(value));
+        
+        if (value === data[0].id) {
+            setIsDropdownActive(!isDropdownActive);
+            setIsCheckboxActive(false);
         } else {
-            setIsActive2(!isActive2);
+            setIsCheckboxActive(!isCheckboxActive);
         };
     };
 
-    // console.log('dropbox :', commData)
     const myRef = useRef();
 
     const outsideClick = e => {
         if (!myRef.current.contains(e.target)) {
-            setIsActive(false);
+            setIsDropdownActive(false);
         };
     };
 
@@ -43,19 +44,19 @@ const DropBox = ({ dropdownContent, contentStyle, className, buttonStyle }) => {
 
     return (
         <div className="dropdown" ref={myRef}>
-            <div onClick={() => { setIsActive(!isActive); }} className={className} style={buttonStyle}>
+            <div onClick={() => { setIsDropdownActive(!isDropdownActive); }} className={className} style={buttonStyle}>
                 <span className="selected-item">{selected}</span>
-                {isActive ? (
+                {isDropdownActive ? (
                     <ArrowUpIcon className="dropdown-arrow" />
                 ) : (
                     <ArrowDownIcon className="dropdown-arrow" />
                 )}
             </div>
-            <div className="dropdown-content" style={{ display: isActive ? "block" : "none", ...contentStyle }}>
+            <div className="dropdown-content" style={{ display: isDropdownActive ? "block" : "none", ...contentStyle }}>
                 {data.map((content, index) => {
                     return <option onClick={contentHandler} value={content.id} className="item" key={index}>{content.nama}</option>
                 })}
-                <Checkbox state={isActive2} />
+                <Checkbox state={isCheckboxActive} />
             </div>
         </div >
     )

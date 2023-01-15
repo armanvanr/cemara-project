@@ -3,7 +3,7 @@ import './style.css'
 import Donate from "../../Components/ContentDashboard/donate";
 import SideBarDashboard from "../../Components/SideBarDashboard";
 
-const Dashboard = () => {
+const DashboardDonate = () => {
     return (
         <div className="container">
             <SideBarDashboard />
@@ -12,4 +12,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default DashboardDonate;

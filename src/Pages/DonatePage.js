@@ -1,12 +1,32 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Dropdown from "../Components/Dropdown/Dropdown";
 import Navibar from "../Components/NavigationBar/Navibar";
 import PageFooter from "../Components/PageFooter/PageFooter";
 import './DonatePage.css';
 
 const DonatePage = () => {
     const [donationType, setDonationType] = useState("fundDonation");
-
+    const donateTypesData = {
+        placeholder: {
+            val: false,
+            text: ""
+        },
+        data: [
+            {
+                nama: "Donasi Uang",
+                id: "fundDonation"
+            },
+            {
+                nama: "Donasi Makanan",
+                id: "foodDonation"
+            },
+            {
+                nama: "Donasi Peralatan",
+                id: "kitDonation"
+            }
+        ]
+    };
     const donationTypeHandler = (e) => {
         const selectedType = e.target.value;
         setDonationType(selectedType);
@@ -53,7 +73,9 @@ const DonatePage = () => {
     },)
 
     const [imageUpload, setImageUpload] = useState(null);
-
+    const donateSubmitHandler = () => {
+        alert('Donasi Diterima!');
+    }
     return (
         <div className="DonatePage">
             <Navibar />
@@ -63,11 +85,8 @@ const DonatePage = () => {
             </div>
             <div className="DonateMain">
                 <div className="DonateFormCard">
-                    <select className="DonationType" value={donationType} onChange={donationTypeHandler} >
-                        <option value="fundDonation">Donasi uang</option>
-                        <option value="foodDonation">Donasi makanan</option>
-                        <option value="kitDonation">Donasi peralatan</option>
-                    </select>
+                    
+                    <Dropdown dropdownContent={donateTypesData} onChange={setDonationType} buttonStyle={{ width: "440px" }} contentStyle={{ width: "440px" }} className="dropdown-btn"/>
                     <input className="DonorInput" type="text" placeholder="Nama lengkap"></input>
                     <input className="DonorInput" type="text" placeholder="Email"></input>
                     <input className="DonorInput" type="text" placeholder="Alamat"></input>
@@ -133,20 +152,10 @@ const DonatePage = () => {
             </div>
             <div className="DonateButtonSection">
                 <div className="DonateButtonGroup">
-                    <button className="DonateButton">Donasikan</button>
+                    <button onClick={donateSubmitHandler} className="DonateButton">Donasikan</button>
                 </div>
             </div>
-            {/* <div className="PageFooter">
-                <button className="TermsConditions">
-                    Kebijakan & Privasi
-                </button>
-                <button className="HelpButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                    </svg>
-                    Bantuan
-                </button>
-            </div> */}
+            
             <PageFooter />
         </div>
     )
