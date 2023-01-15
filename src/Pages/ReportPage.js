@@ -15,44 +15,21 @@ import MapIcon from "../Components/Icons/MapSolid";
 import Dropdown from "../Components/Dropdown/Dropdown";
 import DropBox from "../Components/Dropdown/DropBox";
 import { useDispatch, useSelector } from "react-redux";
-import { daAnimalCategory, daLocation, daPhoneNumberInput } from "../redux/actions/daReport";
+import { daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput, daReportSubmit } from "../redux/actions/daReport";
 import dashboardReportAPI from "../Service/dashboardReport";
+import { SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_EMAIL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "../redux/actions/types";
+import { arReportSubmit } from "../redux/actions/arReport";
 
 const ReportPage = () => {
     const location = useGeoLocation();
     const dispatch = useDispatch();
     const daReport = useSelector(state => state.daReport);
+    const arReport = useSelector(state => state.arReport);
 
-    //INVASION REPORT
-    //initial state of INVASION REPORT
-    const [dangerReport, setDangerReport] = useState({
-        reportType: "invasionReport",
-        phoneNumber: "",
-        imageUrl: null,
-        animalCategory: "venomous",
-        location: { address: "", city: "", province: "" },
-        community: { type: "allCommunities", list: [] }
-    })
 
-    //examples of dangerous animals
-    const animalDesc = {
-        venomous: {
-            img: venomousAnimals,
-            names: ["Ular berbisa", "Kalajengking", "Kadal berbisa"]
-        },
-        wild: {
-            img: wildAnimals,
-            names: ["Buaya", "Macan", "Ular Piton", "Beruang", "Biawak"]
-        },
-        poisonous: {
-            img: poisonousAnimals,
-            names: ["Katak beracun", "Tomcat", "Ubur-ubur"]
-        }
-    }
-
-    //select type of invasion animal
+    //select type of report
     const [reportType, setReportType] = useState("invasionReport");
-    const dropdownData = {
+    const reportTypesData = {
         placeholder: {
             val: false,
             text: ""
@@ -69,68 +46,65 @@ const ReportPage = () => {
         ]
     };
 
+    //DANGEROUS ANIMAL (DA) REPORT
+    //examples of dangerous animals
+    const animalDesc = {
+        venomous: {
+            img: venomousAnimals,
+            names: ["Ular berbisa", "Kalajengking", "Kadal berbisa"]
+        },
+        wild: {
+            img: wildAnimals,
+            names: ["Buaya", "Macan", "Ular Piton", "Beruang", "Biawak"]
+        },
+        poisonous: {
+            img: poisonousAnimals,
+            names: ["Katak beracun", "Tomcat", "Ubur-ubur"]
+        }
+    };
+
+    //Phone Number Input
     const numberInputHandler = (e) => {
         const inputNumber = e.target.value;
-        setDangerReport({
-            ...dangerReport,
-            phoneNumber: inputNumber
-        });
         dispatch(daPhoneNumberInput(inputNumber));
     };
 
     // Get an image file for dangerous animal report
     const [imageUpload, setImageUpload] = useState(null);
-
-    // const imageUploadHandler = () => {
-    //     if (imageUpload == null) return;
-    //     // rename to `images/${user.id}_${Date.now()}`        
-    //     // const imageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
-    //     const imageRef = ref(storage, `images/img_${Date.now()}`);
-    //     uploadBytes(imageRef, imageUpload).then(() => {
-    //         getDownloadURL(imageRef).then((url) => {
-    //             appendImage(url);
-    //         })
-    //     })
-    // };
+    const imageUploadHandler = async () => {
+        if (imageUpload == null) return;
+        const imageRef = ref(storage, `images/img_${Date.now()}`);
+        await uploadBytes(imageRef, imageUpload);
+        const url = await getDownloadURL(imageRef);
+        dispatch(daImageUrl(url));
+    };
 
     // const appendImage = (url) => {
-    //     setDangerReport({
-    //         ...dangerReport,
-    //         imageUrl: url
-    //     })
-    // };
-
-    useEffect(() => {
-        if (imageUpload == null) return;
-        const storageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
-        const getImage = async () => {
-            const url = await getDownloadURL(storageRef);
-            setDangerReport({
-                ...dangerReport,
-                imageUrl: url
-            });
-        };
-        getImage()
-    }, [imageUpload]);
-
-    const imageUploadHandler = () => {
-        if (imageUpload == null) return;
-        const storageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
-        uploadBytes(storageRef, imageUpload).then((snapshot) => {
-            console.log("Uploaded image");
-        });
-    }
-
-    //select community invasion report
-    // const communitySelectHandler = () => {
-    //     setDangerReport({
-    //         ...dangerReport,
-    //         community: selectedComm
+    //     setDangerReport((state) => {
+    //         return {
+    //             ...state,
+    //             imageUrl: url
+    //         }
     //     });
     // };
 
-    const [selectedComm, setSelectedComm] = useState({ type: "allCommunities", list: [] });
-    const dropdownData5 = {
+    // useEffect(() => {
+    //     if (imageUpload == null) return;
+    //     const storageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
+    //     const getImage = async () => {
+    //         const url = await getDownloadURL(storageRef);
+    //         setDangerReport({
+    //             ...dangerReport,
+    //             imageUrl: url
+    //         });
+    //         console.log('get image')
+    //     };
+    //     getImage()
+
+    // }, [imageUpload]);
+
+    //Select community
+    const communityData = {
         placeholder: {
             val: false,
             text: ""
@@ -147,30 +121,25 @@ const ReportPage = () => {
         ],
     };
 
-
-    //To render images of dangerous animals
-    const [animalType, setAnimalType] = useState(animalDesc.venomous);
-    const animalTypeSelect = (e) => {
-        const selectedType = e.target.value;
-        switch (selectedType) {
+    //Select animal category for daReport
+    const [animalCategory, setAnimalCategory] = useState(animalDesc.venomous);
+    const animalCategorySelect = (e) => {
+        const selectedCategory = e.target.value;
+        switch (selectedCategory) {
             case ("venomous"):
-                setAnimalType(animalDesc.venomous);
+                setAnimalCategory(animalDesc.venomous);
                 break;
             case ("wild"):
-                setAnimalType(animalDesc.wild);
+                setAnimalCategory(animalDesc.wild);
                 break;
             case ("poisonous"):
-                setAnimalType(animalDesc.poisonous);
+                setAnimalCategory(animalDesc.poisonous);
                 break;
         };
-        // setDangerReport({
-        //     ...dangerReport,
-        //     animalCategory: selectedType
-        // });
-        dispatch(daAnimalCategory(selectedType));
+        dispatch(daAnimalCategory(selectedCategory));
     };
 
-    //get and assign address into dangerReport
+    //Get and assign address into daReport
     const [locData, setLocData] = useState({
         latitude: "",
         longitude: ""
@@ -184,20 +153,11 @@ const ReportPage = () => {
             })
         };
     }, [location.coordinates]);
-    // console.log(locData);
 
     const reverseUrl = "https://nominatim.openstreetmap.org/reverse?";
     const getAddress = () => {
         axios.get(`${reverseUrl}lat=${locData.latitude}&lon=${locData.longitude}&format=json&accept-language=id-ID`)
             .then((result) => {
-                // setDangerReport({
-                //     ...dangerReport,
-                //     location: {
-                //         address: result.data.display_name,
-                //         province: result.data.address.state,
-                //         city: result.data.address.city ? (result.data.address.city) : (result.data.address.town)
-                //     }
-                // });
                 dispatch(daLocation({
                     address: result.data.display_name,
                     province: result.data.address.state,
@@ -213,34 +173,19 @@ const ReportPage = () => {
     }, [locData.latitude]);
 
     //submit dangerous animal Report
-    const invasionReportSubmitHandler = async () => {
-        imageUploadHandler();
-        await axios.post("http://localhost:3030/report", daReport);
-        // await axios.post("http://localhost:3030/report", dangerReport);
-
+    const daReportSubmitHandler = async () => {
+        imageUploadHandler().then(() => {
+            axios.post("http://localhost:3030/report", daReport).then(()=>{
+                alert('Laporan Terkirim!')
+            })
+        });
     };
-    console.log(daReport);
-    // console.log(dangerReport)
 
     //ANIMAL RESCUE REPORT
-    const [arReport, setArReport] = useState({
-        reportType: "rescueReport",
-        animalGroup: "",
-        animalName: "",
-        imageUrl: wildAnimals,
-        addInfo: "",
-        reporterName: "",
-        reporterEmail: "",
-        reporterPhone: "",
-        reporterAddress: "",
-        province: "",
-        city: "",
-        community: ["allCommunities"]
-    });
 
-
-    //select animal group to rescue
-    const dropdownData2 = {
+    //Select animal group to rescue
+    const animalRescueData = {
+        actionType: SET_AR_ANIMAL_TYPE,
         placeholder: {
             val: true,
             text: "Pilih kelompok hewan"
@@ -260,23 +205,17 @@ const ReportPage = () => {
             }
         ]
     };
-    const [animalGroup, setAnimalGroup] = useState("");
-    const animalGroupHandler = (e) => {
-        const selectedGroup = e.target.value;
-        setArReport({
-            ...arReport,
-            animalGroup: selectedGroup
-        });
-    };
 
+    //Input animal name, additional info, reporter identity (name, email, phone number, address)
     const handleFieldChange = (e) => {
         const { name, value } = e.target;
-        setArReport({
-            ...arReport, [name]: value
+        dispatch({
+            type: name,
+            payload: value,
         })
-        // console.log(arReport.animalName)
     };
 
+    //Select Province and City
     const [dataProvinsi, setDataProvinsi] = useState([]);
     const [dataKota, setDataKota] = useState([]);
 
@@ -289,7 +228,8 @@ const ReportPage = () => {
     };
 
     const [selectedIdProv, setSelectedIdProv] = useState("");
-    const dropdownData3 = {
+    const provinceList = {
+        actionType: SET_AR_PROVINCE,
         placeholder: {
             val: true,
             text: "Pilih provinsi"
@@ -308,33 +248,14 @@ const ReportPage = () => {
     };
 
     const [selectedIdKota, setSelectedIdKota] = useState("");
-    const dropdownData4 = {
+    const cityList = {
+        actionType: SET_AR_CITY,
         placeholder: {
             val: true,
             text: "Pilih kota"
         },
         data: dataKota
     };
-
-    const handleLocationChange = (e) => {
-        const { name, value } = e.target;
-        setArReport({
-            ...arReport, [name]: value
-        })
-    }
-
-    useEffect(() => {
-        // if (selectedIdKota) {
-        //     setArReport({
-        //         ...arReport, [city]: value
-        //     })
-        // }
-        // if (selectedIdProv) {
-        //     setArReport({
-        //         ...arReport, [province]: value
-        //     })
-        // }
-    } , [selectedIdKota, selectedIdProv])
 
     useEffect(() => {
         getProvinsi();
@@ -344,29 +265,6 @@ const ReportPage = () => {
         getKota();
     });
 
-    //select community invasion report
-    const communitySelectHandler2 = (e) => {
-        const selectedCommunity = e.target.value;
-        if (selectedCommunity === "allComms") {
-            setArReport({
-                ...arReport,
-                community: selectedCommunity
-            });
-        } else {
-            setArReport({
-                ...dangerReport,
-                community: selectedCommunity
-            });
-        };
-    };
-    const [checkedItems2, setCheckedItems2] = useState({});
-
-    const handleChange2 = (e) => {
-        setCheckedItems2({
-            ...checkedItems2,
-            [e.target.name]: e.target.checked
-        });
-    };
 
     const postReport = async (data) => {
         console.log(data);
@@ -374,12 +272,10 @@ const ReportPage = () => {
         console.log(report);
     }
 
-    const rescueReportSubmitHandler = () => {
-        // imageUploadHandler();
-        // console.log(arReport);
-        postReport(arReport)
-
-        //axios.post("apiAddress", rescueReport);
+    const arReportSubmitHandler = async () => {
+        axios.post('http://localhost:3030/report', arReport).then(()=>{
+            alert('Laporan Terkirim!');
+        })
     };
 
     return (
@@ -394,7 +290,7 @@ const ReportPage = () => {
 
                 <div className="report-type-section">
                     <div className="report-form-card">
-                        <Dropdown dropdownContent={dropdownData} onChange={setReportType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
+                        <Dropdown dropdownContent={reportTypesData} onChange={setReportType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
                                 <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
@@ -404,15 +300,16 @@ const ReportPage = () => {
                                 </div>
                             </div>
                         ) : (
-                            <Dropdown dropdownContent={dropdownData2} onChange={setAnimalGroup} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
+                            <Dropdown dropdownContent={animalRescueData} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
                         )}
 
                         {(reportType === "invasionReport") ?
                             (null) : (
-                                <input type="text" name="animalName" value={arReport.animalName} onChange={handleFieldChange} placeholder="Jenis hewan" className="animal-name-input"></input>
+                                <input type="text" name={SET_AR_ANIMAL_NAME} value={arReport.animalName} onChange={handleFieldChange} placeholder="Jenis hewan" className="animal-name-input"></input>
                             )}
 
-                        <button className="image-upload-button" style={{ borderColor: imageUpload ? "#2E9C33" : "#97CD99" }} onClick={() => { document.querySelector(".input-field").click() }} >
+                        <button className="image-upload-button" style={{ borderColor: imageUpload ? "#2E9C33" : "#97CD99" }}
+                            onClick={() => { document.querySelector(".input-field").click() }} >
                             <input type="file" onChange={(e) => { setImageUpload(e.target.files[0]) }} className="input-field" hidden />
                             <UploadIcon className="img-up-icon" />
                             <p>Unggah foto</p>
@@ -422,7 +319,7 @@ const ReportPage = () => {
                             (null) : (
                                 <div className="add-info-group">
                                     <span>Informasi tambahan</span>
-                                    <input type="text" name="addInfo" value={arReport.addInfo} onChange={handleFieldChange} placeholder="Tulis di sini" className="add-info-input"></input>
+                                    <input type="text" name={SET_AR_ADD_INFO} value={arReport.addInfo} onChange={handleFieldChange} placeholder="Tulis di sini" className="add-info-input"></input>
                                 </div>
                             )}
                     </div>
@@ -430,8 +327,8 @@ const ReportPage = () => {
                     {(reportType === "invasionReport") ?
                         (
                             <div className="community-select-group">
-                                <DropBox dropdownContent={dropdownData5} onChange={setSelectedComm} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
-                                <button className="report-button" onClick={invasionReportSubmitHandler}>
+                                <DropBox dropdownContent={communityData} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
+                                <button className="report-button" onClick={daReportSubmitHandler}>
                                     <p>Laporkan!</p>
                                 </button>
                             </div>
@@ -442,7 +339,7 @@ const ReportPage = () => {
                     <div className="da-select-section">
                         <div className="da-selector-group">
                             <p>Pilih kelompok hewan yang sesuai</p>
-                            <div className="buttons-wrapper" onClick={animalTypeSelect}>
+                            <div className="buttons-wrapper" onClick={animalCategorySelect}>
                                 <input type="radio" name="select" id="option-1" value="venomous" defaultChecked />
                                 <input type="radio" name="select" id="option-2" value="wild" />
                                 <input type="radio" name="select" id="option-3" value="poisonous" />
@@ -458,9 +355,9 @@ const ReportPage = () => {
                             </div>
 
                             <div className="animal-examples">
-                                <img src={animalType.img} alt="images" className="animal-images" />
+                                <img src={animalCategory.img} alt="images" className="animal-images" />
                                 <div className="animal-names">
-                                    {animalType.names.map((name, index) =>
+                                    {animalCategory.names.map((name, index) =>
                                         <div className="names-map" key={index}>
                                             {index > 0 ? <span>&bull;</span> : null}
                                             <p>{name}</p>
@@ -477,23 +374,23 @@ const ReportPage = () => {
                                 <div className="form-title">
                                     <span>Pelapor</span>
                                 </div>
-                                <input type="text" name="reporterName" value={arReport.reporterName} onChange={handleFieldChange} className="reporter-input" placeholder="Nama lengkap" />
-                                <input type="email" name="reporterEmail" value={arReport.reporterEmail} onChange={handleFieldChange} className="reporter-input" placeholder="Email" />
-                                <input type="text" name="reporterPhone" value={arReport.reporterPhone} onChange={handleFieldChange} className="reporter-input" placeholder="Nomor telepon" />
+                                <input type="text" name={SET_AR_NAME} value={arReport.name} onChange={handleFieldChange} className="reporter-input" placeholder="Nama lengkap" />
+                                <input type="email" name={SET_AR_EMAIL} value={arReport.email} onChange={handleFieldChange} className="reporter-input" placeholder="Email" />
+                                <input type="text" name={SET_AR_PHONE_NUMBER} value={arReport.phoneNumber} onChange={handleFieldChange} className="reporter-input" placeholder="Nomor telepon" />
                                 <div className="address-group">
-                                    <input type="text" name="reporterAddress" value={arReport.reporterAddress} onChange={handleFieldChange} className="reporter-address" placeholder="Alamat" />
+                                    <input type="text" name={SET_AR_ADDRESS} value={arReport.address} onChange={handleFieldChange} className="reporter-address" placeholder="Alamat" />
                                     <button className="map-button">
                                         <MapIcon />
                                     </button>
                                 </div>
                                 <div className="province-city-group">
-                                    <Dropdown dropdownContent={dropdownData3} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
-                                    <Dropdown dropdownContent={dropdownData4} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
+                                    <Dropdown dropdownContent={provinceList} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
+                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
                                 </div>
                             </div>
                             <div className="ar-buttons-group">
-                                <DropBox dropdownContent={dropdownData5} onChange={setSelectedComm} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
-                                <button className="rescue-report-button" onClick={rescueReportSubmitHandler}>
+                                <DropBox dropdownContent={communityData} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
+                                <button className="rescue-report-button" onClick={arReportSubmitHandler}>
                                     <p>Laporkan!</p>
                                 </button>
                             </div>

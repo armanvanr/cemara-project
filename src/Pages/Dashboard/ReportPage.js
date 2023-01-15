@@ -3,7 +3,7 @@ import './style.css'
 import Report from "../../Components/ContentDashboard/report";
 import SideBarDashboard from "../../Components/SideBarDashboard";
 
-const Dashboard = () => {
+const DashboardReport = () => {
     return (
         <div className="container">
             <SideBarDashboard />
@@ -12,4 +12,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default DashboardReport;

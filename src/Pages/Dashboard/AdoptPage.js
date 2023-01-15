@@ -1,15 +1,15 @@
 import React from "react";
 import './style.css'
-import Campaign from "../../Components/ContentDashboard/campaign";
+import Adopt from "../../Components/ContentDashboard/adopt";
 import SideBarDashboard from "../../Components/SideBarDashboard";
 
-const Dashboard = () => {
+const DashboardAdopt = () => {
     return (
         <div className="container">
             <SideBarDashboard />
-            <Campaign />
+            <Adopt />
         </div>
     )
 }
 
-export default Dashboard
+export default DashboardAdopt;
