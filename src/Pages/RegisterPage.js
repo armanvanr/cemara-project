@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './RegisterPage.css';
 import brand from '../Assets/Images/brand.jpg'
 import registerIMG from '../Assets/Images/pic-signup.png'
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from '../redux/actions/auth';
 
@@ -42,7 +42,9 @@ const RegisterPage = () => {
                 <div className="leftSide">
                     <div className="loginContainer">
                         <div className="loginCard">
-                            <img src={brand} className="logo" alt="" />
+                            <NavLink to="/">
+                                <img src={brand} className="navbar-brand" alt="" style={{ textDecoration: "none" }} />
+                            </NavLink>
                             <div className="cardBody">
                                 <div className="card-form">
                                     <div className="form">
