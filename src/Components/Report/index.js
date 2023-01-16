@@ -87,13 +87,16 @@ const Report = () => {
         setListReport((prevListReport) => {
             return listReport.map((item) => {
                 if (item.id === id) {
-                    return { ...item, show: false }
+                    if (item.show === false) {
+                        return { ...item, show: true }
+                    } else {
+                        return { ...item, show: false }
+                    }
                 } else {
                     return { ...item, show: true }
                 }
             })
         })
-
     }
 
     return (
