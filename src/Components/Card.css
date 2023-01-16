@@ -70,8 +70,29 @@
   padding: 0px;
   gap: 16px;
 
-  width: 384px;
-  height: 98px;
+  /* width: 384px;
+  height: 98px; */
+}
+.card-dashboard-detail-extra-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  margin-left: 140px;
+
+  /* width: 384px;
+  height: 98px; */
+}
+.m-fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+.m-fadeIn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
 }
 
 .card-dashboard-detail-header-container {
@@ -134,10 +155,10 @@ E82E2E
 }
 
 .dangerous {
-    background: #e92f2f;
+  background: #e92f2f;
 }
 .rescue {
-    background: #649EF5;
+  background: #649ef5;
 }
 
 .card-dashboard-detail-header-title-type-text {
@@ -268,19 +289,19 @@ DBB736
 }
 
 .accept {
-    background: #2E9C33;
+  background: #2e9c33;
 }
 .finish {
-    background: #dcb736;
+  background: #dcb736;
 }
 
 .accept:hover {
-  background: #174E19;
+  background: #174e19;
   cursor: pointer;
 }
 
 .finish:hover {
-  background: #6E5C1B;
+  background: #6e5c1b;
   cursor: pointer;
 }
 
