@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { arCommunityList } from "../../redux/actions/arReport";
 import { daCommunityList } from "../../redux/actions/daReport";
 import './Checkbox.css';
 
-const Checkbox = ({ state }) => {
+const Checkbox = ({ checkboxState, dropdownState }) => {
     const data = [
         "Garda Satwa Indonesia",
         "Pejaten Shelter",
@@ -23,19 +23,29 @@ const Checkbox = ({ state }) => {
     const itemHandler = (e) => {
         setCheckedItems({
             ...checkedItems,
-            [e.target.name]: e.target.checked
+            [e.target.name]: e.target.checked,
         });
-        if (community === "allComms") {
-            dispatch(daCommunityList({}));
-            dispatch(arCommunityList({}));
-        } else {
-            dispatch(daCommunityList(checkedItems));
-            dispatch(arCommunityList({checkedItems}));
-        };
     };
 
+    useEffect(() => {
+        if (!dropdownState) {
+            // console.log(checkedItems, community)
+            const items = Object.entries(checkedItems).filter(([key, value]) => value)
+            // console.log('items :', items);
+            const result = Array.from(items, arr => arr[0])
+            console.log('result :', result);
+            if (community === "allComms") {
+                dispatch(daCommunityList({}));
+                dispatch(arCommunityList({}));
+            } else {
+                dispatch(daCommunityList(result));
+                dispatch(arCommunityList(result));
+            };
+        }
+    }, [dropdownState])
+
     return (
-        <div className="checkbox-content" style={{ display: state ? "block" : "none" }}>
+        <div className="checkbox-content" style={{ display: checkboxState ? "block" : "none" }}>
             <div className="checkbox-container">
                 {data.map((item, index) => (
                     <label className="checkbox-item" key={index}>

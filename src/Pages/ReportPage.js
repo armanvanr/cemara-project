@@ -19,6 +19,8 @@ import { daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput, daReportS
 import dashboardReportAPI from "../Service/dashboardReport";
 import { SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_EMAIL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "../redux/actions/types";
 import { arReportSubmit } from "../redux/actions/arReport";
+import reportService from "../Service/report";
+import { async } from "@firebase/util";
 
 const ReportPage = () => {
     const location = useGeoLocation();
@@ -172,16 +174,31 @@ const ReportPage = () => {
         }
     }, [locData.latitude]);
 
+    const [reportStatus, setReportStatus] = useState(false);
+
+    const sendDAReport = async () => {
+        await reportService.daReportSend(daReport);
+    }
+    
+    useEffect(() => {
+        if (reportStatus && daReport.communityStatus) {
+            sendDAReport();
+            console.log(daReport)
+        }
+
+    }, [reportStatus]);
+
     //submit dangerous animal Report
     const daReportSubmitHandler = async () => {
         imageUploadHandler().then(() => {
-            axios.post("http://localhost:3030/report", daReport).then(()=>{
-                alert('Laporan Terkirim!')
-            })
+            // axios.post("http://localhost:3030/report", daReport).then(()=>{
+            //     alert('Laporan Terkirim!')
+            // })
+            setReportStatus(true);
         });
     };
 
-    //ANIMAL RESCUE REPORT
+    //ANIMAL RESCUE (AR) REPORT
 
     //Select animal group to rescue
     const animalRescueData = {
@@ -212,7 +229,7 @@ const ReportPage = () => {
         dispatch({
             type: name,
             payload: value,
-        })
+        });
     };
 
     //Select Province and City
@@ -273,7 +290,7 @@ const ReportPage = () => {
     }
 
     const arReportSubmitHandler = async () => {
-        axios.post('http://localhost:3030/report', arReport).then(()=>{
+        axios.post('http://localhost:3030/report', arReport).then(() => {
             alert('Laporan Terkirim!');
         })
     };

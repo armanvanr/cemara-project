@@ -3,6 +3,7 @@ import {
     SET_DA_ANIMAL_CATEGORY,
     SET_DA_COMMUNITY,
     SET_DA_COMMUNITY_LIST,
+    SET_DA_COMMUNITY_STATUS,
     SET_DA_IMAGE_URL,
     SET_DA_LOCATION,
     SET_DA_PHONE_NUMBER,
@@ -15,7 +16,8 @@ const initialState = {
     animalCategory: "venomous",
     location: { address: "", city: "", province: "" },
     community: "allComms",
-    communityList: {},
+    communityList: [],
+    communityStatus: false,
 };
 
 const daReport = (state = initialState, action) => {
@@ -30,7 +32,12 @@ const daReport = (state = initialState, action) => {
         case SET_DA_COMMUNITY_LIST:
             return {
                 ...state,
-                communityList: payload,
+                communityList: [payload],
+            };
+        case SET_DA_COMMUNITY_STATUS:
+            return {
+                ...state,
+                communityStatus: payload,
             };
         case SET_DA_PHONE_NUMBER:
             return {

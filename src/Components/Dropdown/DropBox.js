@@ -5,7 +5,7 @@ import './DropBox.css';
 import '../Checkbox/Checkbox.css';
 import Checkbox from "../Checkbox/Checkbox";
 import { useDispatch } from "react-redux";
-import { daCommunitySelect } from "../../redux/actions/daReport";
+import { daCommunitySelect, daCommunityStatus } from "../../redux/actions/daReport";
 import { arCommunity } from "../../redux/actions/arReport";
 
 const DropBox = ({ dropdownContent, contentStyle, className, buttonStyle }) => {
@@ -34,6 +34,7 @@ const DropBox = ({ dropdownContent, contentStyle, className, buttonStyle }) => {
     const outsideClick = e => {
         if (!myRef.current.contains(e.target)) {
             setIsDropdownActive(false);
+            dispatch(daCommunityStatus(true));
         };
     };
 
@@ -56,7 +57,7 @@ const DropBox = ({ dropdownContent, contentStyle, className, buttonStyle }) => {
                 {data.map((content, index) => {
                     return <option onClick={contentHandler} value={content.id} className="item" key={index}>{content.nama}</option>
                 })}
-                <Checkbox state={isCheckboxActive} />
+                <Checkbox checkboxState={isCheckboxActive} dropdownState={isDropdownActive} />
             </div>
         </div >
     )
