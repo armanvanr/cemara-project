@@ -255,7 +255,7 @@ const Report = () => {
                                                     <div className="card-dashboard-action-time">
                                                         <div className="card-dashboard-action-time-text"> {report.time}</div>
                                                     </div>
-                                                    <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.status)}>
+                                                    <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.id)}>
                                                         <div className="card-dashboard-action-button-text">
                                                             Selesai
                                                         </div>

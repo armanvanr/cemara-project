@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ExclamationIcon from "../Icons/ExclamationSolid";
 import HeartIcon from "../Icons/HeartSolid";
@@ -8,52 +8,55 @@ import CashIcon from "../Icons/CashSolid";
 import PencilIcon from "../Icons/PencilAltSolid";
 import BellIcon from "../Icons/BellSolid";
 import ArrowDownIcon from "../Icons/ArrowDownSolid";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SideBarDashboard = () => {
     const [menus, setMenus] = useState([
         {
             menu: "Laporan",
             icon: <ExclamationIcon />,
-            status: true
+            status: true,
+            url: "/dashboard/report"
         },
         {
             menu: "Kampanye",
             icon: <FlagIcon />,
-            status: false
+            status: false,
+            url: "/dashboard/campaign"
         },
         {
             menu: "Adopsi",
             icon: <HeartIcon />,
-            status: false
+            status: false,
+            url: "/dashboard/adopt"
         },
         {
             menu: "Barang Donasi",
             icon: <CashIcon />,
-            status: false
-        },
-        {
-            menu: "",
-            icon: "",
-            status: false
+            status: false,
+            url: "/dashboard/donate"
         },
         {
             menu: "Notifikasi",
             icon: <BellIcon />,
-            status: false
+            status: false,
+            url: "/dashboard/notification"
         },
         {
             menu: "Tulis Artikel",
             icon: <PencilIcon />,
-            status: false
+            status: false,
+            url: "/dashboard/artikel"
         },
     ]
     )
 
-    const { user: currentUser } = useSelector(state => state.auth);
+    const navigate = useNavigate()
+    const location = useLocation()
 
-    const handleClick = (nama) => {
+    const currentPage = () => {
         const newMenu = menus.map((menu) => {
-            if (menu.menu === nama) {
+            if (menu.url === location.pathname) {
                 return { ...menu, status: true }
             }
             else {
@@ -62,6 +65,16 @@ const SideBarDashboard = () => {
         })
 
         setMenus(newMenu)
+    }
+
+    useEffect(()=> {
+        currentPage()
+    },[])
+
+    const { user: currentUser } = useSelector(state => state.auth);
+
+    const handleClick = (url) => {
+        navigate(url)
     }
 
     return (
@@ -87,18 +100,19 @@ const SideBarDashboard = () => {
                 <div className="menu-items">
                     {
                         menus.map((menu, index) => {
-                            if (index === 4) {
-                                return <div key={index} className="line"></div>
-                            }
                             return (
-                                <div key={menu.menu} className={menu.status ? "menu-item target" : "menu-item"} onClick={() => handleClick(menu.menu)}>
-                                    <div className="menu-icon">
-                                        {menu.icon}
+                                <>
+                                    {index === 4 ? <div key={index} className="line"></div> : null}
+                                    <div key={menu.menu} className={menu.status ? "menu-item target" : "menu-item"} onClick={() => handleClick(menu.url)}>
+                                        <div className="menu-icon">
+                                            {menu.icon}
+                                        </div>
+                                        <div className="menu-text">
+                                            {menu.menu}
+                                        </div>
                                     </div>
-                                    <div className="menu-text">
-                                        {menu.menu}
-                                    </div>
-                                </div>
+
+                                </>
 
                             )
                         })
