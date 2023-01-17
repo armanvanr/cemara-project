@@ -112,7 +112,7 @@
     align-items: flex-start;
     padding: 6px 16px;
 
-    width: 210px;
+    width: 230px;
     height: 88px;
 
     border-radius: 0px 20px 20px 0px;
@@ -136,16 +136,16 @@
 }
 
 .RibbonDesc {
-    width: 104px;
+    width: fit-content;
     height: 20px;
 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 25px;
 
-    text-align: center;
+    text-align: left;
 
     color: #FFFFFF;
 
