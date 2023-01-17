@@ -21,7 +21,7 @@ const HomePage = () => {
                             <img src={reportImg} alt="" />
                             <div className="Ribbon" style={{ backgroundColor: "#E92F2F" }}>
                                 <span className="RibbonName">Lapor!</span>
-                                <span className="RibbonDesc">Lorem ipsum</span>
+                                <span className="RibbonDesc">Laporkan hewan berbahaya</span>
                             </div>
                         </NavLink>
                     </div>
@@ -30,7 +30,7 @@ const HomePage = () => {
                             <img src={donateImg} alt="" />
                             <div className="Ribbon" style={{ backgroundColor: "#2E9C33" }}>
                                 <span className="RibbonName">Donasi</span>
-                                <span className="RibbonDesc">Lorem ipsum</span>
+                                <span className="RibbonDesc">Bantuanmu sangat berarti</span>
                             </div>
                         </NavLink>
                     </div>
@@ -39,7 +39,7 @@ const HomePage = () => {
                             <img src={adoptImg} alt="" />
                             <div className="Ribbon" style={{ backgroundColor: "#DCB736" }}>
                                 <span className="RibbonName">Adopsi</span>
-                                <span className="RibbonDesc">Lorem ipsum</span>
+                                <span className="RibbonDesc">Pelihara mereka, sayangi mereka</span>
                             </div>
                         </NavLink>
                     </div>
