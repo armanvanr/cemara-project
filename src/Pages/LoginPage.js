@@ -5,6 +5,7 @@ import loginIMG from '../Assets/Images/picwish.png'
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from '../redux/actions/auth';
+import Loading from "../Components/Loading";
 
 const LoginPage = () => {
 
@@ -13,6 +14,8 @@ const LoginPage = () => {
 
     const { isLoggedIn } = useSelector(state => state.auth);
     const { user: currentUser } = useSelector(state => state.auth);
+
+    const [loading, setLoading] = useState(false)
 
     const [form, setForm] = useState();
     const handleFormChange = event => {
@@ -26,7 +29,17 @@ const LoginPage = () => {
         navigate('/register')
     }
     const handleLogin = () => {
-        dispatch(login(form.email, form.password))
+        if (form.email && form.password) {
+            setLoading(true)
+        }
+        dispatch(login(form.email, form.password)).then(res => {
+            console.log("success")
+        }
+        ).catch(error => {
+            console.log("failed")
+            setLoading(false)
+        })
+
     }
 
     // if (currentUser) {
@@ -68,13 +81,14 @@ const LoginPage = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    {loading ? <Loading /> : null}
                                     <div className="formBottom">
                                         <div className="button1" onClick={handleRegister}>
                                             <span className="buttonText1">Buat Akun</span>
                                         </div>
-                                        <div className="button2" onClick={handleLogin}>
-                                            <span className="buttonText2">Masuk</span>
-                                        </div>
+                                        <button className={`button2 ${loading ? "btn-disabled" : null}`} onClick={handleLogin} disabled={loading}>
+                                            <span className="buttonText2">{loading ? "Loading..." : "Masuk"}</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -40,7 +40,10 @@
 }
 
 .card-dashboard:hover {
-  margin-left: 10px;
+  border: 2px solid #97cd99;
+  box-shadow: 0px 0px 8px 4px #97cd99;
+  -webkit-box-shadow: 0px 0px 8px 4px #97cd99;
+  -moz-box-shadow: 0px 0px 8px 4px #97cd99;
 }
 
 .card-dashboard-left {
