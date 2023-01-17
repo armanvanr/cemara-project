@@ -107,6 +107,15 @@
     padding: 10px;
 }
 
+input[type="text"] {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #747474;
+}
+
 .DonorInput {
     box-sizing: border-box;
     display: flex;
@@ -193,7 +202,8 @@
     align-items: flex-start;
     padding: 32px;
     gap: 16px;
-    width: 589px;
+    /* width: 589px; */
+    width: inherit;
     height: auto;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -232,9 +242,10 @@
     align-items: flex-start;
     padding: 0px;
     gap: 10px;
-    width: 589px;
+    width: 446px;
     height: 56px;
     overflow-wrap: normal;
+    flex-wrap: wrap;
 }
 
 .NominalButton {
