@@ -398,7 +398,7 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: 8px 32px;
-
+border: none;
 cursor: pointer;
 /* Primary/Main
 
@@ -413,6 +413,10 @@ border-radius: 16px;
 flex: none;
 order: 1;
 flex-grow: 0;
+}
+
+.btn-disabled {
+    background: #747474;
 }
 
 .buttonText2 {

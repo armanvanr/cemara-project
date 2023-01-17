@@ -3,6 +3,7 @@ import './style.css'
 import '../../Components/Card.css'
 import pic from '../../Assets/Images/pic-dashboard.png';
 import dashboardReportAPI from "../../Service/dashboardReport";
+import Loading from "../Loading";
 
 const Report = () => {
     const [listReport, setListReport] = useState(
@@ -282,7 +283,8 @@ const Report = () => {
                                 }
 
                             }
-                            )) : null
+                            )) :
+                            <Loading />
                     }
                     {/* <div className="card-dashboard">
                         <div className="card-dashboard-left">
@@ -379,29 +381,57 @@ const Report = () => {
             </div>
             <div className="list-call-container">
                 <span className="text-title-list">Daftar panggilan</span>
-                {
-                    listReport ?
-                        (listReport.map((report) => {
-                            if (report.status === "requested") {
-                                return (
-                                    <div key={report.id} className="card-dashboard" onClick={() => handleItemClick(report.id)}>
-                                        <div className="card-row">
-                                            <div className="card-dashboard-left">
-                                                <img src={report.imageUrl} className="card-dashboard-image" alt="" />
-                                                <div className="card-dashboard-detail-container">
-                                                    <div className="card-dashboard-detail-header-container">
-                                                        <div className="card-dashboard-detail-header-title">
-                                                            <div className="card-dashboard-detail-header-title-text">
-                                                                {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
-                                                            </div>
-                                                            <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
-                                                                <div className="card-dashboard-detail-header-title-type-text">
-                                                                    {report.animalCategory}
+                <div className="list-item-container">
+                    {
+                        listReport ?
+                            (listReport.map((report) => {
+                                if (report.status === "requested") {
+                                    return (
+                                        <div key={report.id} className="card-dashboard" onClick={() => handleItemClick(report.id)}>
+                                            <div className="card-row">
+                                                <div className="card-dashboard-left">
+                                                    <img src={report.imageUrl} className="card-dashboard-image" alt="" />
+                                                    <div className="card-dashboard-detail-container">
+                                                        <div className="card-dashboard-detail-header-container">
+                                                            <div className="card-dashboard-detail-header-title">
+                                                                <div className="card-dashboard-detail-header-title-text">
+                                                                    {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
+                                                                </div>
+                                                                <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
+                                                                    <div className="card-dashboard-detail-header-title-type-text">
+                                                                        {report.animalCategory}
+                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                            {
+                                                                report.reportType === "DA" ?
+                                                                    <div className="card-dashboard-detail-location-container">
+                                                                        <div className="card-dashboard-detail-location-icon">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div className="card-dashboard-detail-location-text">
+                                                                            {report.address}
+                                                                        </div>
+                                                                    </div>
+                                                                    :
+                                                                    <div className="card-dashboard-detail-location-container">
+                                                                        <div className="card-dashboard-detail-information-text">{report.information}</div>
+                                                                    </div>
+                                                            }
                                                         </div>
                                                         {
                                                             report.reportType === "DA" ?
+                                                                <div className="card-dashboard-detail-location-phone-container">
+                                                                    <div className="card-dashboard-detail-location-icon">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div className="card-dashboard-detail-location-phone-text">{report.reporterPhone}</div>
+                                                                </div>
+                                                                :
                                                                 <div className="card-dashboard-detail-location-container">
                                                                     <div className="card-dashboard-detail-location-icon">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -412,69 +442,44 @@ const Report = () => {
                                                                         {report.address}
                                                                     </div>
                                                                 </div>
-                                                                :
-                                                                <div className="card-dashboard-detail-location-container">
-                                                                    <div className="card-dashboard-detail-information-text">{report.information}</div>
-                                                                </div>
+
                                                         }
+
                                                     </div>
-                                                    {
-                                                        report.reportType === "DA" ?
-                                                            <div className="card-dashboard-detail-location-phone-container">
-                                                                <div className="card-dashboard-detail-location-icon">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                                                    </svg>
-                                                                </div>
-                                                                <div className="card-dashboard-detail-location-phone-text">{report.reporterPhone}</div>
-                                                            </div>
-                                                            :
-                                                            <div className="card-dashboard-detail-location-container">
-                                                                <div className="card-dashboard-detail-location-icon">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                                                    </svg>
-                                                                </div>
-                                                                <div className="card-dashboard-detail-location-text">
-                                                                    {report.address}
-                                                                </div>
-                                                            </div>
-
-                                                    }
-
                                                 </div>
-                                            </div>
-                                            <div className="card-dashboard-action-container">
-                                                <div className="card-dashboard-action-time">
-                                                    <div className="card-dashboard-action-time-text"> {report.time}</div>
-                                                </div>
-                                                <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id)}>
-                                                    <div className="card-dashboard-action-button-text">
-                                                        Terima
+                                                <div className="card-dashboard-action-container">
+                                                    <div className="card-dashboard-action-time">
+                                                        <div className="card-dashboard-action-time-text"> {report.time}</div>
+                                                    </div>
+                                                    <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id)}>
+                                                        <div className="card-dashboard-action-button-text">
+                                                            Terima
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div hidden={report.show}>
-                                            {/* <div className={report.show ? "m-fadeIn": "m-fadeOut"}> */}
-                                            <div className="card-dashboard-detail-extra-container">
-                                                <div className="card-dashboard-detail-header-title-text">
-                                                    Detail Pelapor
+                                            <div hidden={report.show}>
+                                                {/* <div className={report.show ? "m-fadeIn": "m-fadeOut"}> */}
+                                                <div className="card-dashboard-detail-extra-container">
+                                                    <div className="card-dashboard-detail-header-title-text">
+                                                        Detail Pelapor
+                                                    </div>
+                                                    <div className="card-dashboard-detail-information-text">Nama : {report.reporterName}</div>
+                                                    <div className="card-dashboard-detail-information-text">Email : {report.reporterEmail}</div>
+                                                    <div className="card-dashboard-detail-information-text">Nomor Telepon {report.reporterPhone}</div>
                                                 </div>
-                                                <div className="card-dashboard-detail-information-text">Nama : {report.reporterName}</div>
-                                                <div className="card-dashboard-detail-information-text">Email : {report.reporterEmail}</div>
-                                                <div className="card-dashboard-detail-information-text">Nomor Telepon {report.reporterPhone}</div>
                                             </div>
                                         </div>
-                                    </div>
-                                )
-                            } else {
-                                return null
+                                    )
+                                } else {
+                                    return null
+                                }
+
                             }
-
-                        }
-                        )) : null
-                }
+                            )) :
+                            <Loading />
+                    }
+                </div>
                 {/* <div className="card-dashboard">
                     <div className="card-dashboard-left">
                         <img src={pic} className="card-dashboard-image" alt="" />
