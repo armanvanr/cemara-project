@@ -24,8 +24,8 @@ position: absolute;
 width: 1280px;
 height: 637px;
 left: 0px;
-top: 77px;
-background-color: black;
+background-image: url("../Assets/Images/bg-about.jpg");
+background-size: cover;
 }
 
 .aboutUs-hero-title {
@@ -74,8 +74,6 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px 100px;
-
-width: 1280px;
 height: 1876px;
 }
 
@@ -85,8 +83,6 @@ flex-direction: row;
 align-items: center;
 padding: 0px;
 gap: 48px;
-
-width: 1080px;
 height: 469px;
 }
 
@@ -96,7 +92,6 @@ flex-direction: column;
 align-items: flex-start;
 padding: 0px;
 gap: 24px;
-
 width: 563px;
 height: 332px;
 }
@@ -116,14 +111,11 @@ font-style: normal;
 font-weight: 400;
 font-size: 18px;
 line-height: 26px;
-width: 563px;
-height: 260px;
 color: #1E1E1E;
 }
 
 .aboutUs-image {
 width: 469px;
 height: 469px;
-flex: none;
-flex-grow: 0;
+align-items: flex-end;
 }
