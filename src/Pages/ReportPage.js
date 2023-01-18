@@ -182,7 +182,7 @@ const ReportPage = () => {
     
     useEffect(() => {
         if (reportStatus && daReport.communityStatus) {
-            sendDAReport();
+            // sendDAReport();
             console.log(daReport)
         }
 
@@ -290,9 +290,10 @@ const ReportPage = () => {
     }
 
     const arReportSubmitHandler = async () => {
-        axios.post('http://localhost:3030/report', arReport).then(() => {
-            alert('Laporan Terkirim!');
-        })
+        // axios.post('http://localhost:3030/report', arReport).then(() => {
+        //     alert('Laporan Terkirim!');
+        // })
+        console.log(arReport);
     };
 
     return (
