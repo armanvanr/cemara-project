@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Dropdown from "../Components/Dropdown/Dropdown";
+import Footer from "../Components/Footer/Footer";
 import Navibar from "../Components/NavigationBar/Navibar";
-import PageFooter from "../Components/PageFooter/PageFooter";
 import './DonatePage.css';
 
 const DonatePage = () => {
@@ -155,8 +155,7 @@ const DonatePage = () => {
                     <button onClick={donateSubmitHandler} className="DonateButton">Donasikan</button>
                 </div>
             </div>
-            
-            <PageFooter />
+                <Footer/>
         </div>
     )
 }

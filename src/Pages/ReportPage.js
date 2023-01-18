@@ -8,7 +8,6 @@ import useGeoLocation from "../Hooks/useGeoLocation";
 import { storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import axios from 'axios';
-import PageFooter from "../Components/PageFooter/PageFooter";
 import ExclamationIcon from "../Components/Icons/ExclamationSolid";
 import UploadIcon from "../Components/Icons/UploadSolid";
 import MapIcon from "../Components/Icons/MapSolid";

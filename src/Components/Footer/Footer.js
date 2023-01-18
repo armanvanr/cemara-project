@@ -50,7 +50,7 @@ const Footer = () => {
                         <span className="Footer-bar">Login Admin  &nbsp;&bull;</span>
                     </NavLink>
                     <NavLink style={{ textDecoration: "none" }}>
-                        <span to="/help" className="Footer-bar"><HelpIcon />Bantuan</span>
+                        <span to="/help" className="Footer-bar">Bantuan</span>
                     </NavLink>
                 </div>
             </div>

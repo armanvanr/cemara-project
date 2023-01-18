@@ -2,6 +2,7 @@ import React from "react";
 import './AdoptPage.css';
 import adoptImg from '../Assets/Images/AdoptImage.png';
 import Navibar from "../Components/NavigationBar/Navibar";
+import Footer from "../Components/Footer/Footer";
 
 const AdoptPage = () =>{
     return(
@@ -324,6 +325,7 @@ const AdoptPage = () =>{
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }
