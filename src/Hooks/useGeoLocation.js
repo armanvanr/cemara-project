@@ -6,13 +6,10 @@ const useGeoLocation = () => {
         coordinates: { latitude: "", longitude: "" },
     });
 
-    const onSuccess = (location) => {
+    const onSuccess = ({coords}) => {
         setLocation({
             loaded: true,
-            coordinates: {
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-            },
+            coordinates: coords,
         });
     };
 

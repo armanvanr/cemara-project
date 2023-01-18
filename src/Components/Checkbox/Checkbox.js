@@ -29,11 +29,8 @@ const Checkbox = ({ checkboxState, dropdownState }) => {
 
     useEffect(() => {
         if (!dropdownState) {
-            // console.log(checkedItems, community)
             const items = Object.entries(checkedItems).filter(([key, value]) => value)
-            // console.log('items :', items);
             const result = Array.from(items, arr => arr[0])
-            console.log('result :', result);
             if (community === "allComms") {
                 dispatch(daCommunityList({}));
                 dispatch(arCommunityList({}));

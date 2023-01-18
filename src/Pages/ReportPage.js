@@ -15,12 +15,10 @@ import MapIcon from "../Components/Icons/MapSolid";
 import Dropdown from "../Components/Dropdown/Dropdown";
 import DropBox from "../Components/Dropdown/DropBox";
 import { useDispatch, useSelector } from "react-redux";
-import { daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput, daReportSubmit } from "../redux/actions/daReport";
-import dashboardReportAPI from "../Service/dashboardReport";
+import { daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput } from "../redux/actions/daReport";
 import { SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_EMAIL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "../redux/actions/types";
-import { arReportSubmit } from "../redux/actions/arReport";
+import { arImageUrl } from "../redux/actions/arReport";
 import reportService from "../Service/report";
-import { async } from "@firebase/util";
 
 const ReportPage = () => {
     const location = useGeoLocation();
@@ -66,8 +64,12 @@ const ReportPage = () => {
     };
 
     //Phone Number Input
+    const [isNumberEmpty, setIsNumberEmpty] = useState(false);
     const numberInputHandler = (e) => {
         const inputNumber = e.target.value;
+        if (inputNumber === "") {
+            setIsNumberEmpty(true);
+        }
         dispatch(daPhoneNumberInput(inputNumber));
     };
 
@@ -79,31 +81,8 @@ const ReportPage = () => {
         await uploadBytes(imageRef, imageUpload);
         const url = await getDownloadURL(imageRef);
         dispatch(daImageUrl(url));
+        dispatch(arImageUrl(url));
     };
-
-    // const appendImage = (url) => {
-    //     setDangerReport((state) => {
-    //         return {
-    //             ...state,
-    //             imageUrl: url
-    //         }
-    //     });
-    // };
-
-    // useEffect(() => {
-    //     if (imageUpload == null) return;
-    //     const storageRef = ref(storage, `images/${imageUpload.name}_${Date.now()}`);
-    //     const getImage = async () => {
-    //         const url = await getDownloadURL(storageRef);
-    //         setDangerReport({
-    //             ...dangerReport,
-    //             imageUrl: url
-    //         });
-    //         console.log('get image')
-    //     };
-    //     getImage()
-
-    // }, [imageUpload]);
 
     //Select community
     const communityData = {
@@ -179,11 +158,20 @@ const ReportPage = () => {
     const sendDAReport = async () => {
         await reportService.daReportSend(daReport);
     }
-    
+
+    const sendARReport = async () => {
+        const arStatus = await reportService.arReportSend(arReport);
+    }
+
     useEffect(() => {
-        if (reportStatus && daReport.communityStatus) {
-            sendDAReport();
-            console.log(daReport)
+        if (reportStatus) {
+            if (reportType === "invasionReport" && daReport.communityStatus) {
+
+                sendDAReport();
+            } else if (reportType === "rescueReport" && arReport.communityStatus) {
+
+                sendARReport();
+            }
         }
 
     }, [reportStatus]);
@@ -191,9 +179,6 @@ const ReportPage = () => {
     //submit dangerous animal Report
     const daReportSubmitHandler = async () => {
         imageUploadHandler().then(() => {
-            // axios.post("http://localhost:3030/report", daReport).then(()=>{
-            //     alert('Laporan Terkirim!')
-            // })
             setReportStatus(true);
         });
     };
@@ -201,6 +186,7 @@ const ReportPage = () => {
     //ANIMAL RESCUE (AR) REPORT
 
     //Select animal group to rescue
+    const [animalType, setAnimalType] = useState("");
     const animalRescueData = {
         actionType: SET_AR_ANIMAL_TYPE,
         placeholder: {
@@ -283,16 +269,10 @@ const ReportPage = () => {
     });
 
 
-    const postReport = async (data) => {
-        console.log(data);
-        const report = await dashboardReportAPI.postReport(data)
-        console.log(report);
-    }
-
     const arReportSubmitHandler = async () => {
-        axios.post('http://localhost:3030/report', arReport).then(() => {
-            alert('Laporan Terkirim!');
-        })
+        imageUploadHandler().then(() => {
+            setReportStatus(true);
+        });
     };
 
     return (
@@ -311,13 +291,13 @@ const ReportPage = () => {
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
                                 <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
-                                <div className="required-warning">
-                                    <ExclamationIcon className="req-warn-icon" />
-                                    <p>Wajib diisi</p>
+                                <div className="required-warning" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }}>
+                                    <ExclamationIcon className="req-warn-icon" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }} />
+                                    <p className="req-warn-text">Wajib diisi</p>
                                 </div>
                             </div>
                         ) : (
-                            <Dropdown dropdownContent={animalRescueData} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
+                            <Dropdown dropdownContent={animalRescueData} onChange={setAnimalType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
                         )}
 
                         {(reportType === "invasionReport") ?
