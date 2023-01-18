@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import AdoptPage from './Pages/AdoptPage';
+import AboutUsPage from './Pages/AboutUsPage';
 import DashboardReport from './Pages/Dashboard/ReportPage';
 import DashboardCampaign from './Pages/Dashboard/CampaignPage';
 import DashboardAdopt from './Pages/Dashboard/AdoptPage';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/donate" element={<DonatePage />} />
         <Route path="/adopt" element={<AdoptPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         {
