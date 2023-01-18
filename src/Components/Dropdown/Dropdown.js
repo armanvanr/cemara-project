@@ -16,10 +16,11 @@ const Dropdown = ({ dropdownContent, onChange, buttonStyle, contentStyle, classN
         setIsDropdownActive(!isDropdownActive);
         onChange(value);
         console.log(actionType);
-        // dispatch({
-        //     type: actionType,
-        //     payload: textContent
-        // });
+        dispatch({
+            type: actionType,
+            payload: textContent
+        });
+        console.log('dispatch dd')
     };
 
     const myRef = useRef();
