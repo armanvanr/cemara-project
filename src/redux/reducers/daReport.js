@@ -11,7 +11,7 @@ import {
 
 const initialState = {
     reportType: "Dangerous Animal",
-    phoneNumber: "",
+    phoneNumber: undefined,
     imageUrl: null,
     animalCategory: "venomous",
     location: { address: "", city: "", province: "" },

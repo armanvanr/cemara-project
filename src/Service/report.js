@@ -4,12 +4,13 @@ const API_URL = process.env.REACT_APP_API_URL_GLITCH;
 const LOCAL_URL = 'http://localhost:3030';
 
 const daReportSend = (report) => {
-    const data = axios.post(`${LOCAL_URL}/report`, report);
+    const data = axios.post(`${API_URL}/report/da`, report);
     return data;
 };
 
 const arReportSend = (report) => {
-    const data = axios.post(`${LOCAL_URL}/report`, report);
+    console.log(API_URL);
+    const data = axios.post(`${API_URL}/report/ar`, report);
     return data;
 };
 

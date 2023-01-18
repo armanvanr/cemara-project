@@ -9,6 +9,7 @@ import sloganImg from '../Assets/Images/slogan.png';
 import Navibar from "../Components/NavigationBar/Navibar";
 import { NavLink } from "react-router-dom";
 import PageFooter from "../Components/PageFooter/PageFooter";
+import Footer from "../Components/Footer/Footer";
 
 const HomePage = () => {
     return (
@@ -71,6 +72,7 @@ const HomePage = () => {
                 </div>
             </div>
             <PageFooter />
+            <Footer />
         </div>
     )
 }
