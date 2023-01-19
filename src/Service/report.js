@@ -10,7 +10,6 @@ const daReportSend = (report) => {
 };
 
 const arReportSend = (report) => {
-    console.log(API_URL);
     const data = axios.post(`${API_URL}/report/ar`, report);
     return data;
 };

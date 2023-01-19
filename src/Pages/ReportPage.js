@@ -8,7 +8,6 @@ import useGeoLocation from "../Hooks/useGeoLocation";
 import { storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import axios from 'axios';
-import PageFooter from "../Components/PageFooter/PageFooter";
 import ExclamationIcon from "../Components/Icons/ExclamationSolid";
 import UploadIcon from "../Components/Icons/UploadSolid";
 import MapIcon from "../Components/Icons/MapSolid";
@@ -19,13 +18,13 @@ import { daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput } from "..
 import { SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_EMAIL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "../redux/actions/types";
 import { arImageUrl } from "../redux/actions/arReport";
 import reportService from "../Service/report";
+import Footer from "../Components/Footer/Footer";
 
 const ReportPage = () => {
     const location = useGeoLocation();
     const dispatch = useDispatch();
     const daReport = useSelector(state => state.daReport);
     const arReport = useSelector(state => state.arReport);
-
 
     //select type of report
     const [reportType, setReportType] = useState("invasionReport");
@@ -168,10 +167,8 @@ const ReportPage = () => {
     useEffect(() => {
         if (reportStatus) {
             if (reportType === "invasionReport" && daReport.communityStatus) {
-
                 sendDAReport();
             } else if (reportType === "rescueReport" && arReport.communityStatus) {
-
                 sendARReport();
             }
         }
@@ -377,7 +374,7 @@ const ReportPage = () => {
                                 <input type="email" name={SET_AR_EMAIL} value={arReport.email} onChange={handleFieldChange} className="reporter-input" placeholder="Email" />
                                 <input type="text" name={SET_AR_PHONE_NUMBER} value={arReport.phoneNumber} onChange={handleFieldChange} className="reporter-input" placeholder="Nomor telepon" />
                                 <div className="address-group">
-                                    <input type="text" name={SET_AR_ADDRESS} value={arReport.address} onChange={handleFieldChange} className="reporter-address" placeholder="Alamat" />
+                                    <input type="text" name={SET_AR_ADDRESS} value={arReport.address} onChange={handleFieldChange} className="reporter-address" placeholder="Alamat"></input>
                                     <button className="map-button">
                                         <MapIcon />
                                     </button>
@@ -398,7 +395,7 @@ const ReportPage = () => {
                 )}
 
             </div>
-            <PageFooter />
+            <Footer />
         </div>
     )
 }

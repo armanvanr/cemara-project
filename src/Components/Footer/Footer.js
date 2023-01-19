@@ -1,25 +1,57 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import useGeoLocation from "../../Hooks/useGeoLocation";
+import HelpIcon from "../Icons/HelpSolid";
 import './Footer.css';
 
+
+
 const Footer = () => {
+    const { address } = useSelector(state => state.daReport.location);
+
     return (
         <div className="Footer">
             <div className="Footer-container">
                 <div className="Footer-content-up">
-                    <div className="Footer-bullets"></div>
-                    <span className="Footer-address">Bojong Gede, Bogor, Jawa Barat, Indonesia</span>
+                    <div style={{ color: address ? "#2E9C33" : "#9F9F9F" }}>&#x25cf;</div>
+                    <span className="Footer-address">{(address) ? (address) : ("Lokasi tidak terdeteksi")}</span>
                     <span className="Footer-status">- &nbsp;Dari Perangkat anda</span>
                 </div>
                 <div className="Footer-content-bottom">
-                    <span to="/report" className="Footer-bar">Lapor &nbsp;&bull;</span>
-                    <span to="/donate" className="Footer-bar">Donasi  &nbsp;&bull;</span>
-                    <span to="/adopt" className="Footer-bar">Adopsi  &nbsp;&bull;</span>
-                    <span to="/donationList" className="Footer-bar">Daftar Donasi  &nbsp;&bull;</span>
-                    <span to="/reportList" className="Footer-bar">Laporan Donasi  &nbsp;&bull;</span>
-                    <span to="/aboutUs" className="Footer-bar">Tentang Kami  &nbsp;&bull;</span>
-                    <span to="/action" className="Footer-bar">Aksi  &nbsp;&bull;</span>
-                    <span to="/articles" className="Footer-bar">Artikel  &nbsp;&bull;</span>
-                    <span to="" className="Footer-bar">Login Admin</span>
+                    <NavLink to="/report" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Lapor &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink to="/donate" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Donasi  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink to="/adopt" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Adopsi  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: "none" }}>
+                        <span to="/donationList" className="Footer-bar">Daftar Donasi  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: "none" }}>
+                        <span to="/reportList" className="Footer-bar">Laporan Donasi  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink to="/about" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Tentang Kami  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: "none" }}>
+                        <span to="/action" className="Footer-bar">Aksi  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: "none" }}>
+                        <span to="/articles" className="Footer-bar">Artikel  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: "none" }}>
+                        <span to="/termsconditions" className="Footer-bar">Kebijakan dan Privasi  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink to="/login" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Login Admin  &nbsp;&bull;</span>
+                    </NavLink>
+                    <NavLink style={{ textDecoration: "none" }}>
+                        <span to="/help" className="Footer-bar">Bantuan</span>
+                    </NavLink>
                 </div>
             </div>
         </div>
