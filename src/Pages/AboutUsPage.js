@@ -30,10 +30,10 @@ const AboutUsPage = () => {
                         <p className="aboutUs-card-body">
                             Kami, ZoaCare menunjukkan keberanian melalui tindakan dan aksi nyata.
                             Kami bekerja untuk perubahan-perubahan yang diperlukan.
-                            Antusiasme dan semangat yang selalu kita kobarkan dalam diri kami untuk 
-                            mengupayakan keberlanjutan alam dan manusia, akan selaras dengan kemampuan 
-                            adaptasi kami dalam menghadapi berbagai macam rintangan dan kondisi. 
-                            Kami mendorong, mengajak, serta menginspirasi sekitar untuk melakukan yang 
+                            Antusiasme dan semangat yang selalu kita kobarkan dalam diri kami untuk
+                            mengupayakan keberlanjutan alam dan manusia, akan selaras dengan kemampuan
+                            adaptasi kami dalam menghadapi berbagai macam rintangan dan kondisi.
+                            Kami mendorong, mengajak, serta menginspirasi sekitar untuk melakukan yang
                             terbaik kepada alam dan masa depan planet ini, yang merupakan rumah kita.
                         </p>
                     </div>
@@ -44,12 +44,12 @@ const AboutUsPage = () => {
                     <div className="aboutUs-card">
                         <span className="aboutUs-card-title">Integritas</span>
                         <p className="aboutUs-card-body">
-                            Sebagai organisasi nirlaba yang diamanahkan kepercayaan luhur dari berbagai pihak, 
-                            kita memastikan setiap Langkah kita sesuai dengan prinsip. 
-                            Kita menjalankan prinsip yang kita dorong dan upayakan, ‘’Walk the talk’’. 
-                            ZoaCare bertindak dengan integritas, akuntabilitas, dan transparansi. 
-                            Dengan mengandalkan pengetahuan lokal dan ilmu pengetahuian ilmiah 
-                            yang membimbing setiap langkah Yayasan WWF Indonesia, 
+                            Sebagai organisasi nirlaba yang diamanahkan kepercayaan luhur dari berbagai pihak,
+                            kita memastikan setiap langkah kita sesuai dengan prinsip.
+                            Kita menjalankan prinsip yang kita dorong dan upayakan, ‘’Walk the talk’’.
+                            ZoaCare bertindak dengan integritas, akuntabilitas, dan transparansi.
+                            Dengan mengandalkan pengetahuan lokal dan ilmu pengetahuan ilmiah
+                            yang membimbing setiap langkah Yayasan WWF Indonesia,
                             serta memastikan kita untuk terus belajar dan berkembang.
                         </p>
                     </div>
@@ -58,10 +58,10 @@ const AboutUsPage = () => {
                     <div className="aboutUs-card">
                         <span className="aboutUs-card-title">Kolaborasi</span>
                         <p className="aboutUs-card-body">
-                            Kami bekerja untuk memberikan dampak yang signifikan. 
+                            Kami bekerja untuk memberikan dampak yang signifikan.
                             Dengan tantangan yang begitu dinamis, kami hadapi melalui kekuatan aksi kolektif dan inovasi.
-                            Memiliki semangat berbagi sumber daya dan 
-                            pengetahuan serta terbuka dalam menerima masukan dan kritik dari pihak lain. 
+                            Memiliki semangat berbagi sumber daya dan
+                            pengetahuan serta terbuka dalam menerima masukan dan kritik dari pihak lain.
                             Dan selalu membangun proses yang partisipatif dalam setiap aksi dan upaya konservasi
                         </p>
                     </div>
@@ -72,10 +72,10 @@ const AboutUsPage = () => {
                     <div className="aboutUs-card">
                         <span className="aboutUs-card-title">Saling Menghormati</span>
                         <p className="aboutUs-card-body">
-                            Kami menghormati suara serta hak alam dan manusia. 
-                            Kami bekerja untuk melindungi/memastikan masa depan yang berkelanjutan. 
-                            Memastikan dalam prosesnya setiap suara serta hak merasa didengar dan dihargai. 
-                            Selalu mempertimbangkan adanya kebaragaman serta saling menghargai dalam 
+                            Kami menghormati suara serta hak alam dan manusia.
+                            Kami bekerja untuk melindungi/memastikan masa depan yang berkelanjutan.
+                            Memastikan dalam prosesnya setiap suara serta hak merasa didengar dan dihargai.
+                            Selalu mempertimbangkan adanya kebaragaman serta saling menghargai dalam
                             mengupayakan keselarasan dan keharmonisan bagi alam dan manusia.
                         </p>
                     </div>
