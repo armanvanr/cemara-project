@@ -23,17 +23,17 @@
 
   /* Inside auto layout */
 
-  flex: none;
+  /* flex: none;
   order: 0;
   align-self: stretch;
-  flex-grow: 0;
+  flex-grow: 0; */
 }
 
 .card-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 
   padding: 0px 8px 0px 0px;
   gap: 20px;
@@ -80,7 +80,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+  padding-top: 10px;
   gap: 16px;
   margin-left: 140px;
 
@@ -190,7 +190,7 @@ E82E2E
   gap: 8px;
 
   width: 384px;
-  height: 20px;
+  /* height: 20px; */
 }
 
 .card-dashboard-detail-location-icon {
@@ -322,9 +322,9 @@ DBB736
 }
 
 .card-dashboard-detail-information-text {
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 
   font-family: "Poppins";
   font-style: normal;
@@ -336,4 +336,10 @@ DBB736
   /* Neutral / 01 (Primary text) */
 
   color: #1e1e1e;
+}
+
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

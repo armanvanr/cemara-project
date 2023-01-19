@@ -9,26 +9,26 @@ const API_URL = process.env.REACT_APP_API_URL_GLITCH;
 const getReport = () => {
     return axios.get(`${API_URL}/report`)
 }
-const postReport = ({ reportType, animalGroup, animalName, imageUrl, addInfo, reporterName, reporterEmail, reporterPhone, reporterAddress, province, city, community }) => {
+const postReport = ({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList }) => {
     return axios.post(`${API_URL}/report/ar`, {
         reportType,
-        animalGroup,
+        animalType,
         animalName,
         imageUrl,
         addInfo,
-        reporterName,
-        reporterEmail,
-        reporterPhone,
-        reporterAddress,
+        name,
+        email,
+        phoneNumber,
+        address,
         province,
         city,
-        community
+        communityList
     })
 }
 
-const updateStatusReport = (id) => {
+const updateStatusReport = (id, type) => {
     console.log(id);
-    return axios.post(`${API_URL}/report/update-status`, { id })
+    return axios.post(`${API_URL}/report/update-status`, { id, type })
 }
 
 const dashboardReportAPI = {
