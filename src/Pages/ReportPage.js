@@ -19,12 +19,29 @@ import { SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE
 import { arImageUrl } from "../redux/actions/arReport";
 import reportService from "../Service/report";
 import Footer from "../Components/Footer/Footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from "../Components/Loading";
+
 
 const ReportPage = () => {
     const location = useGeoLocation();
     const dispatch = useDispatch();
     const daReport = useSelector(state => state.daReport);
     const arReport = useSelector(state => state.arReport);
+
+    const [loading, setLoading] = useState(false)
+
+    // Notification
+    const notify = (message, type) => {
+        console.log(type);
+        if(type === "success") {
+            console.log("masuk");
+            toast.success(message)
+        }else if (type === "error") {
+            toast.error(message)
+        }
+    };
 
     //select type of report
     const [reportType, setReportType] = useState("invasionReport");
@@ -161,26 +178,29 @@ const ReportPage = () => {
 
     const sendARReport = async () => {
         const { reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList } = arReport
-        const arStatus = await reportService.arReportSend({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList });
+        return  await reportService.arReportSend({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList });
     }
 
     useEffect(() => {
         if (reportStatus) {
+            console.log(arReport)
             if (reportType === "invasionReport" && daReport.communityStatus) {
                 sendDAReport().then(res => {
-                    alert("success")
+                    notify("Laporan berhasil dikirim","success")
                 }
                 ).catch(error => {
-                    alert("error")
+                    notify("Laporan gagal dikirim","error")
                 })
             } else if (reportType === "rescueReport" && arReport.communityStatus) {
                 sendARReport().then(res => {
-                    alert("success")
+                    notify("Laporan berhasil dikirim","success")
                 }
                 ).catch(error => {
-                    alert("error")
+                    // console.log(error);
+                    notify("Laporan gagal dikirim","error")
                 });
             }
+            setLoading(false)
         }
 
     }, [reportStatus]);
@@ -190,6 +210,7 @@ const ReportPage = () => {
         imageUploadHandler().then(() => {
             setReportStatus(true);
         });
+        setLoading(true)
     };
 
     //ANIMAL RESCUE (AR) REPORT
@@ -282,10 +303,12 @@ const ReportPage = () => {
         imageUploadHandler().then(() => {
             setReportStatus(true);
         });
+        setLoading(true)
     };
 
     return (
         <div className="report-page">
+            <ToastContainer />
             <Navibar />
             <div className="report-header">
                 <p className="report-header-1">Butuh pertolongan untuk evakuasi?</p>
@@ -334,8 +357,9 @@ const ReportPage = () => {
                         (
                             <div className="community-select-group">
                                 <DropBox dropdownContent={communityData} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
-                                <button className="report-button" onClick={daReportSubmitHandler}>
-                                    <p>Laporkan!</p>
+                                {/* {loading ? <Loading/> : null} */}
+                                <button className="report-button" disabled={loading} onClick={daReportSubmitHandler}>
+                                    {loading ? <p>Mengirim...</p>  : <p>Laporkan!</p>}
                                 </button>
                             </div>
                         ) : (null)}
@@ -396,8 +420,8 @@ const ReportPage = () => {
                             </div>
                             <div className="ar-buttons-group">
                                 <DropBox dropdownContent={communityData} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
-                                <button className="rescue-report-button" onClick={arReportSubmitHandler}>
-                                    <p>Laporkan!</p>
+                                <button className="rescue-report-button" disabled={loading} onClick={arReportSubmitHandler}>
+                                {loading ? <p>Mengirim...</p>  : <p>Laporkan!</p>}
                                 </button>
                             </div>
                         </div>
