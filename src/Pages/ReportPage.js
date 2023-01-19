@@ -156,11 +156,13 @@ const ReportPage = () => {
     const [reportStatus, setReportStatus] = useState(false);
 
     const sendDAReport = async () => {
-        await reportService.daReportSend(daReport);
+        const { animalCategory, communityList, imageUrl, location, phoneNumber } = daReport
+        await reportService.daReportSend({ animalCategory, communityList, imageUrl, location, phoneNumber });
     }
 
     const sendARReport = async () => {
-        const arStatus = await reportService.arReportSend(arReport);
+        const { reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList } = arReport
+        const arStatus = await reportService.arReportSend({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList });
     }
 
     useEffect(() => {

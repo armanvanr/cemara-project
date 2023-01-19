@@ -1,9 +1,11 @@
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL_GLITCH;
+// const API_URL = process.env.REACT_APP_API_URL_LOCAL;
 const LOCAL_URL = 'http://localhost:3030';
 
 const daReportSend = (report) => {
+    console.log(report);
     const data = axios.post(`${API_URL}/report/da`, report);
     return data;
 };

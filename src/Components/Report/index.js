@@ -77,9 +77,9 @@ const Report = () => {
         setListReport(data)
     }
 
-    const updateStatusReport = async (id) => {
+    const updateStatusReport = async (id, type) => {
         try {
-            await dashboardReportAPI.updateStatusReport(id)
+            await dashboardReportAPI.updateStatusReport(id, type)
             getReport()
         } catch (error) {
             alert("Update Fail")
@@ -91,8 +91,9 @@ const Report = () => {
         getReport()
     }, [])
 
-    const handleStatus = (id) => {
-        updateStatusReport(id)
+    const handleStatus = (id, type) => {
+        console.log(id)
+        updateStatusReport(id, type)
         // alert(status)
     }
     const handleItemClick = (id, type) => {
@@ -187,7 +188,7 @@ const Report = () => {
                                                     <div className="card-dashboard-action-time">
                                                         <div className="card-dashboard-action-time-text"> {report.time}</div>
                                                     </div>
-                                                    <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.id)}>
+                                                    <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.id, report.reportType)}>
                                                         <div className="card-dashboard-action-button-text">
                                                             Selesai
                                                         </div>
@@ -291,7 +292,7 @@ const Report = () => {
                                                     <div className="card-dashboard-action-time">
                                                         <div className="card-dashboard-action-time-text"> {report.time}</div>
                                                     </div>
-                                                    <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id)}>
+                                                    <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id, report.reportType)}>
                                                         <div className="card-dashboard-action-button-text">
                                                             Terima
                                                         </div>
