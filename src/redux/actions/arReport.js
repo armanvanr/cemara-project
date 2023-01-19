@@ -1,5 +1,5 @@
 import reportService from "../../Service/report";
-import { REPORT_SENT, SET_AR_ADDRESS, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_COMMUNITY, SET_AR_COMMUNITY_LIST, SET_AR_COMMUNITY_STATUS, SET_AR_EMAIL, SET_AR_IMAGE_URL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "./types"
+import { CLEAR_STATE, REPORT_SENT, SET_AR_ADDRESS, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_COMMUNITY, SET_AR_COMMUNITY_LIST, SET_AR_COMMUNITY_STATUS, SET_AR_EMAIL, SET_AR_IMAGE_URL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "./types"
 
 
 export const arAnimalType = data => dispatch => {
@@ -79,17 +79,15 @@ export const arCommunityList = data => dispatch => {
     });
 };
 
-export const arCommunityStatus = data => dispatch =>{
+export const arCommunityStatus = data => dispatch => {
     dispatch({
         type: SET_AR_COMMUNITY_STATUS,
         payload: data,
     })
 }
 
-export const arReportSubmit = data => async dispatch =>{
-    return reportService.arReportSend(data).then(()=>{
-        dispatch({
-            type: REPORT_SENT,
-        });
+export const clearARState = () => dispatch => {
+    dispatch({
+        type: CLEAR_STATE,
     });
 };
