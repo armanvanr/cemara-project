@@ -167,9 +167,19 @@ const ReportPage = () => {
     useEffect(() => {
         if (reportStatus) {
             if (reportType === "invasionReport" && daReport.communityStatus) {
-                sendDAReport();
+                sendDAReport().then(res => {
+                    alert("success")
+                }
+                ).catch(error => {
+                    alert("error")
+                })
             } else if (reportType === "rescueReport" && arReport.communityStatus) {
-                sendARReport();
+                sendARReport().then(res => {
+                    alert("success")
+                }
+                ).catch(error => {
+                    alert("error")
+                });
             }
         }
 

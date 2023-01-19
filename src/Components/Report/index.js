@@ -113,7 +113,7 @@ const Report = () => {
             })
         }
     }
-    console.log(listReport);
+    // console.log(listReport);
     return (
         <div className="list-container">
             <div className="list-process-container">
