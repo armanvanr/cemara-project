@@ -192,7 +192,7 @@ const ReportPage = () => {
         setDataKota([]);
         setLoading(false);
         setReportStatus(false);
-        console.log('inside reset')
+        // console.log('inside reset')
     }
     useEffect(() => {
         if (reportStatus) {
@@ -200,7 +200,7 @@ const ReportPage = () => {
                 sendDAReport().then(res => {
                     notify("Laporan berhasil dikirim", "success")
                     resetState();
-                    console.log('reset')
+                    // console.log('reset')
                 }
                 ).catch(error => {
                     notify("Laporan gagal dikirim", "error")
