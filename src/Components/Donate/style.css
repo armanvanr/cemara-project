@@ -59,8 +59,8 @@
 .donate-container-button-text {
     /* Poppins/Body/Medium */
 
-    font-family: 'Poppins';
-    font-style: normal;
+     
+     
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
@@ -237,8 +237,7 @@ height: 30px;
 
 /* Poppins/Tittle 2/Bold */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 600;
 font-size: 22px;
 line-height: 30px;
@@ -272,8 +271,7 @@ flex-grow: 0;
 .donate-card-up-isi {
 /* Poppins/Footnote/Regular */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 400;
 font-size: 13px;
 line-height: 17px;
@@ -298,8 +296,7 @@ height: 23px;
 
 /* Poppins/Body/Bold */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 600;
 font-size: 17px;
 line-height: 23px;

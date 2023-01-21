@@ -35,8 +35,7 @@ height: 168px;
 left: 100px;
 top: 263px;
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 800;
 font-size: 48px;
 line-height: 56px;
@@ -61,8 +60,7 @@ border-radius: 16px;
 }
 
 .aboutUs-hero-button-text {
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 500;
 font-size: 17px;
 line-height: 23px;
@@ -97,8 +95,7 @@ height: 332px;
 }
 
 .aboutUs-card-title {
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 600;
 font-size: 40px;
 line-height: 48px;
@@ -106,8 +103,7 @@ color: #1E1E1E;
 }
 
 .aboutUs-card-body {
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 400;
 font-size: 18px;
 line-height: 26px;

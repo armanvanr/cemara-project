@@ -19,8 +19,8 @@
 }
 
 .checkbox-text {
-    font-family: 'Poppins';
-    font-style: normal;
+     
+     
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
@@ -31,8 +31,8 @@
 }
 
 .community-checkbox:checked+span {
-    font-family: 'Poppins';
-    font-style: normal;
+     
+     
     font-weight: 600;
     font-size: 15px;
     line-height: 19px;

@@ -32,7 +32,7 @@
     width: 619px;
     height: 40px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 34px;
     line-height: 40px;
@@ -48,7 +48,7 @@
     width: auto;
     height: 23px;
 
-    font-style: normal;
+     
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
@@ -156,7 +156,7 @@
     width: auto;
     height: auto;
 
-    font-style: normal;
+     
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
@@ -182,7 +182,7 @@
     width: 57px;
     height: 14px;
 
-    font-style: normal;
+     
     font-weight: 500;
     font-size: 11px;
     line-height: 14px;
@@ -239,7 +239,7 @@
     width: 130px;
     height: 23px;
 
-    font-style: normal;
+     
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
@@ -263,7 +263,7 @@
     height: 26px;
     padding: 10px 0px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 18px;
     line-height: 26px;
@@ -292,7 +292,7 @@
     width: 80px;
     height: 19px;
 
-    font-style: normal;
+     
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
@@ -323,7 +323,7 @@
     border: 1px solid transparent;
     border-radius: 12px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 17px;
     outline: none;
@@ -334,7 +334,7 @@
     width: 328px;
     height: 28px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 17px;
     line-height: 28px;
@@ -360,7 +360,7 @@
     width: 113px;
     height: 30px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 22px;
     line-height: 30px;
@@ -400,7 +400,7 @@
     width: 491px;
     height: 36px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 28px;
     line-height: 36px;
@@ -465,7 +465,7 @@ input[type="radio"] {
     width: 140px;
     height: 23px;
 
-    font-style: normal;
+     
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
@@ -481,7 +481,7 @@ input[type="radio"] {
     width: 1140x;
     height: 23px;
 
-    font-style: normal;
+     
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
@@ -588,7 +588,7 @@ input[type="radio"] {
     height: 30px;
 
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 22px;
     line-height: 30px;
@@ -618,7 +618,7 @@ input[type="radio"] {
     align-self: stretch;
     flex-grow: 0;
 
-    font-style: normal;
+     
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
@@ -632,7 +632,7 @@ input[type="radio"] {
     height: 23px;
 
 
-    font-style: normal;
+     
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
@@ -683,7 +683,7 @@ input[type="radio"] {
     order: 0;
     flex-grow: 1;
 
-    font-style: normal;
+     
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
@@ -764,7 +764,7 @@ input[type="radio"] {
     width: 113px;
     height: 30px;
 
-    font-style: normal;
+     
     font-weight: 600;
     font-size: 22px;
     line-height: 30px;
