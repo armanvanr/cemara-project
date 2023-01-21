@@ -13,6 +13,10 @@
     order: 0;
     align-self: stretch;
     flex-grow: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999999999;
 }
 
 .navbar-brand {
@@ -55,7 +59,7 @@
     text-decoration: none;
 }
 
-.navbar-item :hover{
+.navbar-item :hover {
     color: #2E9C33;
 }
 
