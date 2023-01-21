@@ -18,7 +18,7 @@ const HomePage = () => {
                     <div className="LaporSection">
                         <NavLink className="RibbonGroup" to="/report" style={{ textDecoration: "none" }}>
                             <img src={reportImg} alt="" />
-                            <div className="Ribbon" style={{ backgroundColor: "#E92F2F" }}>
+                            <div className="Ribbon" id="ReportRibbon">
                                 <span className="RibbonName">Lapor!</span>
                                 <span className="RibbonDesc">Laporkan hewan berbahaya</span>
                             </div>
@@ -27,7 +27,7 @@ const HomePage = () => {
                     <div className="DonasiSection">
                         <NavLink className="RibbonGroup" to="/donate" style={{ textDecoration: "none" }}>
                             <img src={donateImg} alt="" />
-                            <div className="Ribbon" style={{ backgroundColor: "#2E9C33" }}>
+                            <div className="Ribbon" id="DonateRibbon">
                                 <span className="RibbonName">Donasi</span>
                                 <span className="RibbonDesc">Bantuanmu sangat berarti</span>
                             </div>
@@ -36,7 +36,7 @@ const HomePage = () => {
                     <div className="AdopsiSection">
                         <NavLink className="RibbonGroup" to="/adopt" style={{ textDecoration: "none" }}>
                             <img src={adoptImg} alt="" />
-                            <div className="Ribbon" style={{ backgroundColor: "#DCB736" }}>
+                            <div className="Ribbon" id="AdoptRibbon">
                                 <span className="RibbonName">Adopsi</span>
                                 <span className="RibbonDesc">Pelihara mereka, sayangi mereka</span>
                             </div>
