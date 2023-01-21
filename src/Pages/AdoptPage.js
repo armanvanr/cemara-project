@@ -6,6 +6,8 @@ import Footer from "../Components/Footer/Footer";
 import SearchIcon from "../Components/Icons/SearchSolid";
 import LocMarkIcon from "../Components/Icons/LocMarkSolid";
 import DropdownSort from "../Components/Dropdown/DropdownSort";
+import PlusIcon from "../Components/Icons/PlusSolid";
+import { NavLink } from "react-router-dom";
 
 const AdoptPage = () => {
 
@@ -38,7 +40,7 @@ const AdoptPage = () => {
         ]
     };
 
-    const adoptAnimalCards = [
+    const animalsData = [
         {
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/15/White_Persian_Cat.jpg",
             name: "Biskuit",
@@ -83,9 +85,36 @@ const AdoptPage = () => {
             ownerName: "Forger",
             ownerNumber: "089812345678"
         },
+        {
+            imageUrl: "https://cdn.pixabay.com/photo/2013/10/29/15/37/sleeping-chameleon-202417_960_720.jpg",
+            name: "Lemonia",
+            race: "Yaman",
+            species: "Bunglon",
+            age: "1 tahun",
+            gender: "Betina",
+            desc: "Suka tidur",
+            ownerName: "Forger",
+            ownerNumber: "089812345678"
+        },
+        {
+            imageUrl: "https://cdnwpseller.gramedia.net/wp-content/uploads/2021/10/20125250/Jenis-Burung-Hantu-Serak-Jawa.png",
+            name: "Vanilla",
+            race: "Serak Jawa",
+            species: "Burung hantu",
+            age: "11 bulan",
+            gender: "Jantan",
+            desc: "Suka hinggap",
+            ownerName: "Forger",
+            ownerNumber: "089812345678"
+        },
 
-    ]
+    ];
 
+    const [searchInput, setSearchInput] = useState("");
+    const searchItems = (e) => {
+        const searchValue = e.target.value;
+        setSearchInput(searchValue);
+    };
     const [sortBy, setSortBy] = useState(null);
 
     return (
@@ -97,58 +126,63 @@ const AdoptPage = () => {
                         <div className="topnav-filter">
                             <div className="filter-search">
                                 <SearchIcon className="filter-icon" />
-                                <input type="text" className="filter-search-text" placeholder="Cari Hewan"></input>
+                                <input type="text" className="filter-search-text" placeholder="Cari Hewan" onChange={searchItems}></input>
                             </div>
                             <div className="filter-country">
                                 <LocMarkIcon className="filter-icon" />
                                 <input text="text" className="filter-country-text" placeholder="Indonesia"></input>
                             </div>
                             <DropdownSort dropdownContent={sortCategoryData} onChange={setSortBy} placeholder={sortBy} buttonStyle={{ width: "200px", height: "50px" }} contentStyle={{ width: "200px" }} className="sort-btn" />
-                            {/* <div className="filter-sort">
-                                
-                            </div> */}
                         </div>
                         <div className="topnav-line"></div>
-                        <div className="topnav-button">
+                        <NavLink to="/createadopt" className="topnav-button" style={{ textDecoration: "none" }}>
                             <div className="topnav-button-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
-                                </svg>
+                                <PlusIcon />
                             </div>
                             <span className="topnav-button-text">Buat Adopsi</span>
-                        </div>
+                        </NavLink>
                     </div>
                     <div className="AdoptHeader-category">
-                        <div className="category-button">Kucing</div>
-                        <div className="category-button">Anjing</div>
-                        <div className="category-button">Burung</div>
-                        <div className="category-button">Reptil</div>
-                        <div className="category-button">Ikan</div>
-                        <div className="category-button">Amfibi</div>
-                        <div className="category-button">Lainnya</div>
+                        <div className="category-button" value="Kucing">Kucing</div>
+                        <div className="category-button" value="Anjing">Anjing</div>
+                        <div className="category-button" value="Burung">Burung</div>
+                        <div className="category-button" value="Reptil">Reptil</div>
+                        <div className="category-button" value="Ikan">Ikan</div>
+                        <div className="category-button" value="Amfibi">Amfibi</div>
+                        <div className="category-button" value="Lainnya">Lainnya</div>
                     </div>
                 </div>
                 <div className="AdoptBody">
-                    {adoptAnimalCards.map((animal, index) => {
-                        return (
-                            <div className="Adopt-card-container" key={index}>
-                                <img src={animal.imageUrl} className="Adopt-card-img" alt="" />
-                                <div className="Adopt-card-content">
-                                    <div className="Adopt-card-content-row">
-                                        <div className="Adopt-card-title">{animal.name}{" "}{`(${animal.race})`}</div>
-                                        <div className="Adopt-card-isi">{animal.species}{" "}&bull;{" "}{animal.age}{" "}&bull;{" "}{animal.gender}</div>
-                                        <div className="Adopt-card-line"></div>
-                                        <div className="Adopt-card-desc">
-                                            {animal.desc}
+                    {animalsData
+                        .filter((data) => {
+                            if (searchInput == "") {
+                                return data;
+                            } else if (data.species.toLowerCase().includes(searchInput.toLowerCase())) {
+                                return data;
+                            };
+                        })
+                        .map((animal, index) => {
+                            return (
+                                <div className="Adopt-card-container" key={index}>
+                                    <img src={animal.imageUrl} className="Adopt-card-img" alt="" />
+                                    <div className="Adopt-card-content">
+                                        <div className="Adopt-card-content-row">
+                                            <div className="Adopt-card-title">{animal.name}{" "}{`(${animal.race})`}</div>
+                                            <div className="Adopt-card-isi">{animal.species}{" "}&bull;{" "}{animal.age}{" "}&bull;{" "}{animal.gender}</div>
+                                            <div className="Adopt-card-line"></div>
+                                            <div className="Adopt-card-desc">
+                                                {animal.desc}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })
+                    }
+
                 </div>
                 <div className="AdoptFooter">
-                    <div className="AdoptPagination">
+                    {/* <div className="AdoptPagination">
                         <div className="Adopt-footer-button">
                             <div className="Adopt-footer-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -192,7 +226,7 @@ const AdoptPage = () => {
                                 </svg>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Footer />

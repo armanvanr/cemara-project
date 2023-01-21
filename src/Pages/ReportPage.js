@@ -322,8 +322,8 @@ const ReportPage = () => {
 
     return (
         <div className="report-page">
-            <ToastContainer />
             <Navibar />
+            <ToastContainer />
             <div className="report-header">
                 <p className="report-header-1">Butuh pertolongan untuk evakuasi?</p>
                 <p className="report-header-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>

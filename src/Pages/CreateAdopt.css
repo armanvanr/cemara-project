@@ -1,0 +1,177 @@
+.CreateAdoptMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 54px;
+    gap: 40px;
+}
+
+.AdoptFormTitle {
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 40px;
+    color: #1E1E1E;
+}
+
+.AdoptFormSection {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 100px;
+    /* justify-content: space-between; */
+}
+
+.AnimalIdSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.AnimalFormTitle {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    color: #1E1E1E;
+}
+
+.AnimalInputForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    width: 536px;
+    height: 48px;
+}
+
+.InputFormLabel {
+    width: 180px;
+    height: 26px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #1E1E1E;
+}
+
+.AdoptFormInput {
+    width: 354px;
+    height: 48px;
+    width: 354px;
+    height: 48px;
+    padding: 0px 16px;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+}
+
+.AdoptFormAndButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 100px;
+}
+
+.OwnerIdSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+}
+
+.OwnerFormTitle {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    color: #1E1E1E;
+}
+
+.OwnerInputForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    width: 536px;
+    height: 48px;
+}
+
+.AdoptAgreement {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+    padding: 0px;
+    gap: 32px;
+
+    width: 536px;
+    height: 26px;
+}
+
+.AgreementCheck {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.AgreementCheckbox {
+    accent-color: #2E9C33;
+}
+
+.AgreementCheckbox:checked+span {
+    color: #2E9C33;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1E1E1E;
+}
+
+.AgreementText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1E1E1E;
+}
+
+.AdoptButtonGroup {
+    display: flex;
+    gap: 75px;
+}
+
+.CancelAdopt {
+    padding: 8px 24px;
+    width: 93px;
+    height: 42px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    /* border: 2px solid #2E9C33; */
+    border: none;
+
+    cursor: pointer;
+    user-select: none;
+
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    color: #2E9C33;
+}
+
+.FinishAdopt {
+    padding: 8px 24px;
+    width: 141px;
+    height: 42px;
+    background: #2E9C33;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    border: none;
+
+    cursor: pointer;
+    user-select: none;
+
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+    color: #FFFFFF;
+}

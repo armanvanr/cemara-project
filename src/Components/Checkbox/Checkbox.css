@@ -26,11 +26,11 @@
     line-height: 19px;
 }
 
-input[type="checkbox"] {
+.community-checkbox {
     accent-color: #2E9C33;
 }
 
-input[type=checkbox]:checked+span {
+.community-checkbox:checked+span {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
