@@ -326,6 +326,8 @@ DBB736
   overflow: hidden;
   text-overflow: ellipsis; */
 
+  text-decoration: none;
+
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;

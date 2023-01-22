@@ -4,6 +4,7 @@ import '../../Components/Card.css'
 import pic from '../../Assets/Images/pic-dashboard.png';
 import dashboardReportAPI from "../../Service/dashboardReport";
 import Loading from "../Loading";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Report = () => {
     const [listReport, setListReport] = useState(
@@ -112,26 +113,69 @@ const Report = () => {
                 })
             })
         }
+        // fetchMoreData()
     }
     // console.log(listReport);
+
+    useEffect(() => {
+        if (listReport && currentIndex===4) {
+            fetchMoreData()
+        }
+    }, [listReport])
+
+
+    const [infiniteData, setInfiniteData] = useState()
+    const [currentIndex, setCurrentIndex] = useState(4)
+    const fetchMoreData = () => {
+        let totalData = listReport.length
+
+        if (currentIndex < totalData) {
+            setInfiniteData((prevListReport) => {
+                return listReport.filter((item, index) => {
+                    if (index <= currentIndex) {
+                        return item
+                    }
+                })
+            })
+        }
+
+        let index = currentIndex + 5
+        setCurrentIndex(index)
+        console.log(totalData);
+    }
+
+    console.log(infiniteData);
+
+
+
     return (
         <div className="list-container">
             <div className="list-process-container">
                 <span className="text-title-list">Diproses</span>
                 <div className="list-item-container">
                     {
-                        listReport ?
-                            (listReport.map((report) => {
+                        listReport  ?
+                            // <InfiniteScroll
+                            //     dataLength={listReport.length}
+                            //     next={fetchMoreData}
+                            //     style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+                            //     inverse={true} //
+                            //     hasMore={true}
+                            //     loader={<h4>Loading...</h4>}
+                            //     scrollableTarget="scrollableDiv"
+                            // >
+                            // {
+                            listReport.map((report) => {
                                 if (report.status === "accepted") {
                                     return (
-                                        <div key={report.id} className="card-dashboard" onClick={() => handleItemClick(report.id, report.reportType)}>
+                                        <div key={report.id} className="card-dashboard" >
                                             <div className="card-row">
                                                 <div className="card-dashboard-left">
                                                     <img src={report.imageUrl} className="card-dashboard-image" alt="" />
                                                     <div className="card-dashboard-detail-container">
                                                         <div className="card-dashboard-detail-header-container">
                                                             <div className="card-dashboard-detail-header-title">
-                                                                <div className="card-dashboard-detail-header-title-text">
+                                                                <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
                                                                     {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
                                                                 </div>
                                                                 <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
@@ -203,7 +247,7 @@ const Report = () => {
                                                     </div>
                                                     <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
                                                     <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
-                                                    <div className="card-dashboard-detail-information-text">Nomor Telepon {report.phoneNumber}</div>
+                                                    <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -215,9 +259,17 @@ const Report = () => {
                                 }
 
                             }
-                            )) :
-                            <Loading />
+                            )
+                            // }
+                            // </InfiniteScroll>
+                            :
+                            null
                     }
+
+
+                </div>
+                <div className="card-dashboard-action-button-text" onClick={fetchMoreData}>
+                    Data selanjutnya
                 </div>
             </div>
             <div className="list-call-container">
@@ -228,14 +280,14 @@ const Report = () => {
                             (listReport.map((report) => {
                                 if (report.status === "requested") {
                                     return (
-                                        <div key={report.id} className="card-dashboard" onClick={() => handleItemClick(report.id, report.reportType)}>
+                                        <div key={report.id} className="card-dashboard" >
                                             <div className="card-row">
                                                 <div className="card-dashboard-left">
                                                     <img src={report.imageUrl} className="card-dashboard-image" alt="" />
                                                     <div className="card-dashboard-detail-container">
                                                         <div className="card-dashboard-detail-header-container">
                                                             <div className="card-dashboard-detail-header-title">
-                                                                <div className="card-dashboard-detail-header-title-text">
+                                                                <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
                                                                     {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
                                                                 </div>
                                                                 <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
@@ -307,7 +359,7 @@ const Report = () => {
                                                     </div>
                                                     <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
                                                     <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
-                                                    <div className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</div>
+                                                    <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
                                                 </div>
                                             </div>
                                         </div>
