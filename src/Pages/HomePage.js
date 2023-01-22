@@ -1,6 +1,5 @@
 import React from "react";
 import './HomePage.css';
-import laporImg from '../Assets/Images/lapor.png';
 import reportImg from '../Assets/Images/ReportImage.png';
 import donateImg from '../Assets/Images/DonateImage.png';
 import adoptImg from '../Assets/Images/AdoptImage.png';
