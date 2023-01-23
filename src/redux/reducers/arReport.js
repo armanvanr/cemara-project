@@ -1,7 +1,7 @@
 import { CLEAR_STATE, SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_COMMUNITY, SET_AR_COMMUNITY_LIST, SET_AR_COMMUNITY_STATUS, SET_AR_EMAIL, SET_AR_IMAGE_URL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "../actions/types";
 
 const initialState = {
-    reportType: "Animal Rescue",
+    reportType: "rescueReport",
     animalType: "",
     animalName: "",
     imageUrl: "",

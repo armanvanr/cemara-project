@@ -39,6 +39,7 @@ const ReportPage = () => {
         } else if (type === "error") {
             toast.error(message)
         }
+        console.log(message, type);
     };
 
     //select type of report
@@ -171,7 +172,7 @@ const ReportPage = () => {
 
     const sendDAReport = async () => {
         const { animalCategory, communityList, imageUrl, location, phoneNumber } = daReport
-        await reportService.daReportSend({ animalCategory, communityList, imageUrl, location, phoneNumber });
+        return await reportService.daReportSend({ animalCategory, communityList, imageUrl, location, phoneNumber });
     }
 
     const sendARReport = async () => {
@@ -179,13 +180,15 @@ const ReportPage = () => {
         return await reportService.arReportSend({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList });
     }
 
-    const resetState = () => {
+    const resetState = (reportType) => {
         dispatch(clearDAState());
         dispatch(clearARState());
         setImageUpload(null);
         // document.getElementsByClassName("number-input").value = "";
         // document.getElementByClassName("number-input").setAttribute('value', "")
-        document.getElementById("option-1").checked = true;
+        if (reportType === "invasionReport") {
+            document.getElementById("option-1").checked = true;
+        }
         setAnimalCategory(animalDesc.venomous);
         setAnimalType("");
         setSelectedIdProv("");
@@ -199,25 +202,31 @@ const ReportPage = () => {
             if (reportType === "invasionReport" && daReport.communityStatus) {
                 sendDAReport().then(res => {
                     notify("Laporan berhasil dikirim", "success")
-                    resetState();
+                    resetState(reportType);
                     // console.log('reset')
                 }
                 ).catch(error => {
                     notify("Laporan gagal dikirim", "error")
+                    setReportStatus(false);
                 })
             } else if (reportType === "rescueReport" && arReport.communityStatus) {
+                console.log(reportStatus, reportType, arReport);
                 sendARReport().then(res => {
                     notify("Laporan berhasil dikirim", "success")
-                    resetState();
+                    resetState(reportType);
                 }
                 ).catch(error => {
+                    console.log(error);
                     notify("Laporan gagal dikirim", "error")
+                    setReportStatus(false);
                 });
             }
             setLoading(false)
         }
 
     }, [reportStatus]);
+
+
 
     //submit dangerous animal Report
     const daReportSubmitHandler = async () => {
@@ -336,7 +345,7 @@ const ReportPage = () => {
                         <Dropdown dropdownContent={reportTypesData} onChange={setReportType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
-                                <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
+                                <input type="text" placeholder="Masukkan nomor telepon" value={daReport.phoneNumber} className="number-input" onChange={numberInputHandler}></input>
                                 {/* <div className="required-warning" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }}>
                                     <ExclamationIcon className="req-warn-icon" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }} />
                                     <p className="req-warn-text">Wajib diisi</p>
@@ -429,7 +438,7 @@ const ReportPage = () => {
                                 </div>
                                 <div className="province-city-group">
                                     <Dropdown dropdownContent={provinceList} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
-                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" disabled={selectedIdProv}/>
+                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" disabled={selectedIdProv} />
                                 </div>
                             </div>
                             <div className="ar-buttons-group">
