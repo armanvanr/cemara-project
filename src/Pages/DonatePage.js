@@ -75,7 +75,16 @@ const DonatePage = () => {
     const [imageUpload, setImageUpload] = useState(null);
     const donateSubmitHandler = () => {
         alert('Donasi Diterima!');
-    }
+    };
+
+    useEffect(() => {
+        window.history.scrollRestoration = 'manual'
+      }, []);
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [donationType]);
+
     return (
         <div className="DonatePage">
             <Navibar />

@@ -310,7 +310,7 @@ const ReportPage = () => {
 
     useEffect(() => {
         getKota();
-    });
+    }, [selectedIdProv]);
 
 
     const arReportSubmitHandler = async () => {
@@ -319,6 +319,14 @@ const ReportPage = () => {
         });
         setLoading(true)
     };
+
+    useEffect(() => {
+        window.history.scrollRestoration = 'manual'
+    }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [reportType]);
 
     return (
         <div className="report-page">
@@ -429,7 +437,7 @@ const ReportPage = () => {
                                 </div>
                                 <div className="province-city-group">
                                     <Dropdown dropdownContent={provinceList} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
-                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" disabled={selectedIdProv}/>
+                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
                                 </div>
                             </div>
                             <div className="ar-buttons-group">

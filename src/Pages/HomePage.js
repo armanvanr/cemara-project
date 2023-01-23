@@ -10,6 +10,7 @@ import Footer from "../Components/Footer/Footer";
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import ProgressBar from "../Components/ProgressBar/ProgressBar";
+import { useEffect } from "react";
 
 const HomePage = () => {
 
@@ -63,6 +64,11 @@ const HomePage = () => {
 
         }
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="HomePage">
             <Navibar />
@@ -106,8 +112,7 @@ const HomePage = () => {
                         <Splide
                             options={options2}
                             aria-labelledby="autoplay-example-heading"
-                            hasTrack={false}
-                        >
+                            hasTrack={false}>
                             <div style={{ position: 'relative' }}>
                                 <SplideTrack>
                                     {slideData.map((slide, index) => (
@@ -135,15 +140,6 @@ const HomePage = () => {
                                     ))}
                                 </SplideTrack>
                             </div>
-
-                            {/* <div className="splide__progress">
-                                <div className="splide__progress__bar" />
-                            </div>
-
-                            <button className="splide__toggle">
-                                <span className="splide__toggle__play">Play</span>
-                                <span className="splide__toggle__pause">Pause</span>
-                            </button> */}
                         </Splide>
                     </div>
                 </div>

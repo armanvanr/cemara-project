@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './AdoptPage.css';
 import adoptImg from '../Assets/Images/AdoptImage.png';
 import Navibar from "../Components/NavigationBar/Navibar";
@@ -116,6 +116,11 @@ const AdoptPage = () => {
         setSearchInput(searchValue);
     };
     const [sortBy, setSortBy] = useState(null);
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="AdoptPage">
