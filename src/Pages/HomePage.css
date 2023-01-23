@@ -105,6 +105,10 @@
     border-radius: 24px;
 }
 
+.RibbonGroup>img {
+    z-index: 2;
+}
+
 .Ribbon {
     display: flex;
     flex-direction: column;
@@ -122,25 +126,79 @@
     flex-grow: 1;
 }
 
+#ReportRibbon {
+    transition-duration: 0.5s;
+    background-color: #E92F2F;
+}
+
+#ReportRibbon:hover {
+    background-color: #FFFFFF;
+    border: 2px 2px 2px 0px solid #E92F2F;
+    box-shadow: 0px 0px 8px 2px #E92F2F;
+    -webkit-box-shadow: 0px 0px 8px 2px #E92F2F;
+    -moz-box-shadow: 0px 0px 8px 2px #E92F2F;
+    transition-duration: 0.5s;
+}
+
+#ReportRibbon:hover>span {
+    color: #E92F2F;
+    transition-duration: 0.5s;
+}
+
+#DonateRibbon {
+    transition-duration: 0.5s;
+    background-color: #2E9C33;
+}
+
+#DonateRibbon:hover {
+    background-color: #FFFFFF;
+    border: 2px 2px 2px 0px solid #2E9C33;
+    box-shadow: 0px 0px 8px 2px #2E9C33;
+    -webkit-box-shadow: 0px 0px 8px 2px #2E9C33;
+    -moz-box-shadow: 0px 0px 8px 2px #2E9C33;
+    transition-duration: 0.4s;
+}
+
+#DonateRibbon:hover>span {
+    color: #2E9C33;
+    transition-duration: 0.5s;
+}
+
+#AdoptRibbon {
+    transition-duration: 0.5s;
+    background-color: #DCB736;
+}
+
+#AdoptRibbon:hover {
+    background-color: #FFFFFF;
+    border: 2px 2px 2px 0px solid #DCB736;
+    box-shadow: 0px 0px 8px 2px #DCB736;
+    -webkit-box-shadow: 0px 0px 8px 2px #DCB736;
+    -moz-box-shadow: 0px 0px 8px 2px #DCB736;
+    transition-duration: 0.4s;
+}
+
+#AdoptRibbon:hover>span {
+    color: #DCB736;
+    transition-duration: 0.5s;
+}
+
 .RibbonName {
     width: 155px;
     height: 56px;
 
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 600;
     font-size: 48px;
     line-height: 56px;
 
     color: #FFFFFF;
+    transition-duration: 0.5s;
 }
 
 .RibbonDesc {
     width: fit-content;
     height: 20px;
 
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 400;
     font-size: 13px;
     line-height: 25px;
@@ -150,6 +208,7 @@
     color: #FFFFFF;
 
     opacity: 0.8;
+    transition-duration: 0.5s;
 }
 
 .HomeRightSide {
@@ -191,8 +250,6 @@
     width: 442px;
     height: 48px;
 
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 600;
     font-size: 40px;
     line-height: 48px;
@@ -205,8 +262,6 @@
     width: 442px;
     height: 60px;
 
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
@@ -224,11 +279,32 @@
     gap: 16px;
 
     width: 532px;
-    height: 219px;
+    height: fit-content;
 
     border-radius: 32px;
 }
 
+/* 
+.CampaignCardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    width: 532px;
+    height: 170px;
+    gap: 20px;
+
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 32px;
+} */
+
+
+.slidecontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .CampaignCard {
     display: flex;
@@ -236,6 +312,8 @@
     align-items: center;
     padding: 0px 20px 0px 0px;
     gap: 12px;
+    position: relative;
+    top: 10px;
 
     width: 500px;
     height: 160px;
@@ -246,11 +324,20 @@
     border-radius: 24px;
 }
 
+
 .CampaignImage {
     width: 160px;
     height: 160px;
 
     border-radius: 24px;
+}
+
+.CampaignDesc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
 }
 
 .CampaignCardTitle {
@@ -261,20 +348,34 @@
     gap: 4px;
 
     width: 308px;
-    height: 64px;
+    height: fit-content;
 }
+
 
 .CampaignCardTitle>span {
     width: 308px;
     height: 28px;
 
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 28px;
 
     color: #1E1E1E;
+}
+
+.CampaignProgressGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 2px;
+    width: inherit;
+}
+
+.ProgressBarGroup {
+    display: flex;
+    align-items: center;
+    height: 18px;
 }
 
 .CampaignButtonLayout {
@@ -283,7 +384,6 @@
     align-items: flex-end;
     padding: 0px;
     gap: 16px;
-
     width: 308px;
     height: 42px;
 }
@@ -295,6 +395,7 @@
     align-items: center;
     gap: 16px;
 
+    position: absolute;
     width: 193px;
     height: 42px;
 
@@ -303,17 +404,38 @@
     border-radius: 14px;
     border: none;
     cursor: pointer;
+    z-index: 10;
 }
 
 .CampaignButton>span {
     width: auto;
     height: 23px;
 
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
 
     color: #FFFFFF;
+}
+
+.splide__pagination.custom_pagination {
+    bottom: -30px;
+    gap: 10px;
+
+}
+
+.splide__pagination__page.custom_pagination_page {
+    background: #FFFFFF;
+    border: 0.5px solid #DCB736;
+    opacity: 0.8;
+    height: 11px;
+    width: 11px;
+}
+
+.splide__pagination__page.custom_pagination_page.is-active {
+    background: #DCB736;
+}
+
+.splide__arrow.custom_arrow {
+    background: transparent;
 }

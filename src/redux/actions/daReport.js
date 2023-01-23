@@ -1,5 +1,5 @@
 import reportService from "../../Service/report";
-import { REPORT_SENT, SET_DA_ANIMAL_CATEGORY, SET_DA_COMMUNITY, SET_DA_COMMUNITY_LIST, SET_DA_COMMUNITY_STATUS, SET_DA_IMAGE_URL, SET_DA_LOCATION, SET_DA_PHONE_NUMBER } from "./types";
+import { CLEAR_STATE, SET_DA_ANIMAL_CATEGORY, SET_DA_COMMUNITY, SET_DA_COMMUNITY_LIST, SET_DA_COMMUNITY_STATUS, SET_DA_IMAGE_URL, SET_DA_LOCATION, SET_DA_PHONE_NUMBER } from "./types";
 
 export const daCommunitySelect = data => dispatch => {
     dispatch({
@@ -15,7 +15,7 @@ export const daCommunityList = data => dispatch => {
     });
 };
 
-export const daCommunityStatus = data => dispatch =>{
+export const daCommunityStatus = data => dispatch => {
     dispatch({
         type: SET_DA_COMMUNITY_STATUS,
         payload: data,
@@ -50,10 +50,8 @@ export const daImageUrl = data => dispatch => {
     });
 };
 
-export const daReportSubmit = data => async dispatch =>{
-    return reportService.daReportSend(data).then(()=>{
-        dispatch({
-            type: REPORT_SENT,
-        });
+export const clearDAState = () => dispatch => {
+    dispatch({
+        type: CLEAR_STATE,
     });
 };

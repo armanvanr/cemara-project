@@ -14,9 +14,9 @@ import MapIcon from "../Components/Icons/MapSolid";
 import Dropdown from "../Components/Dropdown/Dropdown";
 import DropBox from "../Components/Dropdown/DropBox";
 import { useDispatch, useSelector } from "react-redux";
-import { daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput } from "../redux/actions/daReport";
+import { clearDAState, daAnimalCategory, daImageUrl, daLocation, daPhoneNumberInput } from "../redux/actions/daReport";
 import { SET_AR_ADDRESS, SET_AR_ADD_INFO, SET_AR_ANIMAL_NAME, SET_AR_ANIMAL_TYPE, SET_AR_CITY, SET_AR_EMAIL, SET_AR_NAME, SET_AR_PHONE_NUMBER, SET_AR_PROVINCE } from "../redux/actions/types";
-import { arImageUrl } from "../redux/actions/arReport";
+import { arImageUrl, clearARState } from "../redux/actions/arReport";
 import reportService from "../Service/report";
 import Footer from "../Components/Footer/Footer";
 import { ToastContainer, toast } from 'react-toastify';
@@ -34,11 +34,9 @@ const ReportPage = () => {
 
     // Notification
     const notify = (message, type) => {
-        console.log(type);
-        if(type === "success") {
-            console.log("masuk");
+        if (type === "success") {
             toast.success(message)
-        }else if (type === "error") {
+        } else if (type === "error") {
             toast.error(message)
         }
     };
@@ -83,9 +81,9 @@ const ReportPage = () => {
     const [isNumberEmpty, setIsNumberEmpty] = useState(false);
     const numberInputHandler = (e) => {
         const inputNumber = e.target.value;
-        if (inputNumber === "") {
-            setIsNumberEmpty(true);
-        }
+        // if (inputNumber === "") {
+        //     setIsNumberEmpty(true);
+        // }
         dispatch(daPhoneNumberInput(inputNumber));
     };
 
@@ -178,26 +176,42 @@ const ReportPage = () => {
 
     const sendARReport = async () => {
         const { reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList } = arReport
-        return  await reportService.arReportSend({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList });
+        return await reportService.arReportSend({ reportType, animalType, animalName, imageUrl, addInfo, name, email, phoneNumber, address, province, city, communityList });
     }
 
+    const resetState = () => {
+        dispatch(clearDAState());
+        dispatch(clearARState());
+        setImageUpload(null);
+        // document.getElementsByClassName("number-input").value = "";
+        // document.getElementByClassName("number-input").setAttribute('value', "")
+        document.getElementById("option-1").checked = true;
+        setAnimalCategory(animalDesc.venomous);
+        setAnimalType("");
+        setSelectedIdProv("");
+        setDataKota([]);
+        setLoading(false);
+        setReportStatus(false);
+        // console.log('inside reset')
+    }
     useEffect(() => {
         if (reportStatus) {
-            console.log(arReport)
             if (reportType === "invasionReport" && daReport.communityStatus) {
                 sendDAReport().then(res => {
-                    notify("Laporan berhasil dikirim","success")
+                    notify("Laporan berhasil dikirim", "success")
+                    resetState();
+                    // console.log('reset')
                 }
                 ).catch(error => {
-                    notify("Laporan gagal dikirim","error")
+                    notify("Laporan gagal dikirim", "error")
                 })
             } else if (reportType === "rescueReport" && arReport.communityStatus) {
                 sendARReport().then(res => {
-                    notify("Laporan berhasil dikirim","success")
+                    notify("Laporan berhasil dikirim", "success")
+                    resetState();
                 }
                 ).catch(error => {
-                    // console.log(error);
-                    notify("Laporan gagal dikirim","error")
+                    notify("Laporan gagal dikirim", "error")
                 });
             }
             setLoading(false)
@@ -308,8 +322,8 @@ const ReportPage = () => {
 
     return (
         <div className="report-page">
-            <ToastContainer />
             <Navibar />
+            <ToastContainer />
             <div className="report-header">
                 <p className="report-header-1">Butuh pertolongan untuk evakuasi?</p>
                 <p className="report-header-2">Buat laporan ke komunitas sekitar anda jika butuh pertolongan untuk evakuasi hewan berbahaya dan hewan yang butuh pertolongan</p>
@@ -323,10 +337,10 @@ const ReportPage = () => {
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
                                 <input type="text" placeholder="Masukkan nomor telepon" className="number-input" onChange={numberInputHandler}></input>
-                                <div className="required-warning" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }}>
+                                {/* <div className="required-warning" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }}>
                                     <ExclamationIcon className="req-warn-icon" style={{ color: isNumberEmpty ? "#E92F2F" : "transparent" }} />
                                     <p className="req-warn-text">Wajib diisi</p>
-                                </div>
+                                </div> */}
                             </div>
                         ) : (
                             <Dropdown dropdownContent={animalRescueData} onChange={setAnimalType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
@@ -359,7 +373,7 @@ const ReportPage = () => {
                                 <DropBox dropdownContent={communityData} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
                                 {/* {loading ? <Loading/> : null} */}
                                 <button className="report-button" disabled={loading} onClick={daReportSubmitHandler}>
-                                    {loading ? <p>Mengirim...</p>  : <p>Laporkan!</p>}
+                                    {loading ? <p>Mengirim...</p> : <p>Laporkan!</p>}
                                 </button>
                             </div>
                         ) : (null)}
@@ -369,7 +383,7 @@ const ReportPage = () => {
                     <div className="da-select-section">
                         <div className="da-selector-group">
                             <p>Pilih kelompok hewan yang sesuai</p>
-                            <div className="buttons-wrapper" onClick={animalCategorySelect}>
+                            <div className="buttons-wrapper" onChange={animalCategorySelect}>
                                 <input type="radio" name="select" id="option-1" value="venomous" defaultChecked />
                                 <input type="radio" name="select" id="option-2" value="wild" />
                                 <input type="radio" name="select" id="option-3" value="poisonous" />
@@ -415,13 +429,13 @@ const ReportPage = () => {
                                 </div>
                                 <div className="province-city-group">
                                     <Dropdown dropdownContent={provinceList} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
-                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
+                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" disabled={selectedIdProv}/>
                                 </div>
                             </div>
                             <div className="ar-buttons-group">
                                 <DropBox dropdownContent={communityData} buttonStyle={{ width: "320px" }} contentStyle={{ bottom: "60px", width: "320px" }} className="community-select" />
                                 <button className="rescue-report-button" disabled={loading} onClick={arReportSubmitHandler}>
-                                {loading ? <p>Mengirim...</p>  : <p>Laporkan!</p>}
+                                    {loading ? <p>Mengirim...</p> : <p>Laporkan!</p>}
                                 </button>
                             </div>
                         </div>

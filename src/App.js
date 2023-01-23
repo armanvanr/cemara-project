@@ -13,6 +13,7 @@ import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import ReportPage from './Pages/ReportPage';
+import CreateAdopt from './Pages/CreateAdopt';
 
 function App() {
   const navigate = useNavigate()
@@ -37,15 +38,16 @@ function App() {
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/createadopt" element={<CreateAdopt />} />
         {
           currentUser ?
-          <>
-            <Route path="/dashboard/report" element={<DashboardReport />} />
-            <Route path="/dashboard/adopt" element={<DashboardAdopt />} />
-            <Route path="/dashboard/donate" element={<DashboardDonate />} />
-            <Route path="/dashboard/campaign" element={<DashboardCampaign />} />
-          </>
-          : null
+            <>
+              <Route path="/dashboard/report" element={<DashboardReport />} />
+              <Route path="/dashboard/adopt" element={<DashboardAdopt />} />
+              <Route path="/dashboard/donate" element={<DashboardDonate />} />
+              <Route path="/dashboard/campaign" element={<DashboardCampaign />} />
+            </>
+            : null
         }
       </Routes>
     </div>

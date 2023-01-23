@@ -1,5 +1,5 @@
 import {
-    REPORT_SENT,
+    CLEAR_STATE,
     SET_DA_ANIMAL_CATEGORY,
     SET_DA_COMMUNITY,
     SET_DA_COMMUNITY_LIST,
@@ -11,7 +11,7 @@ import {
 
 const initialState = {
     reportType: "Dangerous Animal",
-    phoneNumber: undefined,
+    phoneNumber: "",
     imageUrl: null,
     animalCategory: "venomous",
     location: { address: "", city: "", province: "" },
@@ -59,7 +59,7 @@ const daReport = (state = initialState, action) => {
                 ...state,
                 imageUrl: payload,
             };
-        case REPORT_SENT:
+        case CLEAR_STATE:
             return initialState;
         default:
             return state;

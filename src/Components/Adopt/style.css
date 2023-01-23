@@ -59,8 +59,8 @@
 .adopt-container-button-text {
     /* Poppins/Body/Medium */
 
-    font-family: 'Poppins';
-    font-style: normal;
+     
+     
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
@@ -151,8 +151,7 @@ height: 30px;
 
 /* Poppins/Tittle 2/Bold */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 600;
 font-size: 22px;
 line-height: 30px;
@@ -188,8 +187,7 @@ flex-grow: 0;
 .adopt-card-isi2 {
 /* Poppins/Subhead/Regular */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 400;
 font-size: 15px;
 line-height: 19px;
@@ -263,8 +261,7 @@ height: 19px;
 
 /* Poppins/Subhead/Regular */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 400;
 font-size: 15px;
 line-height: 19px;

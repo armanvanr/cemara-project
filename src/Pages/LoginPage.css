@@ -170,8 +170,7 @@ height: 36px;
 
 /* Poppins/Tittle 1/Bold */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 600;
 font-size: 28px;
 line-height: 36px;
@@ -239,8 +238,7 @@ height: 23px;
 
 /* Poppins/Body/Regular */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 400;
 font-size: 17px;
 line-height: 23px;
@@ -316,8 +314,7 @@ height: 17px;
 
 /* Poppins/Footnote/Medium */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 500;
 font-size: 13px;
 line-height: 17px;
@@ -372,8 +369,7 @@ flex-grow: 0;
 .buttonText1 {
 /* Poppins/Body/Medium */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 500;
 font-size: 17px;
 line-height: 23px;
@@ -422,8 +418,7 @@ flex-grow: 0;
 .buttonText2 {
 /* Poppins/Body/Medium */
 
-font-family: 'Poppins';
-font-style: normal;
+ 
 font-weight: 500;
 font-size: 17px;
 line-height: 23px;

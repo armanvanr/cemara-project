@@ -46,7 +46,7 @@ const Checkbox = ({ checkboxState, dropdownState }) => {
             <div className="checkbox-container">
                 {data.map((item, index) => (
                     <label className="checkbox-item" key={index}>
-                        <input type="checkbox" name={item} checked={checkedItems[index]} onChange={itemHandler} />
+                        <input type="checkbox" className="community-checkbox" name={item} checked={checkedItems[index]} onChange={itemHandler} />
                         <span className="checkbox-text">{item}</span>
                     </label>
                 ))}
