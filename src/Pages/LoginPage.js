@@ -50,7 +50,11 @@ const LoginPage = () => {
         if (currentUser) {
             navigate('/dashboard/report');
         }
-    }, [currentUser])
+    }, [currentUser]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
     return (

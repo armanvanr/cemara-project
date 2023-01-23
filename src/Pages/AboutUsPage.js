@@ -6,8 +6,15 @@ import image1 from '../Assets/Images/image-1.jpg';
 import image2 from '../Assets/Images/image-2.jpg';
 import image3 from '../Assets/Images/image-3.jpg';
 import image4 from '../Assets/Images/image-4.jpg';
+import { useEffect } from "react";
 
 const AboutUsPage = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
     return (
         <div className="aboutUs">
             <Navibar />

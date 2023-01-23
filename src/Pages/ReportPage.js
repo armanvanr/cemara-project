@@ -319,7 +319,7 @@ const ReportPage = () => {
 
     useEffect(() => {
         getKota();
-    });
+    }, [selectedIdProv]);
 
 
     const arReportSubmitHandler = async () => {
@@ -328,6 +328,14 @@ const ReportPage = () => {
         });
         setLoading(true)
     };
+
+    useEffect(() => {
+        window.history.scrollRestoration = 'manual'
+    }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [reportType]);
 
     return (
         <div className="report-page">

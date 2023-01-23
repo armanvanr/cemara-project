@@ -5,6 +5,7 @@ import registerIMG from '../Assets/Images/pic-signup.png'
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from '../redux/actions/auth';
+import { useEffect } from "react";
 
 const RegisterPage = () => {
 
@@ -35,6 +36,10 @@ const RegisterPage = () => {
     const handleLogin = () => {
         navigate('/login')
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="App1">
