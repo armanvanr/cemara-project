@@ -113,38 +113,108 @@ const Report = () => {
                 })
             })
         }
-        // fetchMoreData()
+        fetchMoreData()
     }
     // console.log(listReport);
 
+    const filter = () => {
+        setListReportAccepted((prev) => {
+            return listReport.filter((item) => {
+                if (item.status === "accepted") {
+                    return item
+                }
+            })
+        })
+        setListReportRequested((prev) => {
+            return listReport.filter((item) => {
+                if (item.status === "requested") {
+                    return item
+                }
+            })
+        })
+    }
+
     useEffect(() => {
-        if (listReport && currentIndex===4) {
-            fetchMoreData()
+        if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested) {
+            fetchMoreData("first")
+        }
+        if (listReport && !listReportAccepted && !listReportRequested) {
+            filter()
         }
     }, [listReport])
 
 
     const [infiniteData, setInfiniteData] = useState()
+    const [infiniteDataAccepted, setInfiniteDataAccepted] = useState()
+    const [infiniteDataRequested, setInfiniteDataRequested] = useState()
     const [currentIndex, setCurrentIndex] = useState(4)
-    const fetchMoreData = () => {
-        let totalData = listReport.length
+    const [currentIndexAccepted, setCurrentIndexAccepted] = useState(4)
+    const [currentIndexRequested, setCurrentIndexRequested] = useState(4)
+    const [listReportAccepted, setListReportAccepted] = useState()
+    const [listReportRequested, setListReportRequested] = useState()
 
-        if (currentIndex < totalData) {
-            setInfiniteData((prevListReport) => {
-                return listReport.filter((item, index) => {
-                    if (index <= currentIndex) {
+
+    const fetchMoreData = (type) => {
+        // let totalData = listReport.length
+        console.log(type);
+        // if (currentIndex < listReportAccepted.length) {
+        if (type === "accepted" && currentIndexAccepted < listReportAccepted.length) {
+            setInfiniteDataAccepted((prevListReport) => {
+                return listReportAccepted.filter((item, index) => {
+                    if (index <= currentIndexAccepted) {
+                        // console.log(index, currentIndex);
                         return item
                     }
                 })
             })
+            let index = currentIndexAccepted >= 4 ? currentIndexAccepted + 5 : currentIndexAccepted
+            setCurrentIndexAccepted(index)
         }
+        else if (type === "requested" && currentIndexRequested < listReportRequested.length) {
+            setInfiniteDataRequested((prevListReport) => {
+                return listReportRequested.filter((item, index) => {
+                    if (index <= currentIndexRequested) {
+                        // console.log(index, currentIndex);
+                        return item
+                    }
+                })
+            })
+            let index = currentIndexRequested >= 4 ? currentIndexRequested + 5 : currentIndexRequested
+            setCurrentIndexRequested(index)
+        }
+        else if (type === "first") {
+            setInfiniteDataRequested((prevListReport) => {
+                return listReportRequested.filter((item, index) => {
+                    if (index <= currentIndexRequested) {
+                        // console.log(index, currentIndex);
+                        return item
+                    }
+                })
+            })
+            setInfiniteDataAccepted((prevListReport) => {
+                return listReportAccepted.filter((item, index) => {
+                    if (index <= currentIndexAccepted) {
+                        // console.log(index, currentIndex);
+                        return item
+                    }
+                })
+            })
+            let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
+            setCurrentIndexAccepted(index)
+            setCurrentIndexRequested(index)
+        }
+        else {
+            return null
+        }
+        // }
 
-        let index = currentIndex + 5
-        setCurrentIndex(index)
-        console.log(totalData);
+        // let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
+        // setCurrentIndex(index)
+        // console.log("called");
     }
 
-    console.log(infiniteData);
+    // console.log(infiniteData, currentIndex);
+    console.log(listReportRequested);
 
 
 
@@ -154,223 +224,273 @@ const Report = () => {
                 <span className="text-title-list">Diproses</span>
                 <div className="list-item-container">
                     {
-                        listReport  ?
-                        
-                            // <InfiniteScroll
-                            //     dataLength={listReport.length}
-                            //     next={fetchMoreData}
-                            //     style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
-                            //     inverse={true} //
-                            //     hasMore={true}
-                            //     loader={<h4>Loading...</h4>}
-                            //     scrollableTarget="scrollableDiv"
+                        infiniteDataAccepted ?
+                            // <div
+                            //     id="scrollableDiv"
+                            //     style={{
+                            //         height: 300,
+                            //         overflow: 'auto',
+                            //         display: 'flex',
+                            //         flexDirection: 'column-reverse',
+                            //     }}
                             // >
-                            // {
-                            listReport.map((report) => {
-                                if (report.status === "accepted") {
-                                    return (
-                                        <div key={report.id} className="card-dashboard" >
-                                            <div className="card-row">
-                                                <div className="card-dashboard-left">
-                                                    <img src={report.imageUrl} className="card-dashboard-image" alt="" />
-                                                    <div className="card-dashboard-detail-container">
-                                                        <div className="card-dashboard-detail-header-container">
-                                                            <div className="card-dashboard-detail-header-title">
-                                                                <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
-                                                                    {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
+                            <InfiniteScroll
+                                dataLength={infiniteDataAccepted.length}
+                                next={() => fetchMoreData("accepted")}
+                                style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+                                inverse={true} //
+                                hasMore={true}
+                                loader={<h4>Loading...</h4>}
+                                // scrollableTarget="scrollableDiv"
+                                height={400}
+                                endMessage={
+                                    <h4>Done !</h4>
+                                }
+
+                            >
+                                <div className="list-item-container">
+                                    {
+                                        infiniteDataAccepted.map((report) => {
+                                            { console.log(report); }
+                                            if (report.status) {
+                                                return (
+                                                    <div key={report.id} className="card-dashboard" >
+                                                        <div className="card-row">
+                                                            <div className="card-dashboard-left">
+                                                                <img src={report.imageUrl} className="card-dashboard-image" alt="" />
+                                                                <div className="card-dashboard-detail-container">
+                                                                    <div className="card-dashboard-detail-header-container">
+                                                                        <div className="card-dashboard-detail-header-title">
+                                                                            <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
+                                                                                {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
+                                                                            </div>
+                                                                            <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
+                                                                                <div className="card-dashboard-detail-header-title-type-text">
+                                                                                    {report.reportType === "DA" ? report.animalCategory : report.animalType}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        {
+                                                                            report.reportType === "DA" ?
+                                                                                <div className="card-dashboard-detail-location-container">
+                                                                                    <div className="card-dashboard-detail-location-icon">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                    <div className="card-dashboard-detail-location-text">
+                                                                                        {report.address}
+                                                                                    </div>
+                                                                                </div>
+                                                                                :
+                                                                                <div className="card-dashboard-detail-location-container">
+                                                                                    <div className={`card-dashboard-detail-information-text ${report.show ? "text-overflow" : null}`}>{report.information}</div>
+                                                                                </div>
+                                                                        }
+                                                                    </div>
+                                                                    {
+                                                                        report.reportType === "DA" ?
+                                                                            <div className="card-dashboard-detail-location-phone-container">
+                                                                                <div className="card-dashboard-detail-location-icon">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                                                                    </svg>
+                                                                                </div>
+                                                                                <div className="card-dashboard-detail-location-phone-text">{report.phoneNumber}</div>
+                                                                            </div>
+                                                                            :
+                                                                            <div className="card-dashboard-detail-location-container">
+                                                                                <div className="card-dashboard-detail-location-icon">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                                                                    </svg>
+                                                                                </div>
+                                                                                <div className="card-dashboard-detail-location-text">
+                                                                                    {report.address}
+                                                                                </div>
+                                                                            </div>
+
+                                                                    }
+
                                                                 </div>
-                                                                <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
-                                                                    <div className="card-dashboard-detail-header-title-type-text">
-                                                                        {report.reportType === "DA" ? report.animalCategory : report.animalType}
+                                                            </div>
+                                                            <div className="card-dashboard-action-container">
+                                                                <div className="card-dashboard-action-time">
+                                                                    <div className="card-dashboard-action-time-text"> {report.time}</div>
+                                                                </div>
+                                                                <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.id, report.reportType)}>
+                                                                    <div className="card-dashboard-action-button-text">
+                                                                        Selesai
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            {
-                                                                report.reportType === "DA" ?
-                                                                    <div className="card-dashboard-detail-location-container">
-                                                                        <div className="card-dashboard-detail-location-icon">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div className="card-dashboard-detail-location-text">
-                                                                            {report.address}
-                                                                        </div>
-                                                                    </div>
-                                                                    :
-                                                                    <div className="card-dashboard-detail-location-container">
-                                                                        <div className={`card-dashboard-detail-information-text ${report.show ? "text-overflow" : null}`}>{report.information}</div>
-                                                                    </div>
-                                                            }
                                                         </div>
-                                                        {
-                                                            report.reportType === "DA" ?
-                                                                <div className="card-dashboard-detail-location-phone-container">
-                                                                    <div className="card-dashboard-detail-location-icon">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div className="card-dashboard-detail-location-phone-text">{report.phoneNumber}</div>
+                                                        <div hidden={report.show}>
+                                                            {/* <div className={report.show ? "m-fadeIn": "m-fadeOut"}> */}
+                                                            <div className="card-dashboard-detail-extra-container">
+                                                                <div className="card-dashboard-detail-header-title-text">
+                                                                    Detail Pelapor
                                                                 </div>
-                                                                :
-                                                                <div className="card-dashboard-detail-location-container">
-                                                                    <div className="card-dashboard-detail-location-icon">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div className="card-dashboard-detail-location-text">
-                                                                        {report.address}
-                                                                    </div>
-                                                                </div>
-
-                                                        }
-
-                                                    </div>
-                                                </div>
-                                                <div className="card-dashboard-action-container">
-                                                    <div className="card-dashboard-action-time">
-                                                        <div className="card-dashboard-action-time-text"> {report.time}</div>
-                                                    </div>
-                                                    <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.id, report.reportType)}>
-                                                        <div className="card-dashboard-action-button-text">
-                                                            Selesai
+                                                                <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
+                                                                <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
+                                                                <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div hidden={report.show}>
-                                                {/* <div className={report.show ? "m-fadeIn": "m-fadeOut"}> */}
-                                                <div className="card-dashboard-detail-extra-container">
-                                                    <div className="card-dashboard-detail-header-title-text">
-                                                        Detail Pelapor
-                                                    </div>
-                                                    <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
-                                                    <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
-                                                    <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
-                                                </div>
-                                            </div>
-                                        </div>
 
 
-                                    )
-                                } else {
-                                    return null
-                                }
+                                                )
+                                            } else {
+                                                return null
+                                            }
 
-                            }
-                            )
-                            // }
-                            // </InfiniteScroll>
+                                        }
+                                        )
+                                    }
+                                </div>
+                            </InfiniteScroll>
+                            // </div>
                             :
-                            null
+                            <Loading />
                     }
 
 
                 </div>
-                <div className="card-dashboard-action-button-text" onClick={fetchMoreData}>
+                {/* <div className="card-dashboard-action-button-text" onClick={fetchMoreData}>
                     Data selanjutnya
-                </div>
+                </div> */}
             </div>
             <div className="list-call-container">
                 <span className="text-title-list">Daftar panggilan</span>
                 <div className="list-item-container">
                     {
-                        listReport ?
-                            (listReport.map((report) => {
-                                if (report.status === "requested") {
-                                    return (
-                                        <div key={report.id} className="card-dashboard" >
-                                            <div className="card-row">
-                                                <div className="card-dashboard-left">
-                                                    <img src={report.imageUrl} className="card-dashboard-image" alt="" />
-                                                    <div className="card-dashboard-detail-container">
-                                                        <div className="card-dashboard-detail-header-container">
-                                                            <div className="card-dashboard-detail-header-title">
-                                                                <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
-                                                                    {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
+                        infiniteDataRequested ?
+                            // <div
+                            //     id="scrollableDiv"
+                            //     style={{
+                            //         height: 300,
+                            //         overflow: 'auto',
+                            //         display: 'flex',
+                            //         flexDirection: 'column-reverse',
+                            //     }}
+                            // >
+                            <InfiniteScroll
+                                dataLength={infiniteDataRequested.length}
+                                next={() => fetchMoreData("requested")}
+                                style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+                                inverse={true} //
+                                hasMore={true}
+                                loader={<h4>Loading...</h4>}
+                                // scrollableTarget="scrollableDiv"
+                                height={400}
+                                endMessage={
+                                    <h4>Done !</h4>
+                                }
+
+                            >
+                                <div className="list-item-container">
+                                    {
+                                        infiniteDataRequested.map((report) => {
+                                            { console.log(report); }
+                                            if (report.status) {
+                                                return (
+                                                    <div key={report.id} className="card-dashboard" >
+                                                        <div className="card-row">
+                                                            <div className="card-dashboard-left">
+                                                                <img src={report.imageUrl} className="card-dashboard-image" alt="" />
+                                                                <div className="card-dashboard-detail-container">
+                                                                    <div className="card-dashboard-detail-header-container">
+                                                                        <div className="card-dashboard-detail-header-title">
+                                                                            <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
+                                                                                {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
+                                                                            </div>
+                                                                            <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
+                                                                                <div className="card-dashboard-detail-header-title-type-text">
+                                                                                    {report.reportType === "DA" ? report.animalCategory : report.animalType}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        {
+                                                                            report.reportType === "DA" ?
+                                                                                <div className="card-dashboard-detail-location-container">
+                                                                                    <div className="card-dashboard-detail-location-icon">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                    <div className="card-dashboard-detail-location-text">
+                                                                                        {report.address}
+                                                                                    </div>
+                                                                                </div>
+                                                                                :
+                                                                                <div className="card-dashboard-detail-location-container">
+                                                                                    <div className={`card-dashboard-detail-information-text ${report.show ? "text-overflow" : null}`}>{report.information}</div>
+                                                                                </div>
+                                                                        }
+                                                                    </div>
+                                                                    {
+                                                                        report.reportType === "DA" ?
+                                                                            <div className="card-dashboard-detail-location-phone-container">
+                                                                                <div className="card-dashboard-detail-location-icon">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                                                                    </svg>
+                                                                                </div>
+                                                                                <div className="card-dashboard-detail-location-phone-text">{report.phoneNumber}</div>
+                                                                            </div>
+                                                                            :
+                                                                            <div className="card-dashboard-detail-location-container">
+                                                                                <div className="card-dashboard-detail-location-icon">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                                                                                    </svg>
+                                                                                </div>
+                                                                                <div className="card-dashboard-detail-location-text">
+                                                                                    {report.address}
+                                                                                </div>
+                                                                            </div>
+
+                                                                    }
+
                                                                 </div>
-                                                                <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
-                                                                    <div className="card-dashboard-detail-header-title-type-text">
-                                                                        {report.reportType === "DA" ? report.animalCategory : report.animalType}
+                                                            </div>
+                                                            <div className="card-dashboard-action-container">
+                                                                <div className="card-dashboard-action-time">
+                                                                    <div className="card-dashboard-action-time-text"> {report.time}</div>
+                                                                </div>
+                                                                <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id, report.reportType)}>
+                                                                    <div className="card-dashboard-action-button-text">
+                                                                        Terima
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            {
-                                                                report.reportType === "DA" ?
-                                                                    <div className="card-dashboard-detail-location-container">
-                                                                        <div className="card-dashboard-detail-location-icon">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div className="card-dashboard-detail-location-text">
-                                                                            {report.address}
-                                                                        </div>
-                                                                    </div>
-                                                                    :
-                                                                    <div className="card-dashboard-detail-location-container">
-                                                                        <div className={`card-dashboard-detail-information-text ${report.show ? "text-overflow" : null}`}>{report.information}</div>
-                                                                    </div>
-                                                            }
                                                         </div>
-                                                        {
-                                                            report.reportType === "DA" ?
-                                                                <div className="card-dashboard-detail-location-phone-container">
-                                                                    <div className="card-dashboard-detail-location-icon">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div className="card-dashboard-detail-location-phone-text">{report.phoneNumber}</div>
+                                                        <div hidden={report.show}>
+                                                            {/* <div className={report.show ? "m-fadeIn": "m-fadeOut"}> */}
+                                                            <div className="card-dashboard-detail-extra-container">
+                                                                <div className="card-dashboard-detail-header-title-text">
+                                                                    Detail Pelapor
                                                                 </div>
-                                                                :
-                                                                <div className="card-dashboard-detail-location-container">
-                                                                    <div className="card-dashboard-detail-location-icon">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div className="card-dashboard-detail-location-text">
-                                                                        {report.address}
-                                                                    </div>
-                                                                </div>
-
-                                                        }
-
-                                                    </div>
-                                                </div>
-                                                <div className="card-dashboard-action-container">
-                                                    <div className="card-dashboard-action-time">
-                                                        <div className="card-dashboard-action-time-text"> {report.time}</div>
-                                                    </div>
-                                                    <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id, report.reportType)}>
-                                                        <div className="card-dashboard-action-button-text">
-                                                            Terima
+                                                                <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
+                                                                <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
+                                                                <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div hidden={report.show}>
-                                                {/* <div className={report.show ? "m-fadeIn": "m-fadeOut"}> */}
-                                                <div className="card-dashboard-detail-extra-container">
-                                                    <div className="card-dashboard-detail-header-title-text">
-                                                        Detail Pelapor
-                                                    </div>
-                                                    <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
-                                                    <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
-                                                    <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                } else {
-                                    return null
-                                }
 
-                            }
-                            )) :
+
+                                                )
+                                            } else {
+                                                return null
+                                            }
+
+                                        }
+                                        )
+                                    }
+                                </div>
+                            </InfiniteScroll>
+                            // </div>
+                            :
                             <Loading />
                     }
                 </div>
