@@ -190,7 +190,7 @@ const Report = () => {
     const fetchMoreData = (type) => {
         setTimeout(() => {
             // let totalData = listReport.length
-            console.log(type, currentIndexAccepted, listReportAccepted.length);
+            // console.log(type, currentIndexAccepted, listReportAccepted.length);
             // if (currentIndex < listReportAccepted.length) {
             if (type === "accepted" && currentIndexAccepted <= listReportAccepted.length) {
                 // console.log(type);
@@ -238,15 +238,17 @@ const Report = () => {
                 setCurrentIndexAccepted(index)
                 setCurrentIndexRequested(index)
                 setInfiniteStatus(true)
-            }
-            else if (currentIndexAccepted > listReportAccepted.length) {
-                setHasMoreAccepted(false)
-            }
-            else if (currentIndexRequested > listReportRequested.length) {
-                setHasMoreRequested(false)
+            } else {
+                if (currentIndexAccepted > listReportAccepted.length) {
+                    setHasMoreAccepted(false)
+                }
+                if (currentIndexRequested > listReportRequested.length) {
+                    console.log("masuk");
+                    setHasMoreRequested(false)
+                }
             }
             // }
-
+            console.log(currentIndexRequested, listReportRequested.length);
             // let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
             // setCurrentIndex(index)
             // console.log("called");
@@ -257,6 +259,8 @@ const Report = () => {
     // console.log(listReportRequested);
     // console.log(listReportAccepted);
     // console.log(infiniteDataAccepted);
+
+
 
 
 
