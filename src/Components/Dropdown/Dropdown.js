@@ -4,10 +4,11 @@ import ArrowDownIcon from "../Icons/ArrowDownSolid";
 import ArrowUpIcon from "../Icons/ArrowUpSolid";
 import './Dropdown.css';
 
-const Dropdown = ({ dropdownContent, onChange, buttonStyle, contentStyle, disabled }) => {
+const Dropdown = ({ dropdownContent, onChange, buttonStyle, contentStyle, selectedStyle, disabled }) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false);
     const dispatch = useDispatch();
     const { placeholder, data, actionType } = dropdownContent;
+    // const { fontWeight, fontSize, fontColor } = selectedStyle;
     const [selected, setIsSelected] = useState((placeholder.val === true) ? (placeholder.text) : (dropdownContent.data[0].nama));
     const contentHandler = (e) => {
         const { value, textContent } = e.target;
@@ -15,7 +16,7 @@ const Dropdown = ({ dropdownContent, onChange, buttonStyle, contentStyle, disabl
         setIsSelected(textContent);
         setIsDropdownActive(!isDropdownActive);
         onChange(value);
-        if (actionType){
+        if (actionType) {
             dispatch({
                 type: actionType,
                 payload: textContent
@@ -39,7 +40,7 @@ const Dropdown = ({ dropdownContent, onChange, buttonStyle, contentStyle, disabl
     return (
         <div className="dropdown" ref={myRef}>
             <div onClick={() => { setIsDropdownActive(!isDropdownActive); }} className="dropdown-btn" style={buttonStyle}>
-                <span className="selected-item">{selected}</span>
+                <span className="selected-item" >{selected}</span>
                 {isDropdownActive ? (
                     <ArrowUpIcon className="dropdown-arrow" />
                 ) : (

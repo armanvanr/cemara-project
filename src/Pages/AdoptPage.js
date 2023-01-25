@@ -116,7 +116,11 @@ const AdoptPage = () => {
         setSearchInput(searchValue);
     };
     const [sortBy, setSortBy] = useState(null);
-
+    const searchCategory = (e) => {
+        const searchValue = e.target.value;
+        console.log(searchValue);
+        // setSearchInput(searchValue);
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -147,14 +151,14 @@ const AdoptPage = () => {
                             <span className="topnav-button-text">Buat Adopsi</span>
                         </NavLink>
                     </div>
-                    <div className="AdoptHeader-category">
-                        <div className="category-button" value="Kucing">Kucing</div>
-                        <div className="category-button" value="Anjing">Anjing</div>
-                        <div className="category-button" value="Burung">Burung</div>
-                        <div className="category-button" value="Reptil">Reptil</div>
-                        <div className="category-button" value="Ikan">Ikan</div>
-                        <div className="category-button" value="Amfibi">Amfibi</div>
-                        <div className="category-button" value="Lainnya">Lainnya</div>
+                    <div className="AdoptHeader-category" onChange={searchCategory}>
+                        <div className="category-button" value="kucing">Kucing</div>
+                        <div className="category-button" value="anjing">Anjing</div>
+                        <div className="category-button" value="burung">Burung</div>
+                        <div className="category-button" value="reptil">Reptil</div>
+                        <div className="category-button" value="ikan">Ikan</div>
+                        <div className="category-button" value="amfibi">Amfibi</div>
+                        <div className="category-button" value="lainnya">Lainnya</div>
                     </div>
                 </div>
                 <div className="AdoptBody">
@@ -173,7 +177,8 @@ const AdoptPage = () => {
                                     <div className="Adopt-card-content">
                                         <div className="Adopt-card-content-row">
                                             <div className="Adopt-card-title">{animal.name}{" "}{`(${animal.race})`}</div>
-                                            <div className="Adopt-card-isi">{animal.species}{" "}&bull;{" "}{animal.age}{" "}&bull;{" "}{animal.gender}</div>
+                                            <div className="Adopt-card-isi">{animal.species}</div>
+                                            <div className="Adopt-card-isi">{animal.age}{" "}&bull;{" "}{animal.gender}</div>
                                             <div className="Adopt-card-line"></div>
                                             <div className="Adopt-card-desc">
                                                 {animal.desc}
