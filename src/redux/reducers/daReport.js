@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-    reportType: "Dangerous Animal",
+    reportType: "invasionReport",
     phoneNumber: "",
     imageUrl: null,
     animalCategory: "venomous",

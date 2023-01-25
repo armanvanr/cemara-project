@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
 import Navibar from "../Components/NavigationBar/Navibar";
@@ -8,7 +9,12 @@ const CreateAdopt = () => {
     const [checked, setChecked] = useState(false);
     const finishAdoptHandler = () => {
         alert('Formulir Adopsi Terkirim!');
-    }
+    };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="CreateAdopt">
             <Navibar />
