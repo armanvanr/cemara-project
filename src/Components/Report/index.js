@@ -97,23 +97,53 @@ const Report = () => {
         updateStatusReport(id, type)
         // alert(status)
     }
-    const handleItemClick = (id, type) => {
+    const handleItemClick = (id, type, status) => {
+        // console.log(type);
         if (type === "AR") {
-            setListReport((prevListReport) => {
-                return listReport.map((item) => {
-                    if (item.id === id) {
-                        if (item.show === false) {
-                            return { ...item, show: true }
+            // setListReport((prevListReport) => {
+            //     return listReport.map((item) => {
+            //         if (item.id === id) {
+            //             if (item.show === false) {
+            //                 return { ...item, show: true }
+            //             } else {
+            //                 return { ...item, show: false }
+            //             }
+            //         } else {
+            //             return { ...item, show: true }
+            //         }
+            //     })
+            // })
+            if (status === "accepted") {
+                setInfiniteDataAccepted((prevListReport) => {
+                    return infiniteDataAccepted.map((item) => {
+                        if (item.id === id) {
+                            if (item.show === false) {
+                                return { ...item, show: true }
+                            } else {
+                                return { ...item, show: false }
+                            }
                         } else {
-                            return { ...item, show: false }
+                            return { ...item, show: true }
                         }
-                    } else {
-                        return { ...item, show: true }
-                    }
+                    })
                 })
-            })
+            } else if (status === "requested") {
+                setInfiniteDataRequested((prevListReport) => {
+                    return infiniteDataRequested.map((item) => {
+                        if (item.id === id) {
+                            if (item.show === false) {
+                                return { ...item, show: true }
+                            } else {
+                                return { ...item, show: false }
+                            }
+                        } else {
+                            return { ...item, show: true }
+                        }
+                    })
+                })
+            }
         }
-        fetchMoreData()
+        // fetchMoreData()
     }
     // console.log(listReport);
 
@@ -135,7 +165,7 @@ const Report = () => {
     }
 
     useEffect(() => {
-        if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested) {
+        if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested && !infiniteStatus) {
             fetchMoreData("first")
         }
         if (listReport && !listReportAccepted && !listReportRequested) {
@@ -152,69 +182,81 @@ const Report = () => {
     const [currentIndexRequested, setCurrentIndexRequested] = useState(4)
     const [listReportAccepted, setListReportAccepted] = useState()
     const [listReportRequested, setListReportRequested] = useState()
+    const [infiniteStatus, setInfiniteStatus] = useState(false)
+    const [hasMoreAccepted, setHasMoreAccepted] = useState(true)
+    const [hasMoreRequested, setHasMoreRequested] = useState(true)
 
 
     const fetchMoreData = (type) => {
-        // let totalData = listReport.length
-        console.log(type);
-        // if (currentIndex < listReportAccepted.length) {
-        if (type === "accepted" && currentIndexAccepted < listReportAccepted.length) {
-            setInfiniteDataAccepted((prevListReport) => {
-                return listReportAccepted.filter((item, index) => {
-                    if (index <= currentIndexAccepted) {
-                        // console.log(index, currentIndex);
-                        return item
-                    }
+        setTimeout(() => {
+            // let totalData = listReport.length
+            console.log(type, currentIndexAccepted, listReportAccepted.length);
+            // if (currentIndex < listReportAccepted.length) {
+            if (type === "accepted" && currentIndexAccepted <= listReportAccepted.length) {
+                // console.log(type);
+                setInfiniteDataAccepted((prevListReport) => {
+                    return listReportAccepted.filter((item, index) => {
+                        if (index <= currentIndexAccepted) {
+                            // console.log(index, currentIndex);
+                            return item
+                        }
+                    })
                 })
-            })
-            let index = currentIndexAccepted >= 4 ? currentIndexAccepted + 5 : currentIndexAccepted
-            setCurrentIndexAccepted(index)
-        }
-        else if (type === "requested" && currentIndexRequested < listReportRequested.length) {
-            setInfiniteDataRequested((prevListReport) => {
-                return listReportRequested.filter((item, index) => {
-                    if (index <= currentIndexRequested) {
-                        // console.log(index, currentIndex);
-                        return item
-                    }
+                let index = currentIndexAccepted >= 4 ? currentIndexAccepted + 5 : currentIndexAccepted
+                setCurrentIndexAccepted(index)
+            }
+            else if (type === "requested" && currentIndexRequested <= listReportRequested.length) {
+                setInfiniteDataRequested((prevListReport) => {
+                    return listReportRequested.filter((item, index) => {
+                        if (index <= currentIndexRequested) {
+                            // console.log(index, currentIndex);
+                            return item
+                        }
+                    })
                 })
-            })
-            let index = currentIndexRequested >= 4 ? currentIndexRequested + 5 : currentIndexRequested
-            setCurrentIndexRequested(index)
-        }
-        else if (type === "first") {
-            setInfiniteDataRequested((prevListReport) => {
-                return listReportRequested.filter((item, index) => {
-                    if (index <= currentIndexRequested) {
-                        // console.log(index, currentIndex);
-                        return item
-                    }
+                let index = currentIndexRequested >= 4 ? currentIndexRequested + 5 : currentIndexRequested
+                setCurrentIndexRequested(index)
+            }
+            else if (type === "first") {
+                setInfiniteDataRequested((prevListReport) => {
+                    return listReportRequested.filter((item, index) => {
+                        if (index <= currentIndexRequested) {
+                            // console.log(index, currentIndex);
+                            return item
+                        }
+                    })
                 })
-            })
-            setInfiniteDataAccepted((prevListReport) => {
-                return listReportAccepted.filter((item, index) => {
-                    if (index <= currentIndexAccepted) {
-                        // console.log(index, currentIndex);
-                        return item
-                    }
+                setInfiniteDataAccepted((prevListReport) => {
+                    return listReportAccepted.filter((item, index) => {
+                        if (index <= currentIndexAccepted) {
+                            // console.log(index, currentIndex);
+                            return item
+                        }
+                    })
                 })
-            })
-            let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
-            setCurrentIndexAccepted(index)
-            setCurrentIndexRequested(index)
-        }
-        else {
-            return null
-        }
-        // }
+                let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
+                setCurrentIndexAccepted(index)
+                setCurrentIndexRequested(index)
+                setInfiniteStatus(true)
+            }
+            else if (currentIndexAccepted > listReportAccepted.length) {
+                setHasMoreAccepted(false)
+            }
+            else if (currentIndexRequested > listReportRequested.length) {
+                setHasMoreRequested(false)
+            }
+            // }
 
-        // let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
-        // setCurrentIndex(index)
-        // console.log("called");
+            // let index = currentIndex >= 4 ? currentIndex + 5 : currentIndex
+            // setCurrentIndex(index)
+            // console.log("called");
+        }, 1000);
     }
 
     // console.log(infiniteData, currentIndex);
-    console.log(listReportRequested);
+    // console.log(listReportRequested);
+    // console.log(listReportAccepted);
+    // console.log(infiniteDataAccepted);
 
 
 
@@ -237,21 +279,19 @@ const Report = () => {
                             <InfiniteScroll
                                 dataLength={infiniteDataAccepted.length}
                                 next={() => fetchMoreData("accepted")}
-                                style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
-                                inverse={true} //
-                                hasMore={true}
+                                hasMore={hasMoreAccepted}
                                 loader={<h4>Loading...</h4>}
                                 // scrollableTarget="scrollableDiv"
                                 height={400}
                                 endMessage={
-                                    <h4>Done !</h4>
+                                    <h4>Tidak ada data lagi</h4>
                                 }
 
                             >
                                 <div className="list-item-container">
                                     {
                                         infiniteDataAccepted.map((report) => {
-                                            { console.log(report); }
+                                            // { console.log(report); }
                                             if (report.status) {
                                                 return (
                                                     <div key={report.id} className="card-dashboard" >
@@ -261,7 +301,7 @@ const Report = () => {
                                                                 <div className="card-dashboard-detail-container">
                                                                     <div className="card-dashboard-detail-header-container">
                                                                         <div className="card-dashboard-detail-header-title">
-                                                                            <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
+                                                                            <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType, "accepted")}>
                                                                                 {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
                                                                             </div>
                                                                             <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
@@ -377,21 +417,19 @@ const Report = () => {
                             <InfiniteScroll
                                 dataLength={infiniteDataRequested.length}
                                 next={() => fetchMoreData("requested")}
-                                style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
-                                inverse={true} //
-                                hasMore={true}
+                                hasMore={hasMoreRequested}
                                 loader={<h4>Loading...</h4>}
                                 // scrollableTarget="scrollableDiv"
                                 height={400}
                                 endMessage={
-                                    <h4>Done !</h4>
+                                    <h4>Tidak ada data lagi</h4>
                                 }
 
                             >
                                 <div className="list-item-container">
                                     {
                                         infiniteDataRequested.map((report) => {
-                                            { console.log(report); }
+                                            // { console.log(report); }
                                             if (report.status) {
                                                 return (
                                                     <div key={report.id} className="card-dashboard" >
@@ -401,7 +439,7 @@ const Report = () => {
                                                                 <div className="card-dashboard-detail-container">
                                                                     <div className="card-dashboard-detail-header-container">
                                                                         <div className="card-dashboard-detail-header-title">
-                                                                            <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType)}>
+                                                                            <div className="card-dashboard-detail-header-title-text" onClick={() => handleItemClick(report.id, report.reportType, "requested")}>
                                                                                 {report.reportType === "DA" ? "Invasi Hewan Berbahaya" : "Hewan Butuh Pertolongan"}
                                                                             </div>
                                                                             <div className={`card-dashboard-detail-header-title-type-container ${report.reportType === "DA" ? "dangerous" : "rescue"}`}>
@@ -585,8 +623,8 @@ const Report = () => {
                         </div>
                     </div>
                 </div> */}
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
