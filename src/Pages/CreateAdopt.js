@@ -1,14 +1,88 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import Dropdown from "../Components/Dropdown/Dropdown";
 import Footer from "../Components/Footer/Footer";
+import ImageUploadButton from "../Components/ImageUploadButton/ImageUploadButton";
 import Navibar from "../Components/NavigationBar/Navibar";
 import './CreateAdopt.css';
 
 const CreateAdopt = () => {
+    const [animalCategory, setAnimalCategory] = useState("");
+    const animalCategoryData = {
+        actionType: "",
+        placeholder: {
+            val: true,
+            text: "Pilih kategori hewan"
+        },
+        data: [
+            {
+                nama: "Kucing",
+                id: "cats"
+            },
+            {
+                nama: "Anjing",
+                id: "dogs"
+            },
+            {
+                nama: "Ikan",
+                id: "fish"
+            },
+            {
+                nama: "Burung",
+                id: "birds"
+            },
+            {
+                nama: "Bunglon",
+                id: "chameleons"
+            },
+            {
+                nama: "Tupai",
+                id: "squirrels"
+            },
+            {
+                nama: "Lainnya",
+                id: "others"
+            },
+        ]
+    };
+
+    const [gender, setGender] = useState("");
+    const genderData = {
+        actionType: "",
+        placeholder: {
+            val: true,
+            text: "Pilih jenis kelamin"
+        },
+        data: [
+            {
+                nama: "Jantan",
+                id: "male"
+            },
+            {
+                nama: "Betina",
+                id: "female"
+            },
+        ]
+    };
+
+    const selectedStyle = {
+        fontWeight: "--fontWeight: 400",
+        fontSize: "--fontSize: 17px",
+        fontColor: "--fontColor: #747474"
+    }
+
+    const [imageUpload, setImageUpload] = useState(null);
+
     const [checked, setChecked] = useState(false);
     const finishAdoptHandler = () => {
         alert('Formulir Adopsi Terkirim!');
-    }
+    };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="CreateAdopt">
             <Navibar />
@@ -23,7 +97,7 @@ const CreateAdopt = () => {
                         </div>
                         <div className="AnimalInputForm">
                             <span className="InputFormLabel">Kategori hewan</span>
-                            <input type="text" className="AdoptFormInput" placeholder="Masukkan nama"></input>
+                            <Dropdown dropdownContent={animalCategoryData} onChange={setAnimalCategory} buttonStyle={{ width: "354px" }} contentStyle={{ width: "354px" }}  />
                         </div>
                         <div className="AnimalInputForm">
                             <span className="InputFormLabel">Ras</span>
@@ -35,11 +109,11 @@ const CreateAdopt = () => {
                         </div>
                         <div className="AnimalInputForm">
                             <span className="InputFormLabel">Jenis kelamin</span>
-                            <input type="text" className="AdoptFormInput" placeholder="Masukkan nama"></input>
+                            <Dropdown dropdownContent={genderData} onChange={setAnimalCategory} buttonStyle={{ width: "354px" }} contentStyle={{ width: "354px" }} />
                         </div>
                         <div className="AnimalInputForm">
                             <span className="InputFormLabel">Foto</span>
-                            <input type="text" className="AdoptFormInput" placeholder="Masukkan nama"></input>
+                            <ImageUploadButton onChange={setImageUpload} file={imageUpload} className="AdoptFormInput"/>
                         </div>
                         <div className="AnimalInputForm">
                             <span className="InputFormLabel">Keterangan lain</span>

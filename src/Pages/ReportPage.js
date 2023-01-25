@@ -22,6 +22,7 @@ import Footer from "../Components/Footer/Footer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../Components/Loading";
+import CheckIcon from "../Components/Icons/CheckCircleSolid";
 
 
 const ReportPage = () => {
@@ -45,6 +46,7 @@ const ReportPage = () => {
     //select type of report
     const [reportType, setReportType] = useState("invasionReport");
     const reportTypesData = {
+        actionType: "",
         placeholder: {
             val: false,
             text: ""
@@ -60,6 +62,12 @@ const ReportPage = () => {
             }
         ]
     };
+
+    const selectedStyle = [
+        "--fontWeight:600",
+        // fontSize: "--fontSize: 20px",
+         "--fontColor: #1E1E1E"
+    ]
 
     //DANGEROUS ANIMAL (DA) REPORT
     //examples of dangerous animals
@@ -184,8 +192,6 @@ const ReportPage = () => {
         dispatch(clearDAState());
         dispatch(clearARState());
         setImageUpload(null);
-        // document.getElementsByClassName("number-input").value = "";
-        // document.getElementByClassName("number-input").setAttribute('value', "")
         if (reportType === "invasionReport") {
             document.getElementById("option-1").checked = true;
         }
@@ -319,7 +325,7 @@ const ReportPage = () => {
 
     useEffect(() => {
         getKota();
-    });
+    }, [selectedIdProv]);
 
 
     const arReportSubmitHandler = async () => {
@@ -328,6 +334,14 @@ const ReportPage = () => {
         });
         setLoading(true)
     };
+
+    useEffect(() => {
+        window.history.scrollRestoration = 'manual'
+    }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [reportType]);
 
     return (
         <div className="report-page">
@@ -342,7 +356,7 @@ const ReportPage = () => {
 
                 <div className="report-type-section">
                     <div className="report-form-card">
-                        <Dropdown dropdownContent={reportTypesData} onChange={setReportType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
+                        <Dropdown dropdownContent={reportTypesData} onChange={setReportType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} selectedStyle={selectedStyle}/>
                         {(reportType === "invasionReport") ? (
                             <div className="number-input-group">
                                 <input type="text" placeholder="Masukkan nomor telepon" value={daReport.phoneNumber} className="number-input" onChange={numberInputHandler}></input>
@@ -352,7 +366,7 @@ const ReportPage = () => {
                                 </div> */}
                             </div>
                         ) : (
-                            <Dropdown dropdownContent={animalRescueData} onChange={setAnimalType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} className="dropdown-btn" />
+                            <Dropdown dropdownContent={animalRescueData} onChange={setAnimalType} buttonStyle={{ width: "392px" }} contentStyle={{ width: "392px" }} selectedStyle={selectedStyle}/>
                         )}
 
                         {(reportType === "invasionReport") ?
@@ -363,8 +377,18 @@ const ReportPage = () => {
                         <button className="image-upload-button" style={{ borderColor: imageUpload ? "#2E9C33" : "#97CD99" }}
                             onClick={() => { document.querySelector(".input-field").click() }} >
                             <input type="file" onChange={(e) => { setImageUpload(e.target.files[0]) }} className="input-field" hidden />
-                            <UploadIcon className="img-up-icon" />
-                            <p>Unggah foto</p>
+                            {imageUpload ?
+                                (
+                                    <>
+                                        <CheckIcon className="img-up-icon" />
+                                        <p>Foto dipilih</p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <UploadIcon className="img-up-icon" />
+                                        <p>Unggah foto</p>
+                                    </>
+                                )}
                         </button>
 
                         {(reportType === "invasionReport") ?
@@ -432,13 +456,13 @@ const ReportPage = () => {
                                 <input type="text" name={SET_AR_PHONE_NUMBER} value={arReport.phoneNumber} onChange={handleFieldChange} className="reporter-input" placeholder="Nomor telepon" />
                                 <div className="address-group">
                                     <input type="text" name={SET_AR_ADDRESS} value={arReport.address} onChange={handleFieldChange} className="reporter-address" placeholder="Alamat"></input>
-                                    <button className="map-button">
+                                    {/* <button className="map-button">
                                         <MapIcon />
-                                    </button>
+                                    </button> */}
                                 </div>
                                 <div className="province-city-group">
-                                    <Dropdown dropdownContent={provinceList} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" />
-                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} className="dropdown-btn" disabled={selectedIdProv} />
+                                    <Dropdown dropdownContent={provinceList} onChange={setSelectedIdProv} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} selectedStyle={selectedStyle}/>
+                                    <Dropdown dropdownContent={cityList} onChange={setSelectedIdKota} buttonStyle={{ width: "302px" }} contentStyle={{ wwidth: "auto", height: "320px", overflowY: "scroll", bottom: "60px" }} selectedStyle={selectedStyle} disabled={selectedIdProv} />
                                 </div>
                             </div>
                             <div className="ar-buttons-group">
