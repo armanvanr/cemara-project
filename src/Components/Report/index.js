@@ -163,12 +163,14 @@ const Report = () => {
             })
         })
     }
-
+    console.log('list report',listReport)
     useEffect(() => {
         if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested && !infiniteStatus) {
+            console.log('first')
             fetchMoreData("first")
         }
         if (listReport && !listReportAccepted && !listReportRequested) {
+            console.log('update')
             filter()
         }
     }, [listReport])
