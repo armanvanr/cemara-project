@@ -164,6 +164,7 @@ const Report = () => {
         })
     }
     console.log('list report',listReport)
+    console.log(currentIndex, listReportAccepted, listReportRequested, infiniteStatus)
     useEffect(() => {
         if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested && !infiniteStatus) {
             console.log('first')
