@@ -188,7 +188,7 @@ const Report = () => {
             console.log('update')
             filter()
         }
-    }, [listReport])
+    }, [listReport, listReportAccepted, listReportRequested])
 
     const fetchMoreData = (type) => {
         setTimeout(() => {
