@@ -163,17 +163,8 @@ const Report = () => {
             })
         })
     }
-
-    useEffect(() => {
-        if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested && !infiniteStatus) {
-            fetchMoreData("first")
-        }
-        if (listReport && !listReportAccepted && !listReportRequested) {
-            filter()
-        }
-    }, [listReport])
-
-
+    
+    
     const [infiniteData, setInfiniteData] = useState()
     const [infiniteDataAccepted, setInfiniteDataAccepted] = useState()
     const [infiniteDataRequested, setInfiniteDataRequested] = useState()
@@ -185,7 +176,19 @@ const Report = () => {
     const [infiniteStatus, setInfiniteStatus] = useState(false)
     const [hasMoreAccepted, setHasMoreAccepted] = useState(true)
     const [hasMoreRequested, setHasMoreRequested] = useState(true)
-
+    
+    console.log('list report',listReport)
+    console.log(currentIndex, listReportAccepted, listReportRequested, infiniteStatus)
+    useEffect(() => {
+        if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested && !infiniteStatus) {
+            console.log('first')
+            fetchMoreData("first")
+        }
+        if (listReport && !listReportAccepted && !listReportRequested) {
+            console.log('update')
+            filter()
+        }
+    }, [listReport, listReportAccepted, listReportRequested])
 
     const fetchMoreData = (type) => {
         setTimeout(() => {
