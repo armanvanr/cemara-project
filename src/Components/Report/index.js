@@ -163,6 +163,20 @@ const Report = () => {
             })
         })
     }
+    
+    
+    const [infiniteData, setInfiniteData] = useState()
+    const [infiniteDataAccepted, setInfiniteDataAccepted] = useState()
+    const [infiniteDataRequested, setInfiniteDataRequested] = useState()
+    const [currentIndex, setCurrentIndex] = useState(4)
+    const [currentIndexAccepted, setCurrentIndexAccepted] = useState(4)
+    const [currentIndexRequested, setCurrentIndexRequested] = useState(4)
+    const [listReportAccepted, setListReportAccepted] = useState()
+    const [listReportRequested, setListReportRequested] = useState()
+    const [infiniteStatus, setInfiniteStatus] = useState(false)
+    const [hasMoreAccepted, setHasMoreAccepted] = useState(true)
+    const [hasMoreRequested, setHasMoreRequested] = useState(true)
+    
     console.log('list report',listReport)
     console.log(currentIndex, listReportAccepted, listReportRequested, infiniteStatus)
     useEffect(() => {
@@ -175,20 +189,6 @@ const Report = () => {
             filter()
         }
     }, [listReport])
-
-
-    const [infiniteData, setInfiniteData] = useState()
-    const [infiniteDataAccepted, setInfiniteDataAccepted] = useState()
-    const [infiniteDataRequested, setInfiniteDataRequested] = useState()
-    const [currentIndex, setCurrentIndex] = useState(4)
-    const [currentIndexAccepted, setCurrentIndexAccepted] = useState(4)
-    const [currentIndexRequested, setCurrentIndexRequested] = useState(4)
-    const [listReportAccepted, setListReportAccepted] = useState()
-    const [listReportRequested, setListReportRequested] = useState()
-    const [infiniteStatus, setInfiniteStatus] = useState(false)
-    const [hasMoreAccepted, setHasMoreAccepted] = useState(true)
-    const [hasMoreRequested, setHasMoreRequested] = useState(true)
-
 
     const fetchMoreData = (type) => {
         setTimeout(() => {
