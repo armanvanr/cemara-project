@@ -27,15 +27,16 @@
     border-radius: 12px;
 }
 
-.selected-item {
-
-     
-     
+.dropdown-btn > .selected-item {
     font-weight: 600;
     font-size: 20px;
-    line-height: 28px;
-
     color: #1E1E1E;
+     
+     
+    /* font-weight: var(--fontWeight); */
+    /* font-size: var(--fontSize); */
+    /* color: var(--fontColor); */
+    line-height: 28px;
 }
 
 .dropdown-arrow {
