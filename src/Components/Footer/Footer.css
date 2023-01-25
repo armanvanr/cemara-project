@@ -6,7 +6,8 @@
     padding: 12px 40px;
     gap: 322px;
 
-    width: 1280px;
+    /* width: 1280px; */
+    width: 96%;
     height: 82px;
 
     background: #FFFFFF;
@@ -23,7 +24,6 @@
     align-items: center;
     padding: 0px;
     gap: 24px;
-
     width: fit-content;
     height: 58px;
     flex: none;
@@ -40,19 +40,25 @@
     gap: 8px;
 }
 
+@media only screen and (max-width: 480px) {
+    .Footer {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+    }
+    .Footer-container {
+      align-items: flex-start;
+    }
+  }
+  
 .Footer-address {
-     
-     
     font-weight: 600;
     font-size: 13px;
     line-height: 17px;
-
     color: #1E1E1E;
 }
 
 .Footer-status {
-     
-     
     font-weight: 400;
     font-size: 13px;
     line-height: 17px;
@@ -67,11 +73,10 @@
 }
 
 .Footer-bar {
-     
-     
     font-weight: 500;
     font-size: 13px;
     line-height: 17px;
     padding-right: 8px;
     color: #747474;
 }
+
