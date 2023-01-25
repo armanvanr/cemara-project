@@ -95,7 +95,7 @@ const DonatePage = () => {
             <div className="DonateMain">
                 <div className="DonateFormCard">
                     
-                    <Dropdown dropdownContent={donateTypesData} onChange={setDonationType} buttonStyle={{ width: "440px" }} contentStyle={{ width: "440px" }} className="dropdown-btn"/>
+                    <Dropdown dropdownContent={donateTypesData} onChange={setDonationType} className="dropdown-btn"/>
                     <input className="DonorInput" type="text" placeholder="Nama lengkap"></input>
                     <input className="DonorInput" type="text" placeholder="Email"></input>
                     <input className="DonorInput" type="text" placeholder="Alamat"></input>
