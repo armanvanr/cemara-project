@@ -27,11 +27,11 @@ const Navibar = () => {
                     <NavLink className="navbar-item" to="/about">
                         <span>Tentang Kami</span>
                     </NavLink>
-                    <NavLink className="navbar-item">
-                        <span to="/action">Aksi</span>
+                    <NavLink className="navbar-item" to="/action">
+                        <span>Aksi</span>
                     </NavLink>
-                    <NavLink className="navbar-item">
-                        <span to="/articles">Artikel</span>
+                    <NavLink className="navbar-item" to="/articles">
+                        <span>Artikel</span>
                     </NavLink>
                 </div>
                 {/* <button className="login-button">

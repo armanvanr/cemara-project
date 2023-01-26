@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import AdoptPage from './Pages/AdoptPage';
 import AboutUsPage from './Pages/AboutUsPage';
+import ArtikelPage from './Pages/ArtikelPage';
 import DashboardReport from './Pages/Dashboard/ReportPage';
 import DashboardCampaign from './Pages/Dashboard/CampaignPage';
 import DashboardAdopt from './Pages/Dashboard/AdoptPage';
@@ -36,6 +37,7 @@ function App() {
         <Route path="/donate" element={<DonatePage />} />
         <Route path="/adopt" element={<AdoptPage />} />
         <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/articles" element={<ArtikelPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createadopt" element={<CreateAdopt />} />
