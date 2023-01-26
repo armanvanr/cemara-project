@@ -117,7 +117,7 @@
   gap: 24px;
 
   width: 259px;
-  height: 460px;
+  /* height: 460px; */
 }
 
 .menu-item {
@@ -199,7 +199,7 @@
 }
 
 .line {
-  width: 118%;
+  width: 259px;
   height: 4px;
 
   background: #97cd99;
