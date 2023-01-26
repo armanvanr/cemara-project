@@ -1,0 +1,145 @@
+.article {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+left: 0px;
+right: 0px;
+top: 0px;
+}
+
+.article-hero {
+width: 1280px;
+height: 639px;
+flex: none;
+flex-grow: 0;
+}
+
+.article-hero-bg {
+padding: 12px 40px;
+position: absolute;
+width: 1280px;
+height: 637px;
+left: 0px;
+background-image: url("../Assets/Images/bg-about.jpg");
+background-size: cover;
+}
+
+.article-hero-title {
+position: absolute;
+width: 225px;
+height: 56px;
+left: 563px;
+top: 340px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 800;
+font-size: 64px;
+line-height: 56px;
+color: #FFFFFF;
+}
+
+.article-hero-button {
+display: flex;
+padding: 8px 24px;
+gap: 16px;
+
+position: absolute;
+left: 585px;
+top: 474px;
+
+background: #2E9C33;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+border-radius: 16px;
+}
+
+.article-hero-button-text {
+ 
+font-weight: 500;
+font-size: 17px;
+line-height: 23px;
+color: #FFFFFF;
+}
+
+.article-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 100px 100px 56px;
+gap: 50px;
+}
+
+.article-content {
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 48px;
+}
+
+.article-content-img {
+width: 420px;
+height: 245px;
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.article-content-card {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 24px;
+
+width: 612px;
+height: 198px;
+}
+
+.article-content-card-title {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 40px;
+line-height: 48px;
+
+text-transform: capitalize;
+color: #1E1E1E;
+}
+
+.article-content-card-isi {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 26px;
+color: #1E1E1E;
+}
+
+.article-button-more {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 24px;
+gap: 8px;
+
+width: 191px;
+height: 42px;
+
+border-radius: 14px;
+}
+
+.article-button-more-text {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 23px;
+color: #2E9C33;
+}
