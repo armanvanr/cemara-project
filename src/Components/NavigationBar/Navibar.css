@@ -65,6 +65,7 @@
     text-align: center;
     color: #1E1E1E;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .navbar-item :hover {
