@@ -76,7 +76,7 @@ const CreateAdopt = () => {
 
     const [checked, setChecked] = useState(false);
     const finishAdoptHandler = () => {
-        alert('Formulir Adopsi Terkirim!');
+        // alert('Formulir Adopsi Terkirim!');
     };
 
     useEffect(() => {
