@@ -46,11 +46,11 @@ const Footer = () => {
                     <NavLink to="/about" style={{ textDecoration: "none" }}>
                         <span className="Footer-bar">Tentang Kami  &nbsp;&bull;</span>
                     </NavLink>
-                    <NavLink style={{ textDecoration: "none" }}>
-                        <span to="/action" className="Footer-bar">Aksi  &nbsp;&bull;</span>
+                    <NavLink to="/action" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Aksi  &nbsp;&bull;</span>
                     </NavLink>
-                    <NavLink style={{ textDecoration: "none" }}>
-                        <span to="/articles" className="Footer-bar">Artikel  &nbsp;&bull;</span>
+                    <NavLink to="/articles" style={{ textDecoration: "none" }}>
+                        <span className="Footer-bar">Artikel  &nbsp;&bull;</span>
                     </NavLink>
                     <div style={{ textDecoration: "none" }} onClick={comingSoon}>
                         <span to="/termsconditions" className="Footer-bar">Kebijakan dan Privasi  &nbsp;&bull;</span>
