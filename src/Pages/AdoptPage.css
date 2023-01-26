@@ -124,7 +124,7 @@
     width: 100px;
     height: 23px;
 
-     
+
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
@@ -188,6 +188,11 @@
     flex: none;
     order: 2;
     flex-grow: 0;
+    transition: all 0.2s ease-in-out 0ms;
+}
+
+.topnav-button:active {
+    transform: scale(0.95);
 }
 
 .topnav-button-icon {
@@ -204,8 +209,8 @@
     width: 108px;
     height: 23px;
 
-     
-     
+
+
     font-weight: 500;
     font-size: 17px;
     line-height: 23px;
@@ -278,6 +283,7 @@
     flex-grow: 0;
     flex-wrap: wrap;
 }
+
 /* 
 .AdoptBody-row {
     display: flex;
@@ -390,8 +396,8 @@
     width: 213.33px;
     height: 26px;
 
-     
-     
+
+
     font-weight: 600;
     font-size: 18px;
     line-height: 26px;
@@ -433,8 +439,8 @@
     width: 213.33px;
     height: 30px;
 
-     
-     
+
+
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;

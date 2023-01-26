@@ -172,4 +172,9 @@
     font-size: 17px;
     line-height: 23px;
     color: #FFFFFF;
+    transition: all 0.2s ease-in-out 0ms;
+}
+
+.FinishAdopt:active {
+    transform: scale(0.95);
 }
