@@ -5,72 +5,19 @@ import pic from '../../Assets/Images/pic-dashboard.png';
 import dashboardReportAPI from "../../Service/dashboardReport";
 import Loading from "../Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Report = () => {
-    const [listReport, setListReport] = useState(
-        // [
-        //     {
-        //         id: 1,
-        //         status: "accepted",
-        //         reportType: "DA",
-        //         animalCategory: "Hewan Berbisa",
-        //         address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-        //         reporterPhone: "081234567812",
-        //         imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
-        //         createdAt: "2023-01-03"
-        //     },
-        //     {
-        //         id: 2,
-        //         status: "accepted",
-        //         reportType: "AR",
-        //         animalCategory: "Hewan Liar",
-        //         information: "Trenggiling masuk sumur",
-        //         address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-        //         imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
-        //         createdAt: "2023-01-03"
-        //     },
-        //     {
-        //         id: 3,
-        //         status: "requested",
-        //         reportType: "DA",
-        //         animalCategory: "Hewan Berbisa",
-        //         address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-        //         reporterPhone: "081234567812",
-        //         imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
-        //         createdAt: "2023-01-03"
-        //     },
-        //     {
-        //         id: 4,
-        //         status: "requested",
-        //         reportType: "AR",
-        //         animalCategory: "Hewan Liar",
-        //         information: "Trenggiling masuk sumur",
-        //         address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-        //         imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
-        //         createdAt: "2023-01-03"
-        //     },
-        //     {
-        //         id: 5,
-        //         status: "accepted",
-        //         reportType: "AR",
-        //         animalCategory: "Hewan Liar",
-        //         information: "Trenggiling masuk sumur",
-        //         address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-        //         imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
-        //         createdAt: "2023-01-03"
-        //     },
-        //     {
-        //         id: 6,
-        //         status: "accepted",
-        //         reportType: "AR",
-        //         animalCategory: "Hewan Liar",
-        //         information: "Trenggiling masuk sumur",
-        //         address: "Jl. Lato-lato, Surabaya, Jawa Timur",
-        //         imageUrl: "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cow-png-art-png-image_5560146.png",
-        //         createdAt: "2023-01-03"
-        //     },
-        // ]
-    )
+    const [listReport, setListReport] = useState()
+
+    const notify = (message, type) => {
+        if (type === "success") {
+            toast.success(message)
+        } else if (type === "error") {
+            toast.error(message)
+        }
+        console.log(message, type);
+    };
 
     const getReport = async () => {
         const report = await dashboardReportAPI.getReport()
@@ -93,9 +40,15 @@ const Report = () => {
     }, [])
 
     const handleStatus = (id, type) => {
-        console.log(id)
-        updateStatusReport(id, type)
-        // alert(status)
+        // setLoading(true)
+        updateStatusReport(id, type).then(res => {
+            notify("Status berhasil diupdate", "success")
+        }
+        ).catch(error => {
+            notify("Status gagal diupdate", "error")
+        });
+        setInfiniteStatus(false)
+        setFirstStatus(true)
     }
     const handleItemClick = (id, type, status) => {
         // console.log(type);
@@ -151,20 +104,26 @@ const Report = () => {
         setListReportAccepted((prev) => {
             return listReport.filter((item) => {
                 if (item.status === "accepted") {
-                    return item
+                    return { ...item, loading: false }
                 }
             })
         })
         setListReportRequested((prev) => {
             return listReport.filter((item) => {
                 if (item.status === "requested") {
-                    return item
+                    return { ...item, loading: false }
                 }
             })
         })
+        setFirstStatus(false)
+        setCurrentIndex(4)
+        setCurrentIndexAccepted(4)
+        setCurrentIndexRequested(4)
+        setHasMoreAccepted(true)
+        setHasMoreRequested(true)
     }
-    
-    
+
+
     const [infiniteData, setInfiniteData] = useState()
     const [infiniteDataAccepted, setInfiniteDataAccepted] = useState()
     const [infiniteDataRequested, setInfiniteDataRequested] = useState()
@@ -174,20 +133,26 @@ const Report = () => {
     const [listReportAccepted, setListReportAccepted] = useState()
     const [listReportRequested, setListReportRequested] = useState()
     const [infiniteStatus, setInfiniteStatus] = useState(false)
+    const [firstStatus, setFirstStatus] = useState(true)
     const [hasMoreAccepted, setHasMoreAccepted] = useState(true)
     const [hasMoreRequested, setHasMoreRequested] = useState(true)
-    
-    console.log('list report',listReport)
-    console.log(currentIndex, listReportAccepted, listReportRequested, infiniteStatus)
+    const [loading, setLoading] = useState(false)
+
+    // console.log('list report', listReport)
+    // console.log(currentIndex, listReportAccepted, listReportRequested, infiniteStatus)
     useEffect(() => {
         if (listReport && currentIndex === 4 && listReportAccepted && listReportRequested && !infiniteStatus) {
-            console.log('first')
+            // console.log('first')
             fetchMoreData("first")
         }
-        if (listReport && !listReportAccepted && !listReportRequested) {
-            console.log('update')
+        if (listReport && firstStatus) {
+            // console.log('update')
             filter()
         }
+        // if (listReport && !listReportAccepted && !listReportRequested) {
+        //     console.log('update')
+        //     filter()
+        // }
     }, [listReport, listReportAccepted, listReportRequested])
 
     const fetchMoreData = (type) => {
@@ -269,6 +234,7 @@ const Report = () => {
 
     return (
         <div className="list-container">
+            <ToastContainer />
             <div className="list-process-container">
                 <span className="text-title-list">Diproses</span>
                 <div className="list-item-container">
@@ -367,6 +333,7 @@ const Report = () => {
                                                                 </div>
                                                                 <div className="card-dashboard-action-button finish" onClick={() => handleStatus(report.id, report.reportType)}>
                                                                     <div className="card-dashboard-action-button-text">
+                                                                        {/* {loading ? "Loading..." : "Selesai"} */}
                                                                         Selesai
                                                                     </div>
                                                                 </div>
@@ -505,6 +472,7 @@ const Report = () => {
                                                                 </div>
                                                                 <div className="card-dashboard-action-button accept" onClick={() => handleStatus(report.id, report.reportType)}>
                                                                     <div className="card-dashboard-action-button-text">
+                                                                        {/* {loading ? "Loading..." : "Terima"} */}
                                                                         Terima
                                                                     </div>
                                                                 </div>
