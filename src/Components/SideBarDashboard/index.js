@@ -9,6 +9,8 @@ import PencilIcon from "../Icons/PencilAltSolid";
 import BellIcon from "../Icons/BellSolid";
 import ArrowDownIcon from "../Icons/ArrowDownSolid";
 import { useLocation, useNavigate } from "react-router-dom";
+import LogoutSolid from "../Icons/LogoutSolid";
+import authService from "../../Service/auth";
 
 const SideBarDashboard = () => {
     const [menus, setMenus] = useState([
@@ -35,6 +37,12 @@ const SideBarDashboard = () => {
             icon: <CashIcon />,
             status: false,
             url: "/dashboard/donate"
+        },
+        {
+            menu: "Logout",
+            icon: <LogoutSolid />,
+            status: false,
+            url: "/dashboard/logout"
         },
         {
             menu: "Notifikasi",
@@ -67,14 +75,19 @@ const SideBarDashboard = () => {
         setMenus(newMenu)
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         currentPage()
-    },[])
+    }, [])
 
     const { user: currentUser } = useSelector(state => state.auth);
 
     const handleClick = (url) => {
-        navigate(url)
+        if (url === '/dashboard/logout') {
+            authService.logout()
+            navigate(0)
+        } else {
+            navigate(url)
+        }
     }
 
     return (
@@ -102,7 +115,7 @@ const SideBarDashboard = () => {
                         menus.map((menu, index) => {
                             return (
                                 <>
-                                    {index === 4 ? <div key={index} className="line"></div> : null}
+                                    {index === 5 ? <div key={index} className="line"></div> : null}
                                     <div key={menu.menu} className={menu.status ? "menu-item target" : "menu-item"} onClick={() => handleClick(menu.url)}>
                                         <div className="menu-icon">
                                             {menu.icon}
