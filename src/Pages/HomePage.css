@@ -126,60 +126,22 @@
     flex-grow: 1;
 }
 
-#ReportRibbon {
+.Ribbon {
     transition-duration: 0.5s;
-    background-color: #E92F2F;
+    background-color: var(--color);
 }
 
-#ReportRibbon:hover {
+.Ribbon:hover {
     background-color: #FFFFFF;
-    border: 2px 2px 2px 0px solid #E92F2F;
-    box-shadow: 0px 0px 8px 2px #E92F2F;
-    -webkit-box-shadow: 0px 0px 8px 2px #E92F2F;
-    -moz-box-shadow: 0px 0px 8px 2px #E92F2F;
+    border: 2px 2px 2px 0px solid var(--color);
+    box-shadow: 0px 0px 8px 2px var(--color);
+    -webkit-box-shadow: 0px 0px 8px 2px var(--color);
+    -moz-box-shadow: 0px 0px 8px 2px var(--color);
     transition-duration: 0.5s;
 }
 
-#ReportRibbon:hover>span {
-    color: #E92F2F;
-    transition-duration: 0.5s;
-}
-
-#DonateRibbon {
-    transition-duration: 0.5s;
-    background-color: #2E9C33;
-}
-
-#DonateRibbon:hover {
-    background-color: #FFFFFF;
-    border: 2px 2px 2px 0px solid #2E9C33;
-    box-shadow: 0px 0px 8px 2px #2E9C33;
-    -webkit-box-shadow: 0px 0px 8px 2px #2E9C33;
-    -moz-box-shadow: 0px 0px 8px 2px #2E9C33;
-    transition-duration: 0.4s;
-}
-
-#DonateRibbon:hover>span {
-    color: #2E9C33;
-    transition-duration: 0.5s;
-}
-
-#AdoptRibbon {
-    transition-duration: 0.5s;
-    background-color: #DCB736;
-}
-
-#AdoptRibbon:hover {
-    background-color: #FFFFFF;
-    border: 2px 2px 2px 0px solid #DCB736;
-    box-shadow: 0px 0px 8px 2px #DCB736;
-    -webkit-box-shadow: 0px 0px 8px 2px #DCB736;
-    -moz-box-shadow: 0px 0px 8px 2px #DCB736;
-    transition-duration: 0.4s;
-}
-
-#AdoptRibbon:hover>span {
-    color: #DCB736;
+.Ribbon:hover>span {
+    color: var(--color);
     transition-duration: 0.5s;
 }
 

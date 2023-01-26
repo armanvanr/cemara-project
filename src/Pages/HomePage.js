@@ -65,6 +65,7 @@ const HomePage = () => {
         }
     };
 
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -72,12 +73,13 @@ const HomePage = () => {
     return (
         <div className="HomePage">
             <Navibar />
+            
             <div className="HomeMain">
                 <div className="HomeLeftSide">
                     <div className="LaporSection">
                         <NavLink className="RibbonGroup" to="/report" style={{ textDecoration: "none" }}>
                             <img src={reportImg} alt="" />
-                            <div className="Ribbon" id="ReportRibbon">
+                            <div className="Ribbon" style={{ "--color": "#E92F2F" }}>
                                 <span className="RibbonName">Lapor!</span>
                                 <span className="RibbonDesc">Laporkan hewan berbahaya</span>
                             </div>
@@ -86,7 +88,7 @@ const HomePage = () => {
                     <div className="DonasiSection">
                         <NavLink className="RibbonGroup" to="/donate" style={{ textDecoration: "none" }}>
                             <img src={donateImg} alt="" />
-                            <div className="Ribbon" id="DonateRibbon">
+                            <div className="Ribbon" style={{ "--color": "#2E9C33" }}>
                                 <span className="RibbonName">Donasi</span>
                                 <span className="RibbonDesc">Bantuanmu sangat berarti</span>
                             </div>
@@ -95,7 +97,7 @@ const HomePage = () => {
                     <div className="AdopsiSection">
                         <NavLink className="RibbonGroup" to="/adopt" style={{ textDecoration: "none" }}>
                             <img src={adoptImg} alt="" />
-                            <div className="Ribbon" id="AdoptRibbon">
+                            <div className="Ribbon" style={{ "--color": "#DCB736" }}>
                                 <span className="RibbonName">Adopsi</span>
                                 <span className="RibbonDesc">Pelihara mereka, sayangi mereka</span>
                             </div>
