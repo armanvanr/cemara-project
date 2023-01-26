@@ -2,8 +2,8 @@ import React from "react";
 import './ActionPage.css';
 import Navibar from "../Components/NavigationBar/Navibar";
 import Footer from "../Components/Footer/Footer";
-import pic1 from '../Assets/Images/pic-dashboard.png';
-import pic2 from '../Assets/Images/ReportImage.png';
+import pic1 from '../Assets/Images/trappedcat.jpg';
+import pic2 from '../Assets/Images/kobra.jpg';
 import { Link, NavLink } from "react-router-dom";
 
 const ActionPage = () => {
@@ -23,10 +23,10 @@ const ActionPage = () => {
                                     <div className="ap-content-card-title">
                                         <div className="ap-content-title">Hewan butuh pertolongan</div>
                                         <div className="ap-content-button" style={{ background: "#649EF5" }}>
-                                            <span className="app-content-button-text">Hewan Ternak</span>
+                                            <span className="app-content-button-text">Hewan piaraan</span>
                                         </div>
                                     </div>
-                                    <div className="ap-content-middle-text">Anjing - masuk sumur</div>
+                                    <div className="ap-content-middle-text">Kucing Terjebak</div>
                                 </div>
                                 <div className="action-content-down">
                                     Jl. Lato-lato 46, Surabaya, Jawa Timur &bull; <div style={{ color: "#DCB736" }}>10.4 km</div>
@@ -49,10 +49,10 @@ const ActionPage = () => {
                                             <span className="app-content-button-text">Hewan Berbisa</span>
                                         </div>
                                     </div>
-                                    <div className="ap-content-middle-text">Anjing - masuk sumur</div>
+                                    <div className="ap-content-middle-text">Ular kobra</div>
                                 </div>
                                 <div className="action-content-down">
-                                    Jl. Lato-lato 46, Surabaya, Jawa Timur &bull; <div style={{ color: "#2E9C33" }}>4.6 km</div>
+                                    Jl. Ngagel 46, Surabaya, Jawa Timur &bull; <div style={{ color: "#2E9C33" }}>4.6 km</div>
                                 </div>
                             </div>
                         </div>

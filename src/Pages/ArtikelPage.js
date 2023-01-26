@@ -2,8 +2,11 @@ import React from "react";
 import './ArtikelPage.css';
 import Navibar from "../Components/NavigationBar/Navibar";
 import Footer from "../Components/Footer/Footer";
-import image1 from '../Assets/Images/image-1.jpg';
-import { Link, NavLink } from "react-router-dom";
+import image1 from '../Assets/Images/femalepuppy.png';
+import image2 from '../Assets/Images/cateyes.png';
+import image3 from '../Assets/Images/kitten.png';
+import image4 from '../Assets/Images/tipscatdopt.png';
+import { NavLink } from "react-router-dom";
 
 const ArtikelPage = () => {
 
@@ -31,7 +34,7 @@ const ArtikelPage = () => {
                     </div>
                 </div>
                 <div className="article-content">
-                    <img src={image1} alt="" className="article-content-img" />
+                    <img src={image2} alt="" className="article-content-img" />
                     <div className="article-content-card">
                         <div className="article-content-card-title">Mata Kucing Berair: Penyebab & Cara Mengatasinya</div>
                         <div className="article-content-card-isi">
@@ -40,7 +43,7 @@ const ArtikelPage = () => {
                     </div>
                 </div>
                 <div className="article-content">
-                    <img src={image1} alt="" className="article-content-img" />
+                    <img src={image3} alt="" className="article-content-img" />
                     <div className="article-content-card">
                         <div className="article-content-card-title">Cara Merawat Anakan Kucing yang Baru Lahir</div>
                         <div className="article-content-card-isi">
@@ -49,7 +52,7 @@ const ArtikelPage = () => {
                     </div>
                 </div>
                 <div className="article-content">
-                    <img src={image1} alt="" className="article-content-img" />
+                    <img src={image4} alt="" className="article-content-img" />
                     <div className="article-content-card">
                         <div className="article-content-card-title">Tips & Cara Adopsi Kucing</div>
                         <div className="article-content-card-isi">
