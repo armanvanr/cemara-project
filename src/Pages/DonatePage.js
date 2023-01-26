@@ -74,7 +74,7 @@ const DonatePage = () => {
 
     const [imageUpload, setImageUpload] = useState(null);
     const donateSubmitHandler = () => {
-        alert('Donasi Diterima!');
+        // alert('Donasi Diterima!');
     };
 
     useEffect(() => {

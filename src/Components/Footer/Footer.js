@@ -1,14 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import useGeoLocation from "../../Hooks/useGeoLocation";
-import HelpIcon from "../Icons/HelpSolid";
 import './Footer.css';
-
 
 
 const Footer = () => {
     const { address } = useSelector(state => state.daReport.location);
+    const comingSoon = () => {
+        toast.info('Coming soon!', {
+            position: "top-center",
+            autoClose: 200,
+            hideProgressBar: true,
+            closeOnClick: false,
+            draggable: true,
+            theme: "light",
+        });
+    };
 
     return (
         <div className="Footer">
@@ -28,12 +37,12 @@ const Footer = () => {
                     <NavLink to="/adopt" style={{ textDecoration: "none" }}>
                         <span className="Footer-bar">Adopsi  &nbsp;&bull;</span>
                     </NavLink>
-                    <NavLink style={{ textDecoration: "none" }}>
-                        <span to="/donationList" className="Footer-bar">Daftar Donasi  &nbsp;&bull;</span>
-                    </NavLink>
-                    <NavLink style={{ textDecoration: "none" }}>
-                        <span to="/reportList" className="Footer-bar">Laporan Donasi  &nbsp;&bull;</span>
-                    </NavLink>
+                    <div style={{ textDecoration: "none" }} onClick={comingSoon}>
+                        <span to="/donationList" className="Footer-bar">Daftar Donasi &nbsp;&bull;</span>
+                    </div>
+                    <div style={{ textDecoration: "none" }} onClick={comingSoon}>
+                        <span to="/reportList" className="Footer-bar">Laporan &nbsp;&bull;</span>
+                    </div>
                     <NavLink to="/about" style={{ textDecoration: "none" }}>
                         <span className="Footer-bar">Tentang Kami  &nbsp;&bull;</span>
                     </NavLink>
@@ -43,15 +52,15 @@ const Footer = () => {
                     <NavLink style={{ textDecoration: "none" }}>
                         <span to="/articles" className="Footer-bar">Artikel  &nbsp;&bull;</span>
                     </NavLink>
-                    <NavLink style={{ textDecoration: "none" }}>
+                    <div style={{ textDecoration: "none" }} onClick={comingSoon}>
                         <span to="/termsconditions" className="Footer-bar">Kebijakan dan Privasi  &nbsp;&bull;</span>
-                    </NavLink>
+                    </div>
                     <NavLink to="/login" style={{ textDecoration: "none" }}>
                         <span className="Footer-bar">Login Admin  &nbsp;&bull;</span>
                     </NavLink>
-                    <NavLink style={{ textDecoration: "none" }}>
+                    <div style={{ textDecoration: "none" }} onClick={comingSoon}>
                         <span to="/help" className="Footer-bar">Bantuan</span>
-                    </NavLink>
+                    </div>
                 </div>
             </div>
         </div>
