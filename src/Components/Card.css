@@ -136,6 +136,7 @@
   /* Neutral / 01 (Primary text) */
 
   color: #1e1e1e;
+  cursor: pointer;
 }
 
 .card-dashboard-detail-header-title-type-container {
@@ -336,6 +337,8 @@ DBB736
   /* Neutral / 01 (Primary text) */
 
   color: #1e1e1e;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .text-overflow {

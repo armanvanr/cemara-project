@@ -486,7 +486,8 @@ const Report = () => {
                                                                 </div>
                                                                 <div className="card-dashboard-detail-information-text">Nama : {report.name}</div>
                                                                 <div className="card-dashboard-detail-information-text">Email : {report.email}</div>
-                                                                <a href={`https://wa.me/62${report.phoneNumber.slice(1)}`} className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
+                                                                <a href={`https://wa.me/62${report.phoneNumber.slice(1)}?text=%5BZoacare%20Rescue%5D%0ASalam%2C%20kami%20dari%20Zoacare%20telah%20menerima%20laporan%20bahwa%20Anda%20membutuhkan%20pertolongan%20untuk%20penyelamatan%20hewan%20dengan%20informasi%20sebagai%20berikut%0A%0ANama%20pelapor%3A%20${report.name}%0AAlamat%3A%20${report.address}%0A%0AApakah%20laporan%20tersebut%20benar%3F%20Apabila%20iya%2C%20kami%20akan%20menuju%20ke%20lokasi%C2%A0Anda%C2%A0segera`}
+                                                                className="card-dashboard-detail-information-text">Nomor Telepon : {report.phoneNumber}</a>
                                                             </div>
                                                         </div>
                                                     </div>
