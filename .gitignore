@@ -20,6 +20,8 @@
 
 db.json
 
+keys.env
+
 
 npm-debug.log*
 yarn-debug.log*
